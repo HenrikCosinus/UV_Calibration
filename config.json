@@ -1,0 +1,35 @@
+{
+    "gpio_pin": 17,
+    "default_pulse": {
+        "duration": 0.3,
+        "pause": 0.7,
+        "count": 3
+    },
+    "patterns": {
+        "sos": {
+            "type": "morse",
+            "message": "SOS",
+            "dot_duration": 0.15
+        },
+        "heartbeat": {
+            "type": "custom",
+            "sequence": [
+                {"state": true, "duration": 0.1},
+                {"state": false, "duration": 0.1},
+                {"state": true, "duration": 0.3},
+                {"state": false, "duration": 0.5}
+            ],
+            "repeat": 2
+        },
+        "quick_blink": {
+            "type": "pulse",
+            "duration": 0.1,
+            "pause": 0.1,
+            "count": 10
+        }
+    },
+    "safety": {
+        "max_on_time": 5.0,
+        "cool_down": 1.0
+    }
+}
