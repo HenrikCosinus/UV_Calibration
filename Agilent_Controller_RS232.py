@@ -40,27 +40,16 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+"""Class to control the Agilent 33250A Function/Arbitrary Waveform Generator"""
 class Agilent33250A:
-    """Class to control the Agilent 33250A Function/Arbitrary Waveform Generator"""
-    
     def __init__(self, port="/dev/ttyUSB0", baud_rate=57600, timeout=5000):
-        """
-        Initialize connection to the Agilent 33250A via RS-232
-        
-        Args:
-            port (str): USB-to-serial device (default: /dev/ttyUSB0)
-            baud_rate (int): Baud rate (default: 57600)
-            timeout (int): Communication timeout in ms (default: 5000)
-        """
         self.port = port
         self.baud_rate = baud_rate
         self.timeout = timeout
         self.inst = None
-        
-        # Connect to the instrument
+    
         try:
             self.rm = pyvisa.ResourceManager('@py')
-            # List available resources
             resources = self.rm.list_resources()
             logger.info(f"Available resources: {resources}")
             
@@ -81,8 +70,6 @@ class Agilent33250A:
             self.inst.write("*IDN?")
             idn = self.inst.read()
             logger.info(f"Connected to: {idn}")
-            
-            # Reset instrument to default state
             self.reset()
             
         except Exception as e:
@@ -90,13 +77,11 @@ class Agilent33250A:
             raise
     
     def reset(self):
-        """Reset the instrument to default state and clear errors"""
         logger.info("Resetting instrument...")
         self.inst.write("*RST")
         self.inst.write("*CLS")
         
     def check_errors(self):
-        """Check for instrument errors"""
         while True:
             err = self.inst.query(":SYST:ERR?").strip()
             err_num = int(err.split(',')[0])
@@ -106,15 +91,12 @@ class Agilent33250A:
                 logger.warning(f"Instrument error: {err}")
                 
     def close(self):
-        """Close connection to the instrument"""
         if self.inst:
             self.inst.close()
             logger.info("Connection closed")
             
     def configure_output(self, load="INF", state=True):
-        """
-        Configure the output settings
-        
+        """        
         Args:
             load (str): Output load in ohms or "INF" for high impedance
             state (bool): Enable/disable output
@@ -124,8 +106,6 @@ class Agilent33250A:
         
     def configure_sync(self, state=True):
         """
-        Configure the sync output
-        
         Args:
             state (bool): Enable/disable sync output
         """
@@ -430,67 +410,5 @@ def demo_arbitrary_waveform(gen):
 
 
 def find_usb_serial_ports():
-    """Find available USB-to-Serial ports"""
     import glob
     return glob.glob("/dev/ttyUSB*") + glob.glob("/dev/ttyACM*")
-
-
-def main():
-    """Main function"""
-    parser = argparse.ArgumentParser(description="Control Agilent 33250A Signal Generator")
-    parser.add_argument("--port", default="/dev/ttyUSB0", help="USB-to-serial port (default: /dev/ttyUSB0)")
-    parser.add_argument("--baud", type=int, default=57600, help="Baud rate (default: 57600)")
-    parser.add_argument("--list-ports", action="store_true", help="List available serial ports")
-    parser.add_argument("--demo", action="store_true", help="Run demo sequence")
-    
-    args = parser.parse_args()
-    
-    if args.list_ports:
-        ports = find_usb_serial_ports()
-        print("Available USB-to-Serial ports:")
-        for port in ports:
-            print(f"  {port}")
-        return
-    
-    try:
-        logger.info(f"Connecting to Agilent 33250A on {args.port} at {args.baud} baud")
-        generator = Agilent33250A(port=args.port, baud_rate=args.baud)
-        
-        if args.demo:
-            # Run demo sequence
-            demo_basic_waveforms(generator)
-            demo_am_modulation(generator)
-            demo_fm_modulation(generator)
-            demo_frequency_sweep(generator)
-            demo_burst_mode(generator)
-            demo_arbitrary_waveform(generator)
-        else:
-            # Interactive mode
-            print("Connected to Agilent 33250A")
-            print("Type 'exit' to quit")
-            
-            while True:
-                cmd = input("Command: ")
-                if cmd.lower() in ['exit', 'quit']:
-                    break
-                elif cmd.strip():
-                    try:
-                        if '?' in cmd:
-                            response = generator.inst.query(cmd)
-                            print(f"Response: {response}")
-                        else:
-                            generator.inst.write(cmd)
-                            print("Command sent")
-                    except Exception as e:
-                        print(f"Error: {str(e)}")
-        
-        # Close connection
-        generator.close()
-        
-    except Exception as e:
-        logger.error(f"Error: {str(e)}")
-        sys.exit(1)
-
-
-if __name__ == "__main__":
-    main()
