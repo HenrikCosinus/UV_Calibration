@@ -1,5 +1,5 @@
-#ARM-compatible Python image (for Pi 3/4)
-FROM python:3.9-slim-bullseye
+# Use Python 3.10 or higher (for NumPy 2.x)
+FROM python:3.10-slim-bullseye
 
 # Set working directory
 WORKDIR /usr/src/app
