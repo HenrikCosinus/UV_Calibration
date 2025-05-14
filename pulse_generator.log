@@ -1,0 +1,12 @@
+2025-05-14 15:56:19,512 - INFO - Successfully imported Agilent controller modules
+2025-05-14 15:56:55,961 - INFO - Successfully imported Agilent controller modules
+2025-05-14 16:14:40,061 - INFO - Successfully imported Agilent controller modules
+2025-05-14 16:15:47,178 - INFO - Successfully imported Agilent controller modules
+2025-05-14 16:16:22,507 - INFO - Successfully imported Agilent controller modules
+2025-05-14 16:16:37,975 - INFO - Successfully imported Agilent controller modules
+2025-05-14 16:16:48,327 - INFO - Available resources: ()
+2025-05-14 16:16:48,328 - INFO - Connecting to ASRLNo ports found::INSTR
+2025-05-14 16:16:48,330 - ERROR - Connection failed: [Errno 2] could not open port No ports found: [Errno 2] No such file or directory: 'No ports found'
+2025-05-14 16:16:48,331 - ERROR - Connection error: [Errno 2] could not open port No ports found: [Errno 2] No such file or directory: 'No ports found'
+2025-05-14 16:54:09,587 - INFO - Successfully imported Agilent controller modules
+2025-05-14 17:01:39,178 - INFO - Successfully imported Agilent controller modules
