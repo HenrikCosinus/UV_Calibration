@@ -1,0 +1,5 @@
+2025-05-14 14:28:40,914 - ERROR - Connection failed: Wrapper not found: No package named pyvisa_py
+2025-05-14 14:29:53,546 - ERROR - Connection failed: Wrapper not found: No package named pyvisa_py
+2025-05-14 14:53:14,979 - INFO - Available resources: ()
+2025-05-14 14:53:14,979 - INFO - Connecting to ASRL/dev/ttyUSB0::INSTR
+2025-05-14 14:53:14,981 - ERROR - Connection failed: [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
