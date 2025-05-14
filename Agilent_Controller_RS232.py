@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Raspberry Pi to Agilent 33250A Signal Generator Communication via RS-232
 ===============================================================
