@@ -2,6 +2,10 @@ import logging
 from nicegui import ui, app
 import glob
 import time
+import RPi.GPIO as GPIO
+from GPIOController import GPIOController
+
+gpio_controller = None
 
 # Configure logging
 logging.basicConfig(
@@ -175,10 +179,119 @@ def create_ui():
         # Update warning visibility when connection status changes
         app.on_connect(lambda: update_warning_visibility())
 
+    with ui.card().classes('m-4'):
+        ui.label('GPIO Switch Control').classes('text-h6')
+        
+        # GPIO Status and buttons
+        gpio_status_label = ui.label('Status: Not Initialized').classes('mt-2')
+        
+        def initialize_gpio():
+            global gpio_controller
+            try:
+                if gpio_controller is None:
+                    gpio_controller = GPIOController()
+                    gpio_status_label.text = 'Status: Initialized'
+                    gpio_init_btn.visible = False
+                    gpio_cleanup_btn.visible = True
+                    ui.notify('GPIO Controller initialized!', color='positive')
+                    logger.info("GPIO Controller initialized")
+                else:
+                    gpio_status_label.text = 'Status: Already initialized'
+            except Exception as e:
+                gpio_status_label.text = f'Status: Initialization error - {str(e)}'
+                ui.notify(f'Initialization error: {str(e)}', color='negative')
+                logger.error(f"GPIO initialization error: {str(e)}")
+        
+        def cleanup_gpio():
+            global gpio_controller
+            try:
+                if gpio_controller is not None:
+                    gpio_controller.cleanup()
+                    gpio_controller = None
+                    gpio_status_label.text = 'Status: Cleaned up'
+                    gpio_init_btn.visible = True
+                    gpio_cleanup_btn.visible = False
+                    ui.notify('GPIO Controller cleaned up', color='info')
+                    logger.info("GPIO Controller cleaned up")
+                else:
+                    gpio_status_label.text = 'Status: Already cleaned up'
+            except Exception as e:
+                gpio_status_label.text = f'Status: Cleanup error - {str(e)}'
+                ui.notify(f'Cleanup error: {str(e)}', color='negative')
+                logger.error(f"GPIO cleanup error: {str(e)}")
+        
+        with ui.row():
+            gpio_init_btn = ui.button('Initialize', on_click=initialize_gpio).classes('mt-2 bg-green-700')
+            gpio_cleanup_btn = ui.button('Cleanup', on_click=cleanup_gpio).classes('mt-2 bg-red-700')
+            gpio_cleanup_btn.visible = False
+        
+        # Switch selection dropdown
+        ui.label('Select Switch:').classes('mt-4')
+        switch_options = [
+            'Switch 1', 'Switch 2', 'Switch 3', 'Switch 4',
+            'Switch 5', 'Switch 6', 'Switch 7', 'Switch 8',
+            'All Off'
+        ]
+        switch_dropdown = ui.select(
+            label='Available Switches',
+            options=switch_options,
+            value=switch_options[-1]  # Default to "All Off"
+        ).classes('w-full')
+        
+        def execute_switch():
+            if gpio_controller is None:
+                ui.notify('Please initialize GPIO controller first', color='negative')
+                return
+            
+            selected_switch = switch_dropdown.value
+            try:
+                # Call the appropriate method on the controller
+                if selected_switch == 'Switch 1':
+                    gpio_controller.Switch_1()
+                elif selected_switch == 'Switch 2':
+                    gpio_controller.Switch_2()
+                elif selected_switch == 'Switch 3':
+                    gpio_controller.Switch_3()
+                elif selected_switch == 'Switch 4':
+                    gpio_controller.Switch_4()
+                elif selected_switch == 'Switch 5':
+                    gpio_controller.Switch_5()
+                elif selected_switch == 'Switch 6':
+                    gpio_controller.Switch_6()
+                elif selected_switch == 'Switch 7':
+                    gpio_controller.Switch_7()
+                elif selected_switch == 'Switch 8':
+                    gpio_controller.Switch_8()
+                elif selected_switch == 'All Off':
+                    gpio_controller.set_all_pins(False)
+                
+                ui.notify(f'Executed {selected_switch}', color='positive')
+                logger.info(f"Executed GPIO {selected_switch}")
+            except Exception as e:
+                error_msg = f"Error executing {selected_switch}: {str(e)}"
+                ui.notify(error_msg, color='negative')
+                logger.error(error_msg)
+        
+        # Execute Switch button
+        ui.button('Execute Switch', on_click=execute_switch).classes('mt-2 w-full bg-blue-700')
+        
+        # Quick access buttons
+        ui.label('Quick Access:').classes('mt-4')
+        with ui.grid(columns=3).classes('gap-1 mt-2'):
+            for i in range(1, 9):
+                ui.button(f'S{i}', on_click=lambda i=i: (
+                    switch_dropdown.set_value(f'Switch {i}'),
+                    execute_switch()
+                )).classes('bg-indigo-700')
+            ui.button('OFF', on_click=lambda: (
+                switch_dropdown.set_value('All Off'),
+                execute_switch()
+            )).classes('bg-red-700')
+
     # Display a footer with additional information
     with ui.footer().classes('bg-blue-900 text-white'):
         ui.label('Note: Demo functions will run through a sequence of preset waveforms to demonstrate the generator\'s capabilities')
 
 
 create_ui()
-ui.run(title="Agilent 33250A Demo Runner", port=8084, reload=False)
+ui.run(title="Agilent 33250A Demo Runner", port=8081, reload=False)

@@ -95,3 +95,10 @@ Traceback (most recent call last):
                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/home/COSINUS/Documents/UV_Calibration/GUI.py", line 126, in run_demo
 NameError: name 'generator' is not defined
+2025-05-21 15:27:27,499 - INFO - Successfully imported Agilent controller modules
+2025-05-21 15:30:03,876 - INFO - Successfully imported Agilent controller modules
+2025-05-21 15:30:48,499 - INFO - Successfully imported Agilent controller modules
+2025-05-21 15:32:05,832 - INFO - Successfully imported Agilent controller modules
+2025-05-21 15:32:36,472 - INFO - Successfully imported Agilent controller modules
+2025-05-21 15:33:56,097 - INFO - Successfully imported Agilent controller modules
+2025-05-21 15:40:44,887 - INFO - Successfully imported Agilent controller modules
