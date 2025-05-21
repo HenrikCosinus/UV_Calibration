@@ -10,3 +10,6 @@
 2025-05-14 16:16:48,331 - ERROR - Connection error: [Errno 2] could not open port No ports found: [Errno 2] No such file or directory: 'No ports found'
 2025-05-14 16:54:09,587 - INFO - Successfully imported Agilent controller modules
 2025-05-14 17:01:39,178 - INFO - Successfully imported Agilent controller modules
+2025-05-20 12:52:38,282 - INFO - Successfully imported Agilent controller modules
+2025-05-20 13:01:52,257 - INFO - Successfully imported Agilent controller modules
+2025-05-20 13:07:02,043 - INFO - Successfully imported Agilent controller modules

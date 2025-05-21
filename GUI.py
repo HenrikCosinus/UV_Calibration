@@ -1,10 +1,6 @@
-import sys
 import logging
 from nicegui import ui, app
 import glob
-import numpy as np
-from typing import List, Dict, Optional
-from datetime import datetime
 import time
 
 # Configure logging
@@ -12,89 +8,34 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler("pulse_generator.log"),
-        logging.StreamHandler(sys.stdout)
+        logging.FileHandler("agilent_demo.log"),
     ]
 )
 logger = logging.getLogger(__name__)
 
 try:
-    from Agilent_Controller_RS232 import Agilent33250A, find_usb_serial_ports
+    from Agilent_Controller_RS232 import (
+        Agilent33250A, 
+        find_usb_serial_ports,
+        demo_basic_waveforms,
+        demo_am_modulation,
+        demo_fm_modulation,
+        demo_frequency_sweep,
+        demo_burst_mode,
+        demo_arbitrary_waveform
+    )
     logger.info("Successfully imported Agilent controller modules")
+    CONTROLLER_AVAILABLE = True
 except ImportError:
-    logger.error("Failed to import Agilent controller modules.")
-
-# Global variable for generator
-generator = None
-
-# Define load options
-LOAD_OPTIONS = ["50", "INF", "HIGHZ"]
-
-class PulseSequence:
-    def __init__(self):
-        self.pulses: List[Dict] = []
-        self.current_id = 0
-        
-    def add_pulse(self, width: float, delay: float, amplitude: float = 1.0):
-        """Add a pulse to the sequence"""
-        self.pulses.append({
-            'id': self.current_id,
-            'width': width,  # in µs
-            'delay': delay,  # in µs
-            'amplitude': amplitude  # in volts
-        })
-        self.current_id += 1
-        
-    def remove_pulse(self, pulse_id: int):
-        """Remove a pulse from the sequence"""
-        self.pulses = [p for p in self.pulses if p['id'] != pulse_id]
-        
-    def clear(self):
-        """Clear all pulses"""
-        self.pulses = []
-        self.current_id = 0
-        
-    def get_total_duration(self) -> float:
-        """Get total sequence duration in µs"""
-        return sum(p['width'] + p['delay'] for p in self.pulses)
-        
-    def generate_waveform(self, sample_rate: int = 100) -> np.ndarray:
-        """
-        Generate a waveform array for visualization
-        sample_rate: samples per µs
-        """
-        if not self.pulses:
-            return np.array([])
-            
-        total_samples = int(self.get_total_duration() * sample_rate)
-        waveform = np.zeros(total_samples)
-        
-        current_time = 0
-        for pulse in self.pulses:
-            start_sample = int(current_time * sample_rate)
-            width_samples = int(pulse['width'] * sample_rate)
-            end_sample = start_sample + width_samples
-            
-            if end_sample > len(waveform):
-                waveform = np.pad(waveform, (0, end_sample - len(waveform)), 'constant')
-                
-            waveform[start_sample:end_sample] = pulse['amplitude']
-            current_time += pulse['width'] + pulse['delay']
-            
-        return waveform
+    logger.warning("Agilent controller modules not found. UI will be displayed in demo mode only.")
+    CONTROLLER_AVAILABLE = False
 
 def create_ui():
-    # Initialize pulse sequence
-    sequence = PulseSequence()
-    
     # Dark theme
     ui.dark_mode().enable()
-    
     with ui.header().classes('bg-blue-900'):
-        ui.label('Agilent 33250A Pulse Generator').classes('text-h4 text-white')
-        
+        ui.label('Agilent 33250A Demo Runner').classes('text-h4 text-white')
     with ui.row().classes('w-full justify-center items-start'):
-        # Connection panel
         with ui.card().classes('m-4'):
             ui.label('Connection').classes('text-h6')
             
@@ -110,6 +51,7 @@ def create_ui():
                 new_ports = find_usb_serial_ports()
                 port_dropdown.options = new_ports if new_ports else ['No ports found']
                 port_dropdown.value = new_ports[0] if new_ports else None
+                ui.notify('Ports refreshed', color='info')
                 
             ui.button('Refresh Ports', on_click=refresh_ports).classes('mt-2')
             
@@ -126,12 +68,14 @@ def create_ui():
                         status_label.text = f'Status: Connected to {port}'
                         connect_btn.visible = False
                         disconnect_btn.visible = True
-                        pulse_card.visible = True
+                        demo_warning.visible = False
+                        ui.notify('Connected to generator!', color='positive')
                         logger.info(f"Connected to generator at {port}")
                     else:
                         status_label.text = 'Status: Already connected'
                 except Exception as e:
                     status_label.text = f'Status: Connection error - {str(e)}'
+                    ui.notify(f'Connection error: {str(e)}', color='negative')
                     logger.error(f"Connection error: {str(e)}")
             
             def disconnect_generator():
@@ -143,12 +87,14 @@ def create_ui():
                         status_label.text = 'Status: Disconnected'
                         connect_btn.visible = True
                         disconnect_btn.visible = False
-                        pulse_card.visible = False
+                        demo_warning.visible = True
+                        ui.notify('Disconnected from generator', color='info')
                         logger.info("Disconnected from generator")
                     else:
                         status_label.text = 'Status: Already disconnected'
                 except Exception as e:
                     status_label.text = f'Status: Disconnection error - {str(e)}'
+                    ui.notify(f'Disconnection error: {str(e)}', color='negative')
                     logger.error(f"Disconnection error: {str(e)}")
             
             with ui.row():
@@ -156,156 +102,83 @@ def create_ui():
                 disconnect_btn = ui.button('Disconnect', on_click=disconnect_generator).classes('mt-2 bg-red-700')
                 disconnect_btn.visible = False
         
-        # Pulse generator panel
-        pulse_card = ui.card().classes('m-4')
-        with pulse_card:
-            ui.label('Pulse Sequence Configuration').classes('text-h6')
+        # Demo functions panel
+        demo_card = ui.card().classes('m-4')
+        with demo_card:
+            ui.label('Demo Functions').classes('text-h6')
             
-            # Output configuration
-            with ui.row().classes('w-full items-center'):
-                load_select = ui.select(label='Load', options=LOAD_OPTIONS, value='INF').classes('w-32')
-                output_toggle = ui.switch('Output Enabled').classes('ml-4')
-                ui.button('Apply Output', on_click=lambda: apply_output_settings()).classes('ml-4 bg-blue-700')
+            # Demo functions 
+            with ui.column().classes('w-full gap-2'):
+                ui.button('Basic Waveforms Demo', on_click=lambda: run_demo(demo_basic_waveforms), icon='waves').classes('w-full bg-blue-700')
+                ui.button('AM Modulation Demo', on_click=lambda: run_demo(demo_am_modulation), icon='signal_cellular_alt').classes('w-full bg-indigo-700')
+                ui.button('FM Modulation Demo', on_click=lambda: run_demo(demo_fm_modulation), icon='tune').classes('w-full bg-purple-700')
+                ui.button('Frequency Sweep Demo', on_click=lambda: run_demo(demo_frequency_sweep), icon='low_priority').classes('w-full bg-teal-700')
+                ui.button('Burst Mode Demo', on_click=lambda: run_demo(demo_burst_mode), icon='repeat').classes('w-full bg-green-700')
+                ui.button('Arbitrary Waveform Demo', on_click=lambda: run_demo(demo_arbitrary_waveform), icon='show_chart').classes('w-full bg-amber-700')
+                
+            # Status indicator
+            demo_status = ui.label('Ready to run demos').classes('mt-4 text-center')
             
-            # Pulse sequence editor
-            with ui.card().classes('w-full mt-4'):
-                ui.label('Pulse Sequence').classes('text-h6')
-                
-                # Pulse parameters
-                with ui.row().classes('w-full items-end'):
-                    pulse_width = ui.number(label='Width (µs)', value=100, min=0.1, max=1000, step=1).classes('w-32')
-                    pulse_delay = ui.number(label='Delay (µs)', value=200, min=0, max=5000, step=1).classes('w-32 ml-2')
-                    pulse_amplitude = ui.number(label='Amplitude (V)', value=1.0, min=0.1, max=10.0, step=0.1).classes('w-32 ml-2')
-                    ui.button('Add Pulse', on_click=lambda: add_pulse_to_sequence(), icon='add').classes('ml-2 bg-green-700')
-                
-                # Sequence table - using a grid instead of table for better control
-                sequence_grid = ui.grid(columns=5).classes('w-full mt-2')
-                sequence_grid.add_header_cell('ID')
-                sequence_grid.add_header_cell('Width (µs)')
-                sequence_grid.add_header_cell('Delay (µs)')
-                sequence_grid.add_header_cell('Amplitude (V)')
-                sequence_grid.add_header_cell('Actions')
-                
-                def update_sequence_grid():
-                    sequence_grid.clear()
-                    sequence_grid.add_header_cell('ID')
-                    sequence_grid.add_header_cell('Width (µs)')
-                    sequence_grid.add_header_cell('Delay (µs)')
-                    sequence_grid.add_header_cell('Amplitude (V)')
-                    sequence_grid.add_header_cell('Actions')
-                    
-                    for pulse in sequence.pulses:
-                        sequence_grid.add_cell(str(pulse['id']))
-                        sequence_grid.add_cell(str(pulse['width']))
-                        sequence_grid.add_cell(str(pulse['delay']))
-                        sequence_grid.add_cell(str(pulse['amplitude']))
-                        with sequence_grid.add_cell():
-                            ui.button(icon='delete', on_click=lambda p=pulse['id']: remove_pulse_from_sequence(p)).props('flat dense')
-                    
-                    update_waveform_plot()
-                
-                def add_pulse_to_sequence():
-                    sequence.add_pulse(
-                        width=pulse_width.value,
-                        delay=pulse_delay.value,
-                        amplitude=pulse_amplitude.value
-                    )
-                    update_sequence_grid()
-                
-                def remove_pulse_from_sequence(pulse_id: int):
-                    sequence.remove_pulse(pulse_id)
-                    update_sequence_grid()
-                
-                # Clear sequence button
-                ui.button('Clear Sequence', on_click=lambda: [sequence.clear(), update_sequence_grid()], icon='clear').classes('mt-2 bg-red-700')
-            
-            # Waveform preview
-            with ui.card().classes('w-full mt-4'):
-                ui.label('Waveform Preview').classes('text-h6')
-                plot = ui.plot().classes('w-full h-64')
-                
-                def update_waveform_plot():
-                    if not sequence.pulses:
-                        plot.content = ''
-                        return
-                    
-                    waveform = sequence.generate_waveform()
-                    x = np.linspace(0, sequence.get_total_duration(), len(waveform))
-                    
-                    plot.content = f"""
-                    {{
-                        const data = {{
-                            x: {x.tolist()},
-                            y: {waveform.tolist()},
-                            type: 'scatter',
-                            mode: 'lines',
-                            line: {{color: 'blue', width: 2}},
-                            name: 'Pulse Sequence'
-                        }};
-                        
-                        const layout = {{
-                            title: 'Pulse Sequence (Total: {sequence.get_total_duration():.1f}µs)',
-                            xaxis: {{title: 'Time (µs)'}},
-                            yaxis: {{title: 'Amplitude (V)', range: [0, {max(1.0, max(p['amplitude'] for p in sequence.pulses) + 0.5)}]}},
-                            margin: {{l: 50, r: 20, t: 40, b: 50}},
-                            showlegend: false
-                        }};
-                        
-                        Plotly.newPlot('{plot.id}', [data], layout);
-                    }}
-                    """
-            
-            # Trigger controls
-            with ui.row().classes('w-full justify-center mt-4'):
-                ui.button('Send Single Trigger', on_click=lambda: send_trigger(), icon='play_arrow').classes('bg-green-700')
-                ui.button('Send Burst (5x)', on_click=lambda: send_burst(5), icon='repeat').classes('ml-4 bg-blue-700')
-            
-            # Apply settings function
-            def apply_output_settings():
+            def run_demo(demo_function):
                 if generator is None:
                     ui.notify('Please connect to a generator first', color='negative')
                     return
                 
                 try:
-                    generator.configure_output(load=load_select.value, state=output_toggle.value)
-                    ui.notify('Output settings applied', color='positive')
-                    logger.info(f"Applied output settings: Load={load_select.value}, Enabled={output_toggle.value}")
+                    demo_status.text = f'Running: {demo_function.__name__}'
+                    ui.notify(f'Running {demo_function.__name__}', color='info')
+                    logger.info(f"Starting {demo_function.__name__}")
+                    
+                    # Run the demo in a separate thread to avoid blocking UI
+                    def run_async():
+                        try:
+                            result = demo_function(generator)
+                            ui.notify(f'Completed {demo_function.__name__}', color='positive')
+                            demo_status.text = f'Completed: {demo_function.__name__}'
+                        except Exception as e:
+                            error_msg = f"Error in {demo_function.__name__}: {str(e)}"
+                            ui.notify(error_msg, color='negative')
+                            demo_status.text = error_msg
+                            logger.error(error_msg)
+                    
+                    # Schedule the demo to run asynchronously
+                    app.schedule(run_async)
+                    
                 except Exception as e:
-                    ui.notify(f'Error: {str(e)}', color='negative')
-                    logger.error(f"Error applying output settings: {str(e)}")
+                    error_msg = f"Failed to start {demo_function.__name__}: {str(e)}"
+                    ui.notify(error_msg, color='negative')
+                    demo_status.text = error_msg
+                    logger.error(error_msg)
             
-            # Send trigger function
-            def send_trigger():
+            def stop_output():
                 if generator is None:
-                    ui.notify('Please connect to a generator first', color='negative')
+                    ui.notify('No active connection', color='warning')
                     return
                 
                 try:
-                    generator.send_trigger()
-                    ui.notify('Trigger sent', color='positive')
-                    logger.info("Sent single trigger")
+                    # Reset and disable output
+                    generator.configure_output(state=False)
+                    generator.reset()
+                    ui.notify('Output stopped', color='positive')
+                    demo_status.text = 'Output stopped'
+                    logger.info("Output stopped")
                 except Exception as e:
-                    ui.notify(f'Error: {str(e)}', color='negative')
-                    logger.error(f"Error sending trigger: {str(e)}")
-            
-            # Send burst function
-            def send_burst(count: int):
-                if generator is None:
-                    ui.notify('Please connect to a generator first', color='negative')
-                    return
-                
-                try:
-                    for i in range(count):
-                        generator.send_trigger()
-                        time.sleep(0.1)  # Small delay between triggers
-                    ui.notify(f'Sent {count} triggers', color='positive')
-                    logger.info(f"Sent burst of {count} triggers")
-                except Exception as e:
-                    ui.notify(f'Error: {str(e)}', color='negative')
-                    logger.error(f"Error sending burst: {str(e)}")
+                    ui.notify(f'Error stopping output: {str(e)}', color='negative')
+                    logger.error(f"Error stopping output: {str(e)}")
         
-        # Initially hide the pulse card until connected
-        pulse_card.visible = False
+        # Always show the demo card, but add a warning when not connected
+        demo_warning = ui.label('⚠️ NOT CONNECTED - Connect to a device before running demos').classes('text-red-500 font-bold w-full text-center mt-1 mb-3')
+        
+        def update_warning_visibility():
+            demo_warning.visible = generator is None
+            
+        # Update warning visibility when connection status changes
+        app.on_connect(lambda: update_warning_visibility())
+
+    # Display a footer with additional information
+    with ui.footer().classes('bg-blue-900 text-white'):
+        ui.label('Note: Demo functions will run through a sequence of preset waveforms to demonstrate the generator\'s capabilities')
+
 
 create_ui()
-ui.run(title="Agilent 33250A Pulse Generator", port=8082, reload=False)
+ui.run(title="Agilent 33250A Demo Runner", port=8084, reload=False)
