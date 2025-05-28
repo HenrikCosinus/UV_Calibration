@@ -294,4 +294,5 @@ def create_ui():
 
 
 create_ui()
-ui.run(title="Agilent 33250A Demo Runner", port=8081, reload=False)
+#ui.run(title="Agilent 33250A Demo Runner", port=8085, reload=True)
+ui.run(title="UI_Test", port=1884, reload = True, host="134.107.69.228")
