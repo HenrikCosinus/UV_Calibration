@@ -26,12 +26,13 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 class Agilent33250A:
-    def __init__(self, port="/dev/ttyUSB0", baud_rate=57600, timeout=5000):
+    def __init__(self, port="/dev/ttyUSB0", baud_rate=57600, timeout=50000):
         self.port = port
         self.data_bits = 8
         self.rm = pyvisa.ResourceManager()
         resources = self.rm.list_resources()
-        self.inst = self.rm.open_resource('ASRL/dev/ttyUSB0::INSTR',
+        self.inst = self.rm.open_resource(
+            resource_name='ASRL/dev/ttyUSB0::INSTR',
             baud_rate=57600,
             data_bits=8,
             parity=constants.Parity.none,
@@ -44,12 +45,6 @@ class Agilent33250A:
         logger.info(f"Available resources: {resources}")
 
         try:
-            # Connect using ASRL (Serial) resource
-            resource_name = f"ASRL{port}::INSTR"
-            logger.info(f"Connecting to {resource_name}")
-            self.inst = self.rm.open_resource(resource_name)
-            
-            # Test connection
             idn = self.inst.query("*IDN?")
             logger.info(f"Connected to: {idn}")
             self.reset()

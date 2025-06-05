@@ -34,3 +34,11 @@
 2025-06-04 16:30:09,747 - INFO - Connecting to ASRL/dev/ttyUSB0::INSTR
 2025-06-04 16:30:11,754 - ERROR - Connection failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
 2025-06-04 16:30:11,763 - ERROR - Hardware initialization failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
+2025-06-05 13:53:42,557 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-05 13:53:42,557 - INFO - Connecting to ASRL/dev/ttyUSB0::INSTR
+2025-06-05 13:53:44,568 - ERROR - Connection failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
+2025-06-05 13:53:44,568 - ERROR - Hardware initialization failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
+2025-06-05 13:54:32,608 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-05 13:54:32,609 - INFO - Connecting to ASRL/dev/ttyUSB0::INSTR
+2025-06-05 13:54:34,619 - ERROR - Connection failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
+2025-06-05 13:54:34,620 - ERROR - Hardware initialization failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
