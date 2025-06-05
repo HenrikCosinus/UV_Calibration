@@ -44,11 +44,18 @@ class Agilent33250A:
         )
         logger.info(f"Available resources: {resources}")
 
+        #work in Progress.......
+        print(self.rm.list_resources())
+        print(self.inst)
+        #both of these are fine and correct...
+        #I dont think he recognizes the inst.query? It acts as if it does not have an inst.query but all the tutorials say it does...
+        print(dir(self.inst))
+        #and it also shows up here! There is the inst.query! So why the fu* does this not work
         try:
             idn = self.inst.query("*IDN?")
             logger.info(f"Connected to: {idn}")
             self.reset()
-            
+        
         except Exception as e:
             logger.error(f"Connection failed: {str(e)}")
             raise
