@@ -1,0 +1,36 @@
+2025-06-04 13:46:10,566 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-04 13:46:10,567 - INFO - Connecting to ASRL/dev/ttyUSB0::INSTR
+2025-06-04 13:46:12,578 - ERROR - Connection failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
+2025-06-04 13:46:12,579 - ERROR - Hardware initialization failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
+2025-06-04 13:54:58,037 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-04 13:54:58,037 - INFO - Connecting to ASRL/dev/ttyUSB0::INSTR
+2025-06-04 13:55:00,046 - ERROR - Connection failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
+2025-06-04 13:55:00,047 - ERROR - Hardware initialization failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
+2025-06-04 13:55:09,400 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-04 13:55:09,400 - INFO - Connecting to ASRL/dev/ttyUSB0::INSTR
+2025-06-04 13:55:11,409 - ERROR - Connection failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
+2025-06-04 13:55:11,409 - ERROR - Hardware initialization failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
+2025-06-04 14:13:39,817 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-04 14:13:39,818 - INFO - Connecting to ASRL/dev/ttyUSB4::INSTR
+2025-06-04 14:13:39,819 - ERROR - Connection failed: [Errno 2] could not open port /dev/ttyUSB4: [Errno 2] No such file or directory: '/dev/ttyUSB4'
+2025-06-04 14:13:39,819 - ERROR - Hardware initialization failed: [Errno 2] could not open port /dev/ttyUSB4: [Errno 2] No such file or directory: '/dev/ttyUSB4'
+2025-06-04 14:30:30,572 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-04 14:30:30,573 - INFO - Connecting to ASRL/dev/ttyUSB4::INSTR
+2025-06-04 14:30:30,574 - ERROR - Connection failed: [Errno 2] could not open port /dev/ttyUSB4: [Errno 2] No such file or directory: '/dev/ttyUSB4'
+2025-06-04 14:30:30,575 - ERROR - Hardware initialization failed: [Errno 2] could not open port /dev/ttyUSB4: [Errno 2] No such file or directory: '/dev/ttyUSB4'
+2025-06-04 14:30:53,315 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-04 14:30:53,315 - INFO - Connecting to ASRL/dev/ttyUSB0::INSTR
+2025-06-04 14:30:55,326 - ERROR - Connection failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
+2025-06-04 14:30:55,326 - ERROR - Hardware initialization failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
+2025-06-04 14:48:11,704 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-04 14:48:11,704 - INFO - Connecting to ASRL/dev/ttyUSB0::INSTR
+2025-06-04 14:48:13,713 - ERROR - Connection failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
+2025-06-04 14:48:13,714 - ERROR - Hardware initialization failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
+2025-06-04 14:49:01,189 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-04 14:49:01,189 - INFO - Connecting to ASRL/dev/ttyUSB0::INSTR
+2025-06-04 14:49:03,199 - ERROR - Connection failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
+2025-06-04 14:49:03,200 - ERROR - Hardware initialization failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
+2025-06-04 16:30:09,747 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-04 16:30:09,747 - INFO - Connecting to ASRL/dev/ttyUSB0::INSTR
+2025-06-04 16:30:11,754 - ERROR - Connection failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
+2025-06-04 16:30:11,763 - ERROR - Hardware initialization failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
