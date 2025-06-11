@@ -266,7 +266,3 @@ class HighLevelControl:
         time.sleep(5)
 
 
-    
-# Start the system
-controller = HighLevelControl()
-controller.run()

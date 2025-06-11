@@ -29,7 +29,7 @@ class Agilent33250A:
     def __init__(self, port="/dev/ttyUSB0", baud_rate=57600, timeout=50000):
         self.port = port
         self.data_bits = 8
-        self.rm = pyvisa.ResourceManager()
+        self.rm = pyvisa.ResourceManager('@py')
         resources = self.rm.list_resources()
         self.inst = self.rm.open_resource(
             resource_name='ASRL/dev/ttyUSB0::INSTR',
@@ -40,7 +40,7 @@ class Agilent33250A:
             flow_control=constants.VI_ASRL_FLOW_NONE,
             write_termination='\n',
             read_termination='\n',
-            timeout=5000
+            timeout=50000
         )
         logger.info(f"Available resources: {resources}")
 
@@ -50,7 +50,7 @@ class Agilent33250A:
         #both of these are fine and correct...
         #I dont think he recognizes the inst.query? It acts as if it does not have an inst.query but all the tutorials say it does...
         print(dir(self.inst))
-        #and it also shows up here! There is the inst.query! So why the fu* does this not work
+        #and it also shows up here! There is the inst.query! So why the fu* does this not work...
         try:
             idn = self.inst.query("*IDN?")
             logger.info(f"Connected to: {idn}")

@@ -4,8 +4,9 @@ import numpy as np
 import argparse
 import sys
 import logging
-import Agilent_Controller_RS232 
-import MQTTHandler
+from MQTTHandler import MQTTHandler
+from Backend import HighLevelControl
+from Frontend import Frontend
 
 # Configure logging
 logging.basicConfig(
@@ -32,9 +33,9 @@ def main():
     parser.add_argument("--mqtt-client-id", default="agilent_controller", help="MQTT client ID")
     
     args = parser.parse_args()
-    
+
     if args.list_ports:
-        ports = Agilent_Controller_RS232.find_usb_serial_ports()
+        ports = HighLevelControl.agilent.find_usb_serial_ports()
         print("Available USB-to-Serial ports:")
         for port in ports:
             print(f"  {port}")
@@ -44,7 +45,7 @@ def main():
     
     try:
         logger.info(f"Connecting to Agilent 33250A on {args.port} at {args.baud} baud")
-        generator = Agilent_Controller_RS232.Agilent33250A(port=args.port, baud_rate=args.baud)
+        generator = HighLevelControl.agilent.Agilent33250A(port=args.port, baud_rate=args.baud)
         
         # Initialize and connect MQTT if enabled
         if args.mqtt:
@@ -59,12 +60,7 @@ def main():
         if args.demo:
             # Run demo sequence
             logger.info("Running demo sequence")
-            Agilent_Controller_RS232.demo_basic_waveforms(generator)
-            Agilent_Controller_RS232.demo_am_modulation(generator)
-            Agilent_Controller_RS232.demo_fm_modulation(generator)
-            Agilent_Controller_RS232.demo_frequency_sweep(generator)
-            Agilent_Controller_RS232.demo_burst_mode(generator)
-            Agilent_Controller_RS232.demo_arbitrary_waveform(generator)
+            HighLevelControl.agilent.demo_burst_mode(generator)
         else:
             # Interactive mode
             print("Connected to Agilent 33250A")
@@ -96,8 +92,6 @@ def main():
         # Clean up
         if mqtt_handler and mqtt_handler.connected:
             mqtt_handler.disconnect()
-        
-        # Close connection to generator
         generator.close()
         
     except Exception as e:
@@ -118,6 +112,6 @@ def main():
             
         sys.exit(1)
 
-
 if __name__ == "__main__":
+    Frontend()
     main()
