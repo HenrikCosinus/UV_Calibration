@@ -66,3 +66,11 @@
 2025-06-11 10:59:29,173 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
 2025-06-11 10:59:31,223 - INFO - Connected to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
 2025-06-11 10:59:31,224 - INFO - Resetting instrument...
+2025-06-11 13:18:55,585 - INFO - Connecting to Agilent 33250A on /dev/ttyUSB0 at 57600 baud
+2025-06-11 14:04:44,219 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-11 14:05:36,266 - ERROR - Connection failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
+2025-06-11 14:05:36,266 - ERROR - Hardware initialization failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
+2025-06-11 14:07:18,270 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-11 14:07:20,419 - INFO - Connected to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-11 14:07:20,420 - INFO - Resetting instrument...
+2025-06-11 14:07:20,421 - INFO - Hardware initialized successfully

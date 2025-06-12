@@ -20,7 +20,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-class HighLevelControl:
+class HighLevelControl():
     def __init__(self):
         self.initialize_hardware()
         topics = {
@@ -30,7 +30,7 @@ class HighLevelControl:
         }
         self.mqtt = MQTTHandler(client_id="backend_controller", broker="localhost", port=1883, topics=topics)
         self.setup_mqtt_handlers()
-        self.mqtt.connect()        
+        self.mqtt.connect()
 
     def initialize_hardware(self):
         try:
@@ -46,6 +46,14 @@ class HighLevelControl:
         self.mqtt.on_status_update(self.handle_status_update)
         logger.info("MQTT handlers configured")
     
+    def connect_to_generator(self):
+        for port in Agilent33250A.find_usb_serial_ports():
+            try:
+                self.agilent = Agilent33250A(port=port)
+                return
+            except Exception as e:
+                continue
+        raise RuntimeError("No Agilent 33250A device found on available ports")
 
     def handle_ui_command(self, command):
         try:

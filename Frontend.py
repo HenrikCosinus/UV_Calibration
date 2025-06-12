@@ -1,27 +1,27 @@
 import logging
-from nicegui import ui, app
-import glob
 import time
 import RPi.GPIO as GPIO
 from Backend import HighLevelControl
 from nicegui import ui
 import paho.mqtt.client as mqtt
 import json
+from MQTTHandler import MQTTHandler
 
 class Frontend:
     def __init__(self):
-        self.mqtt_client = self.setup_mqtt()
-        self.create_ui()
-
-    def setup_mqtt(self):
-        client = mqtt.Client()
-        client.on_connect = self.on_mqtt_connect
-        client.connect("raspberrypi.local", "172.17.0.1")
-        client.loop_start()
-        return client
-
-    def on_mqtt_connect(self, client, userdata, flags, rc):
-        ui.notify(f"MQTT Connected (Code: {rc})")
+        topics = {
+            'operation_status': f"/status",
+            'UI_command': f"/ui_command",
+            'control_response': f"/control_response",
+        }
+        
+        self.mqtt = MQTTHandler(
+            client_id="web_ui",
+            broker="raspberrypi.local",
+            port=1883,
+            topics=topics
+        )
+        self.mqtt.connect()
 
     def create_ui(self):
         with ui.card().classes("w-96"):
@@ -117,10 +117,3 @@ class Frontend:
                 connect_btn = ui.button('Connect', on_click=connect_generator).classes('mt-2 bg-green-700')
                 disconnect_btn = ui.button('Disconnect', on_click=disconnect_generator).classes('mt-2 bg-red-700')
                 disconnect_btn.visible = False
-
-
-            
-
-    create_ui()
-    #ui.run(title="Agilent 33250A Demo Runner", port=8085, reload=True)
-    ui.run(title="UI_Test", port=1884, reload = True, host="134.107.69.228")

@@ -8,11 +8,15 @@ More or less ripped straight from the Agilent manual where it is given in C, and
 """
 import pyvisa
 from pyvisa import constants
+from pyvisa.resources import SerialInstrument
+from pyvisa.resources.messagebased import MessageBasedResource
 import time
 import numpy as np
 import argparse
 import sys
 import logging
+from typing import cast
+
 
 # Configure logging
 logging.basicConfig(
@@ -25,13 +29,18 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+
 class Agilent33250A:
     def __init__(self, port="/dev/ttyUSB0", baud_rate=57600, timeout=50000):
         self.port = port
         self.data_bits = 8
+        self.baud_rate = baud_rate
+        self.timeout = timeout
         self.rm = pyvisa.ResourceManager('@py')
-        resources = self.rm.list_resources()
-        self.inst = self.rm.open_resource(
+        resource_list = self.rm.list_resources()
+        logger.info(f"Available resources: {resource_list}")
+
+        resource = self.rm.open_resource(
             resource_name='ASRL/dev/ttyUSB0::INSTR',
             baud_rate=57600,
             data_bits=8,
@@ -42,13 +51,9 @@ class Agilent33250A:
             read_termination='\n',
             timeout=50000
         )
-        logger.info(f"Available resources: {resources}")
+        #self.inst = cast(SerialInstrument, resource)
+        self.inst = cast(MessageBasedResource, resource)
 
-        #work in Progress.......
-        print(self.rm.list_resources())
-        print(self.inst)
-        #both of these are fine and correct...
-        #I dont think he recognizes the inst.query? It acts as if it does not have an inst.query but all the tutorials say it does...
         print(dir(self.inst))
         #and it also shows up here! There is the inst.query! So why the fu* does this not work...
         try:
@@ -59,6 +64,36 @@ class Agilent33250A:
         except Exception as e:
             logger.error(f"Connection failed: {str(e)}")
             raise
+
+    def connect(self):
+        try:
+            resource = self.rm.open_resource(
+                resource_name=f"ASRL{self.port}::INSTR",
+                baud_rate=self.baud_rate,
+                data_bits=8,
+                parity=constants.Parity.none,
+                stop_bits=constants.StopBits.one,
+                flow_control=constants.VI_ASRL_FLOW_NONE,
+                write_termination='\n',
+                read_termination='\n',
+                timeout=self.timeout
+            )
+            self.inst = cast(MessageBasedResource, resource)
+            idn = self.inst.query("*IDN?")
+            logger.info(f"Connected to: {idn}")
+            self.reset()
+        except Exception as e:
+            logger.error(f"Failed to connect to Agilent33250A: {str(e)}")
+            raise
+
+    def is_connected(self):
+        return self.inst is not None
+
+    def disconnect(self):
+        if self.inst:
+            self.inst.close()
+            self.inst = None
+            logger.info("Agilent33250A disconnected")
     
     def reset(self):
         logger.info("Resetting instrument...")
@@ -238,6 +273,7 @@ class Agilent33250A:
         """Get and return the status byte"""
         return int(self.inst.query("*STB?").strip())
     
+    
     def wait_for_completion(self, timeout=10):
         """
         Wait for operation to complete
@@ -257,6 +293,7 @@ class Agilent33250A:
             time.sleep(0.1)
         return False
     
+    @staticmethod
     def find_usb_serial_ports():
         import glob
         return glob.glob("/dev/ttyUSB*") + glob.glob("/dev/ttyACM*")
