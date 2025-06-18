@@ -74,3 +74,98 @@
 2025-06-11 14:07:20,419 - INFO - Connected to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
 2025-06-11 14:07:20,420 - INFO - Resetting instrument...
 2025-06-11 14:07:20,421 - INFO - Hardware initialized successfully
+2025-06-18 11:04:44,111 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-18 11:05:34,171 - ERROR - Connection failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
+2025-06-18 11:05:34,172 - ERROR - Hardware initialization failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
+2025-06-18 11:06:33,849 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-18 11:06:33,989 - INFO - Connected to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-18 11:06:33,990 - INFO - Resetting instrument...
+2025-06-18 11:06:33,991 - INFO - Hardware initialized successfully
+2025-06-18 11:06:33,991 - INFO - MQTT handlers configured
+2025-06-18 11:06:33,993 - ERROR - Connection failed: [Errno 111] Connection refused
+2025-06-18 11:06:38,999 - ERROR - Connection failed: [Errno -2] Name or service not known
+2025-06-18 11:06:41,023 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-18 11:06:41,049 - INFO - Connected to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-18 11:06:41,049 - INFO - Resetting instrument...
+2025-06-18 11:06:41,050 - INFO - Hardware initialized successfully
+2025-06-18 11:06:41,050 - INFO - MQTT handlers configured
+2025-06-18 11:06:41,051 - ERROR - Connection failed: [Errno 111] Connection refused
+2025-06-18 11:06:43,073 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-18 11:06:43,116 - INFO - Connected to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-18 11:06:43,116 - INFO - Resetting instrument...
+2025-06-18 11:06:43,117 - INFO - Hardware initialized successfully
+2025-06-18 11:06:58,742 - WARNING - unregister_all_services skipped as it does blocking i/o; use AsyncZeroconf with asyncio
+2025-06-18 11:06:58,757 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-18 11:06:58,807 - INFO - Connected to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-18 11:06:58,808 - INFO - Resetting instrument...
+2025-06-18 11:07:20,797 - INFO - Agilent33250A disconnected
+2025-06-18 11:07:45,229 - WARNING - unregister_all_services skipped as it does blocking i/o; use AsyncZeroconf with asyncio
+2025-06-18 11:07:45,244 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-18 11:07:45,291 - INFO - Connected to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-18 11:07:45,291 - INFO - Resetting instrument...
+2025-06-18 11:55:10,390 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-18 11:56:03,973 - ERROR - Connection failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
+2025-06-18 11:56:03,974 - ERROR - Hardware initialization failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
+2025-06-18 11:58:10,018 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-18 11:58:10,157 - INFO - Connected to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-18 11:58:10,157 - INFO - Resetting instrument...
+2025-06-18 11:58:10,158 - INFO - Hardware initialized successfully
+2025-06-18 11:58:10,159 - INFO - MQTT handlers configured
+2025-06-18 11:58:10,160 - ERROR - Connection failed: [Errno 111] Connection refused
+2025-06-18 11:58:15,167 - ERROR - Connection failed: [Errno -2] Name or service not known
+2025-06-18 11:58:17,191 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-18 11:58:17,234 - INFO - Connected to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-18 11:58:17,234 - INFO - Resetting instrument...
+2025-06-18 11:58:17,235 - INFO - Hardware initialized successfully
+2025-06-18 11:58:17,236 - INFO - MQTT handlers configured
+2025-06-18 11:58:17,237 - ERROR - Connection failed: [Errno 111] Connection refused
+2025-06-18 11:58:19,259 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-18 11:58:19,302 - INFO - Connected to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-18 11:58:19,302 - INFO - Resetting instrument...
+2025-06-18 11:58:19,303 - INFO - Hardware initialized successfully
+2025-06-18 11:58:28,815 - INFO - Published to /ui_command: {"type": "burst", "cycles": 5} (result: 4)
+2025-06-18 11:58:36,353 - INFO - Published to /ui_command: {"type": "signal_config", "frequency": 1000.0, "burst_count": 5, "duty_cycle": 50.0, "inter_block_delay": 2.0} (result: 4)
+2025-06-18 11:58:46,806 - INFO - Published to /ui_command: {"type": "signal_config", "frequency": 1001.0, "burst_count": 5, "duty_cycle": 50.0, "inter_block_delay": 2.0} (result: 4)
+2025-06-18 11:58:52,483 - INFO - Published to /ui_command: {"type": "signal_config", "frequency": 1001.0, "burst_count": 5, "duty_cycle": 50.0, "inter_block_delay": 2.0} (result: 4)
+2025-06-18 11:59:01,187 - WARNING - unregister_all_services skipped as it does blocking i/o; use AsyncZeroconf with asyncio
+2025-06-18 11:59:01,196 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-18 11:59:01,223 - INFO - Connected to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-18 11:59:01,224 - INFO - Resetting instrument...
+2025-06-18 12:04:09,577 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-18 12:04:09,620 - INFO - Connected to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-18 12:04:09,621 - INFO - Hardware initialized successfully
+2025-06-18 12:04:09,622 - INFO - MQTT handlers configured
+2025-06-18 12:04:09,623 - ERROR - Connection failed: [Errno 111] Connection refused
+2025-06-18 12:04:14,631 - ERROR - Connection failed: [Errno -2] Name or service not known
+2025-06-18 12:04:16,675 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-18 12:04:16,722 - INFO - Connected to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-18 12:04:16,723 - INFO - Hardware initialized successfully
+2025-06-18 12:04:16,724 - INFO - MQTT handlers configured
+2025-06-18 12:04:16,727 - ERROR - Connection failed: [Errno 111] Connection refused
+2025-06-18 12:04:18,757 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-18 12:04:18,799 - INFO - Connected to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-18 12:04:18,800 - INFO - Hardware initialized successfully
+2025-06-18 12:04:29,460 - INFO - Published to /ui_command: {"type": "burst", "cycles": 5} (result: 4)
+2025-06-18 12:07:51,004 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-18 12:07:51,050 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-18 12:07:51,050 - INFO - Resetting instrument...
+2025-06-18 12:07:51,051 - INFO - Hardware initialized successfully
+2025-06-18 12:07:51,052 - INFO - MQTT handlers configured
+2025-06-18 12:07:51,053 - ERROR - Connection failed: [Errno 111] Connection refused
+2025-06-18 12:07:56,060 - ERROR - Connection failed: [Errno -2] Name or service not known
+2025-06-18 12:07:58,077 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-18 12:07:58,121 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-18 12:07:58,121 - INFO - Resetting instrument...
+2025-06-18 12:07:58,122 - INFO - Hardware initialized successfully
+2025-06-18 12:07:58,122 - INFO - MQTT handlers configured
+2025-06-18 12:07:58,123 - ERROR - Connection failed: [Errno 111] Connection refused
+2025-06-18 12:08:00,141 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-18 12:08:00,184 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-18 12:08:00,185 - INFO - Resetting instrument...
+2025-06-18 12:08:00,185 - INFO - Hardware initialized successfully
+2025-06-18 12:12:02,811 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-18 12:12:52,856 - ERROR - Connection failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
+2025-06-18 12:12:52,857 - ERROR - Hardware initialization failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
+2025-06-18 12:13:14,913 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-18 12:14:04,965 - ERROR - Connection failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
+2025-06-18 12:14:04,966 - ERROR - Hardware initialization failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.

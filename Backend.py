@@ -23,6 +23,7 @@ logger = logging.getLogger(__name__)
 class HighLevelControl():
     def __init__(self):
         self.initialize_hardware()
+        self.system_status = "idle"
         topics = {
             'operation_status': f"/status",
             'UI_command': f"/ui_command",
@@ -43,8 +44,17 @@ class HighLevelControl():
 
     def setup_mqtt_handlers(self):
         self.mqtt.on_ui_command(self.handle_ui_command)
-        self.mqtt.on_status_update(self.handle_status_update)
+        self.mqtt.on_status_update(self.update_system_status)
         logger.info("MQTT handlers configured")
+    
+    def update_system_status(self):
+        status = {
+            "channel": self.current_channel,
+            "status": self.system_status,
+            "timestamp": time.time()
+        }
+        self.mqtt.update_status(status)
+        logger.debug(f"Status updated: {status}")
     
     def connect_to_generator(self):
         for port in Agilent33250A.find_usb_serial_ports():
@@ -55,16 +65,30 @@ class HighLevelControl():
                 continue
         raise RuntimeError("No Agilent 33250A device found on available ports")
 
+
     def handle_ui_command(self, command):
         try:
             command = json.loads(command) if isinstance(command, str) else command
             logger.info(f"Received command: {command}")
-            
-            if command["type"] == "channel_select":
+
+            command_type = command.get("type")
+
+            if command_type == "channel_select":
                 self.handle_channel_selection(command["channel"])
-            elif command["type"] == "burst":
+
+            elif command_type == "burst":
                 self.handle_burst_command(command["cycles"])
-                
+
+            elif command_type == "signal_config":
+                self.handle_signal_config(command)
+
+            else:
+                logger.warning(f"Unknown command type: {command_type}")
+                self.mqtt.send_response({
+                    "error": f"Unknown command type: {command_type}",
+                    "command": command
+                })
+
         except Exception as e:
             logger.error(f"Command handling error: {str(e)}")
             self.mqtt.send_response({
@@ -72,35 +96,40 @@ class HighLevelControl():
                 "command": command
             })
 
-    def handle_burst_command(self, cycles: int):
-        try:
-            self.n_burst_series(cycles)
-            self.mqtt.send_response({
-                "type": "burst_status",
-                "cycles": cycles,
-                "success": True
-            })
-        except Exception as e:
-            logger.error(f"Burst command error: {str(e)}")
-            raise
 
-    def n_burst_series(self, n: int):
+    def handle_signal_config(self, command):
         try:
-            self.agilent.apply_waveform("PULS", 10000, 1.0)
-            self.agilent.inst.write("FUNC:PULS:DCYCLE 20")
-            for cycle_count in range(n, 0, -1):
-                self.agilent.set_burst_mode(cycles=cycle_count, trigger_source="BUS", enable=True)
-                self.agilent.send_trigger()
-                time.sleep(0.1)
-                
-            logger.info(f"Completed {n} burst cycles")
-            
-        except Exception as e:
-            logger.error(f"Burst operation failed: {str(e)}")
-            raise
-    
+            frequency = float(command.get("frequency", 1000))                   # Default 1 kHz
+            burst_count = int(command.get("bursts", 10))                        # Default 10 bursts
+            duty_cycle = float(command.get("duty_cycle", 50.0))                 # Default 50%
+            inter_block_delay = float(command.get("inter_burst_wait", 0.5))     # Default 0.5s wait between blocks
 
-        self.logger.info("All UV channels deactivated")
+            # Call your actual configuration logic
+            self.configure_signal(
+                frequency=frequency,
+                burst_count=burst_count,
+                duty_cycle=duty_cycle,
+                inter_block_delay=inter_block_delay
+            )
+
+            logger.info("Signal configuration handled successfully.")
+            self.mqtt.send_response({"status": "Signal configuration applied."})
+
+        except Exception as e:
+            logger.error(f"Error in handle_signal_config: {str(e)}")
+            self.mqtt.send_response({"error": f"Signal config failed: {str(e)}"})
+
+    def configure_signal(self, frequency, burst_count, duty_cycle, inter_block_delay):
+        try:
+            self.agilent.set_frequency(frequency)
+            self.agilent.set_burst_count(burst_count)
+            self.agilent.set_duty_cycle(duty_cycle)
+            self.inter_block_delay = inter_block_delay
+
+            logging.info(f"Signal configured: {amplitude=}, {frequency=}, {burst_count=}, {duty_cycle=}, {inter_block_delay=}")
+        except Exception as e:
+            logging.error(f"Failed to configure signal: {str(e)}")
+            raise
 
     def handle_channel_selection(self, channel: int):
         try:
@@ -138,16 +167,6 @@ class HighLevelControl():
     def all_off(self):
         self.GPIOController.set_all_pins(False)
 
-    def update_system_status(self):
-        """Publish current system state"""
-        status = {
-            "channel": self.current_channel,
-            "status": self.system_status,
-            "timestamp": time.time()
-        }
-        self.mqtt.update_status(status)
-        logger.debug(f"Status updated: {status}")
-
     def cleanup(self):
         """Clean up resources on shutdown"""
         logger.info("Starting system cleanup")
@@ -155,21 +174,33 @@ class HighLevelControl():
         self.agilent.close()
         self.mqtt.disconnect()
         logger.info("Cleanup completed")
-
-    def run(self):
-        """Main execution loop"""
+    
+    def handle_burst_command(self, cycles: int):
         try:
-            logger.info("System running")
-            while True:
-                time.sleep(1)
-                
-        except KeyboardInterrupt:
-            self.cleanup()
+            self.n_burst_series(cycles)
+            self.mqtt.send_response({
+                "type": "burst_status",
+                "cycles": cycles,
+                "success": True
+            })
         except Exception as e:
-            logger.error(f"System error: {str(e)}")
-            self.cleanup()
+            logger.error(f"Burst command error: {str(e)}")
             raise
 
+    def n_burst_series(self, n: int):
+        try:
+            self.agilent.apply_waveform("PULS", 10000, 1.0)
+            self.agilent.inst.write("FUNC:PULS:DCYCLE 20")
+            for cycle_count in range(n, 0, -1):
+                self.agilent.set_burst_mode(cycles=cycle_count, trigger_source="BUS", enable=True)
+                self.agilent.send_trigger()
+                time.sleep(0.1)
+                
+            logger.info(f"Completed {n} burst cycles")
+            
+        except Exception as e:
+            logger.error(f"Burst operation failed: {str(e)}")
+            raise
 
     def demo_basic_waveforms(self):
         # Sine wave

@@ -28,7 +28,6 @@ class MQTTHandler:
         self._setup_client()
 
     def _setup_client(self):
-        """Initialize the MQTT client with callbacks."""
         self.client = mqtt.Client(client_id=self.client_id)
         self.client.on_connect = self._on_connect
         self.client.on_message = self._on_message
@@ -39,11 +38,27 @@ class MQTTHandler:
         self._message_handlers = {}
         
     def register_handler(self, topic: str, handler: Callable):
-        """Register a callback for a specific topic."""
         self._message_handlers[topic] = handler
         if self.connected:
             self.client.subscribe(topic)
-            
+    
+    def send_response(self, data):
+        topic = self.topics.get('control_response', 'control_response')
+        self.publish(topic, data)
+
+    def update_status(self, status_data):
+        topic = self.topics.get('operation_status', 'status')
+        self.publish(topic, status_data)
+
+    def on_ui_command(self, handler: Callable):
+        self.register_handler(self.topics.get("UI_command", "/ui_command"), handler)
+
+    def on_status_update(self, handler: Callable):
+        self.register_handler(self.topics.get("operation_status", "/status"), handler)
+
+    def on_response(self, handler: Callable):
+        self.register_handler(self.topics.get("control_response", "/control_response"), handler)
+
     def connect(self):
         """Connect to the MQTT broker."""
         try:
@@ -115,6 +130,6 @@ class MQTTHandler:
         """Publish a message to a topic."""
         if not isinstance(payload, str):
             payload = json.dumps(payload)
-            
-        self.client.publish(topic, payload, qos=qos, retain=retain)
-        self.logger.debug(f"Published to {topic}: {payload}")
+        result = self.client.publish(topic, payload, qos=qos, retain=retain)
+        self.logger.info(f"Published to {topic}: {payload} (result: {result.rc})")
+

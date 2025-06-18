@@ -54,12 +54,12 @@ class Agilent33250A:
         #self.inst = cast(SerialInstrument, resource)
         self.inst = cast(MessageBasedResource, resource)
 
-        print(dir(self.inst))
+        #print(dir(self.inst))
         #and it also shows up here! There is the inst.query! So why the fu* does this not work...
         try:
             idn = self.inst.query("*IDN?")
-            logger.info(f"Connected to: {idn}")
-            self.reset()
+            logger.info(f"Connecting to: {idn}")
+            #self.reset()
         
         except Exception as e:
             logger.error(f"Connection failed: {str(e)}")
@@ -188,6 +188,7 @@ class Agilent33250A:
         self.inst.write(f"FREQUENCY:STOP {stop_freq}")
         self.inst.write(f"SWEEP:TIME {sweep_time}")
         self.inst.write(f"SWEEP:STATE {'ON' if enable else 'OFF'}")
+
     def configure_pulse(self, frequency=1000, width=100e-6, edge_time=10e-6):
         """
         Configure pulse waveform
@@ -292,6 +293,36 @@ class Agilent33250A:
                 return True
             time.sleep(0.1)
         return False
+
+    def set_frequency(self, frequency: float):
+        """
+        Set the output frequency
+        Args:
+            frequency (float): Frequency in Hz
+        """
+        self.inst.write(f"FREQUENCY {frequency}")
+        logger.info(f"Frequency set to {frequency} Hz")
+
+    def set_burst_count(self, burst_count: int):
+        """
+        Set number of cycles per burst
+        Args:
+            burst_count (int): Number of cycles in a burst
+        """
+        self.inst.write(f"BURST:NCYCLES {burst_count}")
+        logger.info(f"Burst count set to {burst_count} cycles")
+
+    def set_duty_cycle(self, duty_cycle: float):
+        """
+        Set duty cycle (as % of period)
+        Args:
+            duty_cycle (float): Duty cycle in percent (0–100)
+        """
+        self.inst.write("FUNCTION PULSE")
+
+        self.inst.write(f"PULSE:DUTY {duty_cycle}")
+        logger.info(f"Duty cycle set to {duty_cycle}%")
+
     
     @staticmethod
     def find_usb_serial_ports():
