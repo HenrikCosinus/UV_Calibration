@@ -23,13 +23,14 @@ logger = logging.getLogger(__name__)
 class HighLevelControl():
     def __init__(self):
         self.initialize_hardware()
+        logger.info("hardware initialization worked in the _init_")
         self.system_status = "idle"
         topics = {
             'operation_status': f"/status",
             'UI_command': f"/ui_command",
             'control_response': f"/control_response",
         }
-        self.mqtt = MQTTHandler(client_id="backend_controller", broker="localhost", port=1883, topics=topics)
+        self.mqtt = MQTTHandler(client_id="backend_controller", broker="172.17.0.1", port=1883, topics=topics)
         self.setup_mqtt_handlers()
         self.mqtt.connect()
 
@@ -81,6 +82,15 @@ class HighLevelControl():
 
             elif command_type == "signal_config":
                 self.handle_signal_config(command)
+            
+            elif command_type == "connect_generator":
+                self.connect_to_generator()
+            
+            elif command_type == "disconnect_generator":
+                self.agilent.disconnect()
+
+            elif command_type == "all_off":
+                self.all_off()
 
             else:
                 logger.warning(f"Unknown command type: {command_type}")
@@ -104,7 +114,8 @@ class HighLevelControl():
             duty_cycle = float(command.get("duty_cycle", 50.0))                 # Default 50%
             inter_block_delay = float(command.get("inter_burst_wait", 0.5))     # Default 0.5s wait between blocks
 
-            # Call your actual configuration logic
+            # Call the actual configuration logic that sets the agilent controller.
+            logger.info(f"handle_signal_config reaches at least up to the config transmittance to the agilent {self.configure_signal}")
             self.configure_signal(
                 frequency=frequency,
                 burst_count=burst_count,
@@ -126,7 +137,7 @@ class HighLevelControl():
             self.agilent.set_duty_cycle(duty_cycle)
             self.inter_block_delay = inter_block_delay
 
-            logging.info(f"Signal configured: {amplitude=}, {frequency=}, {burst_count=}, {duty_cycle=}, {inter_block_delay=}")
+            logging.info(f"Signal configured: {frequency=}, {burst_count=}, {duty_cycle=}, {inter_block_delay=}")
         except Exception as e:
             logging.error(f"Failed to configure signal: {str(e)}")
             raise

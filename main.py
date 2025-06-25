@@ -23,7 +23,6 @@ logger = logging.getLogger(__name__)
 def main():
     backend = HighLevelControl()
     frontend = Frontend()
-    backend.initialize_hardware()
     frontend.create_ui()
 
     ui.run(

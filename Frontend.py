@@ -22,8 +22,6 @@ class Frontend():
             topics=topics
         )
         self.mqtt.connect()
-        self.controller = HighLevelControl()
-        self.switch_dropdown = None  # <- Define here for clarity
 
     def create_ui(self):
         with ui.card().classes("w-96"):
@@ -54,7 +52,7 @@ class Frontend():
                     settings = {
                         "type": "signal_config",
                         "frequency": float(frequency_input.value),
-                        "burst_count": int(burst_count_input.value),
+                        "bursts": int(burst_count_input.value),
                         "duty_cycle": float(duty_cycle_input.value),
                         "inter_block_delay": float(inter_block_delay_input.value),
                     }
@@ -95,26 +93,37 @@ class Frontend():
             ui.label('Signal Generator').classes('text-h6')
             status_label = ui.label('Status: Disconnected').classes('mt-2')
 
+
             def connect_generator():
                 try:
-                    self.controller.connect_to_generator()
-                    status_label.text = 'Status: Connected'
-                    connect_btn.visible = False
-                    disconnect_btn.visible = True
-                    ui.notify('Connected to Agilent 33250A!', color='positive')
+                    self.mqtt.publish(
+                        topic="/ui_command",
+                        payload=json.dumps({
+                            "type": "connect_generator"
+                        }),
+                        qos=1
+                    )
+                    status_label.text = 'Status: Connecting...'
+                    ui.notify('Connect command sent via MQTT', color='info')
                 except Exception as e:
-                    status_label.text = f'Connection error: {str(e)}'
-                    ui.notify(f'Connection error: {str(e)}', color='negative')
+                    status_label.text = f'Connection command error: {str(e)}'
+                    ui.notify(f'Error sending connect command: {str(e)}', color='negative')
+
 
             def disconnect_generator():
                 try:
-                    self.controller.agilent.disconnect()
-                    status_label.text = 'Status: Disconnected'
-                    connect_btn.visible = True
-                    disconnect_btn.visible = False
-                    ui.notify('Disconnected', color='info')
+                    self.mqtt.publish(
+                        topic="/ui_command",
+                        payload=json.dumps({
+                            "type": "disconnect_generator"
+                        }),
+                        qos=1
+                    )
+                    status_label.text = 'Status: Disconnecting...'
+                    ui.notify('Disconnect command sent via MQTT', color='info')
                 except Exception as e:
-                    ui.notify(f'Error disconnecting: {str(e)}', color='negative')
+                    ui.notify(f'Error sending disconnect command: {str(e)}', color='negative')
+
 
             with ui.row():
                 connect_btn = ui.button('Connect', on_click=connect_generator).classes('mt-2 bg-green-700')

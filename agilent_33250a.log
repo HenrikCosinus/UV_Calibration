@@ -169,3 +169,215 @@
 2025-06-18 12:13:14,913 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
 2025-06-18 12:14:04,965 - ERROR - Connection failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
 2025-06-18 12:14:04,966 - ERROR - Hardware initialization failed: VI_ERROR_TMO (-1073807339): Timeout expired before operation completed.
+2025-06-18 13:35:15,639 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-18 13:35:15,787 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-18 13:35:15,787 - INFO - Hardware initialized successfully
+2025-06-18 13:35:15,788 - INFO - MQTT handlers configured
+2025-06-18 13:35:15,791 - ERROR - Connection failed: [Errno 111] Connection refused
+2025-06-18 13:35:20,808 - ERROR - Connection failed: [Errno -2] Name or service not known
+2025-06-18 13:35:22,826 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-18 13:35:22,852 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-18 13:35:22,853 - INFO - Hardware initialized successfully
+2025-06-18 13:35:22,853 - INFO - MQTT handlers configured
+2025-06-18 13:35:22,855 - ERROR - Connection failed: [Errno 111] Connection refused
+2025-06-18 13:35:24,890 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-18 13:35:24,936 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-18 13:35:24,937 - INFO - Hardware initialized successfully
+2025-06-18 15:32:00,079 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-18 15:32:00,123 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-18 15:32:00,124 - INFO - Hardware initialized successfully
+2025-06-18 15:32:00,125 - INFO - MQTT handlers configured
+2025-06-18 15:32:00,127 - INFO - Connecting to MQTT broker at localhost:1883
+2025-06-18 15:32:00,128 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:05,135 - ERROR - Connection failed: [Errno -2] Name or service not known
+2025-06-18 15:32:07,173 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-18 15:32:07,215 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-18 15:32:07,216 - INFO - Hardware initialized successfully
+2025-06-18 15:32:07,216 - INFO - MQTT handlers configured
+2025-06-18 15:32:07,219 - INFO - Connecting to MQTT broker at localhost:1883
+2025-06-18 15:32:07,219 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:07,220 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:08,223 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:08,224 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:09,225 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:09,226 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:09,245 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-18 15:32:09,288 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-18 15:32:09,288 - INFO - Hardware initialized successfully
+2025-06-18 15:32:10,229 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:10,229 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:11,232 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:11,232 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:12,236 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:12,237 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:13,242 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:13,243 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:14,249 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:14,253 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:15,257 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:15,257 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:16,263 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:16,263 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:17,271 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:17,271 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:18,276 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:18,276 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:19,278 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:19,279 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:20,284 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:20,284 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:21,286 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:21,287 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:22,293 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:22,293 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:23,299 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:23,299 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:24,301 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:24,302 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:25,306 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:25,307 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:26,309 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:26,310 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:27,313 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:27,313 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:28,317 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:28,317 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:29,320 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:29,320 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:30,325 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:30,325 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:31,328 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:31,329 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:32,332 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:32,332 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:33,335 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:33,335 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:34,341 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:34,341 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:35,344 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:35,344 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:36,347 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:36,347 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:37,350 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:37,350 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:38,353 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:38,354 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:39,356 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:39,357 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:40,361 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:40,362 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:41,364 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:41,365 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:42,367 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:42,367 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:43,370 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:43,370 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:44,372 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:44,372 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:45,377 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:45,378 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:46,380 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:46,380 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:47,383 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:47,383 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:48,388 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:48,388 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:49,395 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:49,395 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:50,405 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:50,406 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:51,410 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:51,410 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:52,412 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:52,413 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:53,415 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:53,416 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:54,418 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:54,419 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:55,424 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:55,424 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:56,427 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:56,427 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:57,430 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:57,430 - WARNING - Unexpected disconnection (code: 7)
+2025-06-18 15:32:58,432 - INFO - Successfully connected to MQTT broker
+2025-06-18 15:32:58,433 - WARNING - Unexpected disconnection (code: 7)
+2025-06-25 09:07:29,311 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-25 09:07:29,461 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-25 09:07:29,462 - INFO - Hardware initialized successfully
+2025-06-25 09:07:29,463 - INFO - MQTT handlers configured
+2025-06-25 09:07:29,464 - ERROR - Connection failed: [Errno 111] Connection refused
+2025-06-25 09:07:34,474 - ERROR - Connection failed: [Errno -2] Name or service not known
+2025-06-25 09:07:36,506 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-25 09:07:36,548 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-25 09:07:36,549 - INFO - Hardware initialized successfully
+2025-06-25 09:16:53,761 - INFO - Published to /ui_command: {"type": "signal_config", "frequency": 1000.0, "bursts": 5, "duty_cycle": 50.0, "inter_block_delay": 2.0} (result: 4)
+2025-06-25 09:17:08,032 - INFO - Published to /ui_command: {"type": "signal_config", "frequency": 1100.0, "bursts": 5, "duty_cycle": 50.0, "inter_block_delay": 2.0} (result: 4)
+2025-06-25 09:17:35,908 - INFO - Published to /ui_command: {"type": "connect_generator"} (result: 4)
+2025-06-25 09:19:20,267 - INFO - Published to /ui_command: {"type": "signal_config", "frequency": 1100.0, "bursts": 5, "duty_cycle": 50.0, "inter_block_delay": 2.0} (result: 4)
+2025-06-25 09:21:35,738 - INFO - Published to /ui_command: {"type": "signal_config", "frequency": 1100.0, "bursts": 5, "duty_cycle": 50.0, "inter_block_delay": 2.0} (result: 4)
+2025-06-25 09:21:52,185 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-25 09:21:52,235 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-25 09:21:52,236 - INFO - Hardware initialized successfully
+2025-06-25 09:21:52,238 - INFO - MQTT handlers configured
+2025-06-25 09:21:52,240 - ERROR - Connection failed: [Errno 111] Connection refused
+2025-06-25 09:21:57,249 - ERROR - Connection failed: [Errno -2] Name or service not known
+2025-06-25 09:22:02,726 - INFO - Published to /ui_command: {"type": "signal_config", "frequency": 1000.0, "bursts": 5, "duty_cycle": 50.0, "inter_block_delay": 2.0} (result: 4)
+2025-06-25 09:34:57,701 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-25 09:34:57,746 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-25 09:34:57,747 - INFO - Hardware initialized successfully
+2025-06-25 09:34:57,748 - INFO - MQTT handlers configured
+2025-06-25 09:34:57,749 - ERROR - Connection failed: [Errno 111] Connection refused
+2025-06-25 09:35:02,756 - ERROR - Connection failed: [Errno -2] Name or service not known
+2025-06-25 09:35:10,971 - INFO - Published to /ui_command: {"type": "signal_config", "frequency": 1100.0, "bursts": 5, "duty_cycle": 50.0, "inter_block_delay": 2.0} (result: 4)
+2025-06-25 09:45:52,720 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-25 09:45:52,765 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-25 09:45:52,766 - INFO - Hardware initialized successfully
+2025-06-25 09:45:52,767 - INFO - MQTT handlers configured
+2025-06-25 09:45:52,768 - ERROR - Connection failed: [Errno 111] Connection refused
+2025-06-25 09:45:57,774 - ERROR - Connection failed: [Errno -2] Name or service not known
+2025-06-25 09:50:10,876 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-25 09:50:10,922 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-25 09:50:10,923 - INFO - Hardware initialized successfully
+2025-06-25 09:50:10,923 - INFO - MQTT handlers configured
+2025-06-25 09:50:10,925 - ERROR - Connection failed: [Errno 111] Connection refused
+2025-06-25 09:50:15,932 - ERROR - Connection failed: [Errno -2] Name or service not known
+2025-06-25 09:50:50,344 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-25 09:50:50,388 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-25 09:50:50,388 - INFO - Hardware initialized successfully
+2025-06-25 09:50:50,389 - INFO - MQTT handlers configured
+2025-06-25 09:50:50,391 - ERROR - Connection failed: [Errno 111] Connection refused
+2025-06-25 09:50:55,400 - ERROR - Connection failed: [Errno -2] Name or service not known
+2025-06-25 09:51:17,612 - ERROR - Connection failed: [Errno -2] Name or service not known
+2025-06-25 09:52:56,751 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-25 09:52:56,803 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-25 09:52:56,804 - INFO - Hardware initialized successfully
+2025-06-25 09:52:56,806 - INFO - MQTT handlers configured
+2025-06-25 09:52:56,808 - ERROR - Connection failed: [Errno 111] Connection refused
+2025-06-25 09:53:01,818 - ERROR - Connection failed: [Errno -2] Name or service not known
+2025-06-25 09:58:48,788 - INFO - Published to /ui_command: {"type": "connect_generator"} (result: 4)
+2025-06-25 10:01:23,119 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-25 10:01:23,149 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-25 10:01:23,149 - INFO - Hardware initialized successfully
+2025-06-25 10:01:23,150 - INFO - hardware initialization worked in the _init_
+2025-06-25 10:01:23,150 - INFO - mqtt connection worked in the _init_
+2025-06-25 10:01:23,151 - INFO - MQTT handlers configured
+2025-06-25 10:01:23,151 - INFO - mqtt setup initialization worked in the _init_
+2025-06-25 10:01:23,152 - ERROR - Connection failed: [Errno 111] Connection refused
+2025-06-25 10:01:28,159 - ERROR - Connection failed: [Errno -2] Name or service not known
+2025-06-25 10:16:26,081 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-25 10:16:26,125 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-25 10:16:26,127 - INFO - Hardware initialized successfully
+2025-06-25 10:16:26,127 - INFO - hardware initialization worked in the _init_
+2025-06-25 10:16:26,128 - INFO - mqtt connection worked in the _init_
+2025-06-25 10:16:26,129 - INFO - MQTT handlers configured
+2025-06-25 10:16:26,129 - INFO - mqtt setup initialization worked in the _init_
+2025-06-25 10:16:26,130 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-06-25 10:16:31,166 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno -2] Name or service not known
+2025-06-25 10:21:22,763 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-25 10:21:22,809 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-25 10:21:22,810 - INFO - Hardware initialized successfully
+2025-06-25 10:21:22,810 - INFO - hardware initialization worked in the _init_
+2025-06-25 10:21:22,811 - INFO - MQTT handlers configured
+2025-06-25 10:21:22,812 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-06-25 10:21:27,817 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno -2] Name or service not known
