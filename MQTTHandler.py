@@ -85,9 +85,9 @@ class MQTTHandler:
             self.connected = True
             self.logger.info("Successfully connected to MQTT broker")
             for topic in self._message_handlers:
-                self.client.subscribe(topic)
+                client.subscribe(topic)
 
-            self.client.publish(self.topics.get('status', 'status'),
+            client.publish(self.topics.get('status', 'status'),
                          json.dumps({"status": "online"}),
                          qos=1,
                          retain=True)
@@ -103,14 +103,12 @@ class MQTTHandler:
         try:
             payload = msg.payload.decode("utf-8")
             self.logger.debug(f"Received message on {msg.topic}: {payload}")
-            
-            # Try to parse as JSON
+#
             try:
                 payload = json.loads(payload)
             except json.JSONDecodeError:
                 pass  # Keep as raw string if not JSON
                 
-            # Call registered handler if exists
             handler = self._message_handlers.get(msg.topic)
             if handler:
                 handler(payload)

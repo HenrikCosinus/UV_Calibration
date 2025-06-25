@@ -27,7 +27,7 @@ def main():
 
     ui.run(
         title="UV_LED Control Interface",
-        port=1884,
+        port=8080,
         host="0.0.0.0",     
         reload=False     
     )

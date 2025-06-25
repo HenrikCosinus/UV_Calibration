@@ -427,3 +427,137 @@
 2025-06-25 11:15:29,860 - INFO - Successfully connected to MQTT broker
 2025-06-25 11:15:34,867 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno -2] Name or service not known
 2025-06-25 11:15:40,869 - INFO - Published to /ui_command: {"type": "signal_config", "frequency": 1100.0, "bursts": 5, "duty_cycle": 50.0, "inter_block_delay": 2.0} (result: 4)
+2025-06-25 13:17:01,501 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-25 13:17:01,546 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-25 13:17:01,547 - INFO - Hardware initialized successfully
+2025-06-25 13:17:01,547 - INFO - hardware initialization worked in the _init_
+2025-06-25 13:17:01,548 - INFO - on_ui_command is reached
+2025-06-25 13:17:01,548 - INFO - MQTT handlers configured
+2025-06-25 13:17:01,550 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-06-25 13:17:01,550 - INFO - Successfully connected to MQTT broker
+2025-06-25 13:17:06,557 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno -2] Name or service not known
+2025-06-25 13:20:14,001 - WARNING - Unexpected disconnection (code: 7)
+2025-06-25 13:20:15,007 - INFO - Successfully connected to MQTT broker
+2025-06-25 13:28:46,417 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-25 13:28:46,460 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-25 13:28:46,461 - INFO - Hardware initialized successfully
+2025-06-25 13:28:46,461 - INFO - hardware initialization worked in the _init_
+2025-06-25 13:28:46,462 - INFO - on_ui_command is reached
+2025-06-25 13:28:46,462 - INFO - MQTT handlers configured
+2025-06-25 13:28:46,464 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-06-25 13:28:46,465 - INFO - Successfully connected to MQTT broker
+2025-06-25 13:28:51,487 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno -2] Name or service not known
+2025-06-25 13:39:48,002 - WARNING - Unexpected disconnection (code: 7)
+2025-06-25 13:39:49,005 - INFO - Successfully connected to MQTT broker
+2025-06-25 13:41:53,170 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-25 13:41:53,215 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-25 13:41:53,215 - INFO - Hardware initialized successfully
+2025-06-25 13:41:53,216 - INFO - hardware initialization worked in the _init_
+2025-06-25 13:41:53,217 - INFO - on_ui_command is reached
+2025-06-25 13:41:53,217 - INFO - MQTT handlers configured
+2025-06-25 13:41:53,219 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-06-25 13:41:53,220 - INFO - Successfully connected to MQTT broker
+2025-06-25 13:41:53,223 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-06-25 13:41:53,223 - INFO - Successfully connected to MQTT broker
+2025-06-25 13:47:13,908 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-25 13:47:13,953 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-25 13:47:13,954 - INFO - Hardware initialized successfully
+2025-06-25 13:47:13,954 - INFO - hardware initialization worked in the _init_
+2025-06-25 13:47:13,955 - INFO - on_ui_command is reached
+2025-06-25 13:47:13,955 - INFO - MQTT handlers configured
+2025-06-25 13:47:13,957 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-06-25 13:47:13,958 - INFO - Successfully connected to MQTT broker
+2025-06-25 13:47:13,961 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-06-25 13:47:13,962 - INFO - Successfully connected to MQTT broker
+2025-06-25 13:54:51,002 - WARNING - Unexpected disconnection (code: 7)
+2025-06-25 13:54:52,007 - INFO - Successfully connected to MQTT broker
+2025-06-25 14:03:01,953 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-25 14:03:01,998 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-25 14:03:01,999 - INFO - Hardware initialized successfully
+2025-06-25 14:03:01,999 - INFO - hardware initialization worked in the _init_
+2025-06-25 14:03:02,000 - INFO - on_ui_command is reached
+2025-06-25 14:03:02,001 - INFO - MQTT handlers configured
+2025-06-25 14:03:02,002 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-06-25 14:03:02,003 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-06-25 14:03:11,880 - INFO - Published to /ui_command: {"type": "signal_config", "frequency": 1100.0, "bursts": 5, "duty_cycle": 50.0, "inter_block_delay": 2.0} (result: 4)
+2025-06-25 14:04:05,292 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-25 14:04:05,322 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-25 14:04:05,323 - INFO - Hardware initialized successfully
+2025-06-25 14:04:05,323 - INFO - hardware initialization worked in the _init_
+2025-06-25 14:04:05,323 - INFO - on_ui_command is reached
+2025-06-25 14:04:05,324 - INFO - MQTT handlers configured
+2025-06-25 14:04:05,326 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-06-25 14:04:05,326 - INFO - Successfully connected to MQTT broker
+2025-06-25 14:04:05,329 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-06-25 14:04:05,330 - INFO - Successfully connected to MQTT broker
+2025-06-25 14:04:31,048 - INFO - Published to /ui_command: {"type": "signal_config", "frequency": 1000.0, "bursts": 5, "duty_cycle": 50.0, "inter_block_delay": 2.0} (result: 0)
+2025-06-25 14:04:31,050 - INFO - Received command: {'type': 'signal_config', 'frequency': 1000.0, 'bursts': 5, 'duty_cycle': 50.0, 'inter_block_delay': 2.0}
+2025-06-25 14:04:31,056 - INFO - handle_signal_config reaches at least up to the config transmittance to the agilent <bound method HighLevelControl.configure_signal of <Backend.HighLevelControl object at 0x7f9ebc5e90>>
+2025-06-25 14:04:31,059 - INFO - Frequency set to 1000.0 Hz
+2025-06-25 14:04:31,061 - INFO - Burst count set to 5 cycles
+2025-06-25 14:04:31,062 - INFO - Duty cycle set to 50.0%
+2025-06-25 14:04:31,064 - INFO - Signal configured: frequency=1000.0, burst_count=5, duty_cycle=50.0, inter_block_delay=0.5
+2025-06-25 14:04:31,065 - INFO - Signal configuration handled successfully.
+2025-06-25 14:04:31,067 - INFO - Published to /control_response: {"status": "Signal configuration applied."} (result: 0)
+2025-06-25 14:05:27,563 - INFO - Published to /ui_command: {"type": "signal_config", "frequency": 1000.0, "bursts": 6, "duty_cycle": 45.0, "inter_block_delay": 2.0} (result: 0)
+2025-06-25 14:05:27,565 - INFO - Received command: {'type': 'signal_config', 'frequency': 1000.0, 'bursts': 6, 'duty_cycle': 45.0, 'inter_block_delay': 2.0}
+2025-06-25 14:05:27,568 - INFO - handle_signal_config reaches at least up to the config transmittance to the agilent <bound method HighLevelControl.configure_signal of <Backend.HighLevelControl object at 0x7f9ebc5e90>>
+2025-06-25 14:05:27,571 - INFO - Frequency set to 1000.0 Hz
+2025-06-25 14:05:27,575 - INFO - Burst count set to 6 cycles
+2025-06-25 14:05:27,577 - INFO - Duty cycle set to 45.0%
+2025-06-25 14:05:27,578 - INFO - Signal configured: frequency=1000.0, burst_count=6, duty_cycle=45.0, inter_block_delay=0.5
+2025-06-25 14:05:27,579 - INFO - Signal configuration handled successfully.
+2025-06-25 14:05:27,580 - INFO - Published to /control_response: {"status": "Signal configuration applied."} (result: 0)
+2025-06-25 14:07:03,749 - INFO - Published to /ui_command: {"type": "burst", "cycles": 5} (result: 0)
+2025-06-25 14:07:03,754 - INFO - Received command: {'type': 'burst', 'cycles': 5}
+2025-06-25 14:07:03,756 - INFO - Applying waveform: APPLY:PULS 10000,1.0,0
+2025-06-25 14:07:04,264 - INFO - Completed 5 burst cycles
+2025-06-25 14:07:04,266 - INFO - Published to /control_response: {"type": "burst_status", "cycles": 5, "success": true} (result: 0)
+2025-06-25 14:07:04,268 - WARNING - Unexpected disconnection (code: 7)
+2025-06-25 14:07:05,270 - INFO - Successfully connected to MQTT broker
+2025-06-25 14:07:27,539 - INFO - Published to /ui_command: {"type": "connect_generator"} (result: 0)
+2025-06-25 14:07:27,541 - INFO - Received command: {'type': 'connect_generator'}
+2025-06-25 14:07:29,588 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-25 14:07:29,631 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-25 14:07:29,633 - WARNING - Unexpected disconnection (code: 7)
+2025-06-25 14:07:30,634 - INFO - Successfully connected to MQTT broker
+2025-06-25 14:08:21,527 - INFO - Published to /ui_command: {"type": "signal_config", "frequency": 1000.0, "bursts": 5, "duty_cycle": 50.0, "inter_block_delay": 2.0} (result: 0)
+2025-06-25 14:08:21,529 - INFO - Received command: {'type': 'signal_config', 'frequency': 1000.0, 'bursts': 5, 'duty_cycle': 50.0, 'inter_block_delay': 2.0}
+2025-06-25 14:08:21,530 - INFO - handle_signal_config reaches at least up to the config transmittance to the agilent <bound method HighLevelControl.configure_signal of <Backend.HighLevelControl object at 0x7f9ebc5e90>>
+2025-06-25 14:08:21,530 - INFO - Frequency set to 1000.0 Hz
+2025-06-25 14:08:21,531 - INFO - Burst count set to 5 cycles
+2025-06-25 14:08:21,532 - INFO - Duty cycle set to 50.0%
+2025-06-25 14:08:21,532 - INFO - Signal configured: frequency=1000.0, burst_count=5, duty_cycle=50.0, inter_block_delay=0.5
+2025-06-25 14:08:21,533 - INFO - Signal configuration handled successfully.
+2025-06-25 14:08:21,534 - INFO - Published to /control_response: {"status": "Signal configuration applied."} (result: 0)
+2025-06-25 14:11:43,002 - WARNING - Unexpected disconnection (code: 7)
+2025-06-25 14:11:44,005 - INFO - Successfully connected to MQTT broker
+2025-06-25 14:12:29,569 - INFO - Published to /ui_command: {"type": "signal_config", "frequency": 1000.0, "bursts": 5, "duty_cycle": 50.0, "inter_block_delay": 2.0} (result: 0)
+2025-06-25 14:12:29,576 - INFO - Received command: {'type': 'signal_config', 'frequency': 1000.0, 'bursts': 5, 'duty_cycle': 50.0, 'inter_block_delay': 2.0}
+2025-06-25 14:12:29,576 - INFO - handle_signal_config reaches at least up to the config transmittance to the agilent <bound method HighLevelControl.configure_signal of <Backend.HighLevelControl object at 0x7f9ebc5e90>>
+2025-06-25 14:12:29,578 - INFO - Frequency set to 1000.0 Hz
+2025-06-25 14:12:29,580 - INFO - Burst count set to 5 cycles
+2025-06-25 14:12:29,584 - INFO - Duty cycle set to 50.0%
+2025-06-25 14:12:29,585 - INFO - Signal configured: frequency=1000.0, burst_count=5, duty_cycle=50.0, inter_block_delay=0.5
+2025-06-25 14:12:29,586 - INFO - Signal configuration handled successfully.
+2025-06-25 14:12:29,588 - INFO - Published to /control_response: {"status": "Signal configuration applied."} (result: 0)
+2025-06-25 14:15:30,001 - WARNING - Unexpected disconnection (code: 7)
+2025-06-25 14:15:31,004 - INFO - Successfully connected to MQTT broker
+2025-06-25 14:19:42,933 - INFO - Published to /ui_command: {"type": "signal_config", "frequency": 900.0, "bursts": 5, "duty_cycle": 50.0, "inter_block_delay": 2.0} (result: 0)
+2025-06-25 14:19:42,937 - INFO - Received command: {'type': 'signal_config', 'frequency': 900.0, 'bursts': 5, 'duty_cycle': 50.0, 'inter_block_delay': 2.0}
+2025-06-25 14:19:42,939 - INFO - handle_signal_config reaches at least up to the config transmittance to the agilent <bound method HighLevelControl.configure_signal of <Backend.HighLevelControl object at 0x7f9ebc5e90>>
+2025-06-25 14:19:42,941 - INFO - Frequency set to 900.0 Hz
+2025-06-25 14:19:42,942 - INFO - Burst count set to 5 cycles
+2025-06-25 14:19:42,943 - INFO - Duty cycle set to 50.0%
+2025-06-25 14:19:42,945 - INFO - Signal configured: frequency=900.0, burst_count=5, duty_cycle=50.0, inter_block_delay=0.5
+2025-06-25 14:19:42,946 - INFO - Signal configuration handled successfully.
+2025-06-25 14:19:42,947 - INFO - Published to /control_response: {"status": "Signal configuration applied."} (result: 0)
+2025-06-25 14:19:49,895 - INFO - Published to /ui_command: {"type": "signal_config", "frequency": 1100.0, "bursts": 5, "duty_cycle": 50.0, "inter_block_delay": 2.0} (result: 0)
+2025-06-25 14:19:49,901 - INFO - Received command: {'type': 'signal_config', 'frequency': 1100.0, 'bursts': 5, 'duty_cycle': 50.0, 'inter_block_delay': 2.0}
+2025-06-25 14:19:49,902 - INFO - handle_signal_config reaches at least up to the config transmittance to the agilent <bound method HighLevelControl.configure_signal of <Backend.HighLevelControl object at 0x7f9ebc5e90>>
+2025-06-25 14:19:49,903 - INFO - Frequency set to 1100.0 Hz
+2025-06-25 14:19:49,904 - INFO - Burst count set to 5 cycles
+2025-06-25 14:19:49,906 - INFO - Duty cycle set to 50.0%
+2025-06-25 14:19:49,907 - INFO - Signal configured: frequency=1100.0, burst_count=5, duty_cycle=50.0, inter_block_delay=0.5
+2025-06-25 14:19:49,907 - INFO - Signal configuration handled successfully.
+2025-06-25 14:19:49,909 - INFO - Published to /control_response: {"status": "Signal configuration applied."} (result: 0)
