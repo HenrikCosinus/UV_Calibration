@@ -381,3 +381,49 @@
 2025-06-25 10:21:22,811 - INFO - MQTT handlers configured
 2025-06-25 10:21:22,812 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
 2025-06-25 10:21:27,817 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno -2] Name or service not known
+2025-06-25 10:28:26,700 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-25 10:28:26,744 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-25 10:28:26,745 - INFO - Hardware initialized successfully
+2025-06-25 10:28:26,746 - INFO - hardware initialization worked in the _init_
+2025-06-25 10:28:26,746 - INFO - MQTT handlers configured
+2025-06-25 10:28:26,749 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-06-25 10:28:26,749 - INFO - Successfully connected to MQTT broker
+2025-06-25 10:28:31,792 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno -2] Name or service not known
+2025-06-25 10:28:40,863 - INFO - Published to /ui_command: {"type": "signal_config", "frequency": 1100.0, "bursts": 5, "duty_cycle": 50.0, "inter_block_delay": 2.0} (result: 4)
+2025-06-25 10:28:52,212 - INFO - Published to /ui_command: {"type": "burst", "cycles": 5} (result: 4)
+2025-06-25 10:29:44,002 - WARNING - Unexpected disconnection (code: 7)
+2025-06-25 10:29:45,007 - INFO - Successfully connected to MQTT broker
+2025-06-25 10:35:24,416 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-25 10:35:24,463 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-25 10:35:24,464 - INFO - Hardware initialized successfully
+2025-06-25 10:35:24,464 - INFO - hardware initialization worked in the _init_
+2025-06-25 10:35:24,465 - INFO - on_ui_command is reached
+2025-06-25 10:35:24,465 - INFO - MQTT handlers configured
+2025-06-25 10:35:24,467 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-06-25 10:35:24,467 - INFO - Successfully connected to MQTT broker
+2025-06-25 10:35:29,475 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno -2] Name or service not known
+2025-06-25 10:36:52,841 - INFO - Published to /ui_command: {"type": "signal_config", "frequency": 1100.0, "bursts": 5, "duty_cycle": 50.0, "inter_block_delay": 2.0} (result: 4)
+2025-06-25 10:39:08,002 - WARNING - Unexpected disconnection (code: 7)
+2025-06-25 10:39:09,008 - INFO - Successfully connected to MQTT broker
+2025-06-25 11:08:36,135 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-25 11:08:36,180 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-25 11:08:36,181 - INFO - Hardware initialized successfully
+2025-06-25 11:08:36,182 - INFO - hardware initialization worked in the _init_
+2025-06-25 11:08:36,182 - INFO - on_ui_command is reached
+2025-06-25 11:08:36,182 - INFO - MQTT handlers configured
+2025-06-25 11:08:36,184 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-06-25 11:08:36,185 - INFO - Successfully connected to MQTT broker
+2025-06-25 11:08:36,188 - INFO - Subscribing to topic: /ui_command
+2025-06-25 11:08:36,189 - INFO - Subscribing to topic: /status
+2025-06-25 11:08:41,218 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno -2] Name or service not known
+2025-06-25 11:12:30,574 - INFO - Published to /ui_command: {"type": "signal_config", "frequency": 1000.0, "bursts": 5, "duty_cycle": 50.0, "inter_block_delay": 2.0} (result: 4)
+2025-06-25 11:15:29,811 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-06-25 11:15:29,855 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-06-25 11:15:29,856 - INFO - Hardware initialized successfully
+2025-06-25 11:15:29,857 - INFO - hardware initialization worked in the _init_
+2025-06-25 11:15:29,857 - INFO - on_ui_command is reached
+2025-06-25 11:15:29,858 - INFO - MQTT handlers configured
+2025-06-25 11:15:29,859 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-06-25 11:15:29,860 - INFO - Successfully connected to MQTT broker
+2025-06-25 11:15:34,867 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno -2] Name or service not known
+2025-06-25 11:15:40,869 - INFO - Published to /ui_command: {"type": "signal_config", "frequency": 1100.0, "bursts": 5, "duty_cycle": 50.0, "inter_block_delay": 2.0} (result: 4)

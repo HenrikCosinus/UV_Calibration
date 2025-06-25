@@ -17,8 +17,9 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+#I dont want a localhost, however at run time this should be replaced with the correct IP from the call coming from the HighlevelControll intialization
 class MQTTHandler:
-    def __init__(self, client_id: str, broker: str = "172.17.0.1", port: int = 1883, topics: Optional[Dict[str, str]] = None):
+    def __init__(self, client_id: str, broker: str = "localhost", port: int = 1883, topics: Optional[Dict[str, str]] = None):
         self.broker = broker
         self.port = port
         self.client_id = client_id
@@ -33,14 +34,14 @@ class MQTTHandler:
         self.client.on_message = self._on_message
         self.client.on_disconnect = self._on_disconnect
         self.connected = False
-        
-        # Message handler registry
         self._message_handlers = {}
         
     def register_handler(self, topic: str, handler: Callable):
         self._message_handlers[topic] = handler
         if self.connected:
             self.client.subscribe(topic)
+            self.logger.info(f"Subscribing the client to topic: {topic}")
+            
     
     def send_response(self, data):
         topic = self.topics.get('control_response', 'control_response')
@@ -51,6 +52,7 @@ class MQTTHandler:
         self.publish(topic, status_data)
 
     def on_ui_command(self, handler: Callable):
+        self.logger.info(f"on_ui_command is reached")
         self.register_handler(self.topics.get("UI_command", "/ui_command"), handler)
 
     def on_status_update(self, handler: Callable):
@@ -83,9 +85,9 @@ class MQTTHandler:
             self.connected = True
             self.logger.info("Successfully connected to MQTT broker")
             for topic in self._message_handlers:
-                client.subscribe(topic)
+                self.client.subscribe(topic)
 
-            client.publish(self.topics.get('status', 'status'),
+            self.client.publish(self.topics.get('status', 'status'),
                          json.dumps({"status": "online"}),
                          qos=1,
                          retain=True)

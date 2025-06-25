@@ -179,7 +179,6 @@ class HighLevelControl():
         self.GPIOController.set_all_pins(False)
 
     def cleanup(self):
-        """Clean up resources on shutdown"""
         logger.info("Starting system cleanup")
         self.all_off()
         self.agilent.close()
