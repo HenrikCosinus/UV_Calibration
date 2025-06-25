@@ -54,8 +54,7 @@ class Agilent33250A:
         #self.inst = cast(SerialInstrument, resource)
         self.inst = cast(MessageBasedResource, resource)
 
-        #print(dir(self.inst))
-        #and it also shows up here! There is the inst.query! So why the fu* does this not work...
+        print(dir(self.inst))
         try:
             idn = self.inst.query("*IDN?")
             logger.info(f"Connecting to: {idn}")

@@ -18,17 +18,17 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 class MQTTHandler:
-    def __init__(self, client_id: str, broker: str = "localhost", port: int = 1883, topics: Optional[Dict[str, str]] = None):
+    def __init__(self, client_id: str, broker: str = "172.17.0.1", port: int = 1883, topics: Optional[Dict[str, str]] = None):
         self.broker = broker
         self.port = port
         self.client_id = client_id
         self.topics = topics or {}
-        # Configure logging
         self.logger = logging.getLogger(f"{__name__}.{client_id}")
         self._setup_client()
 
     def _setup_client(self):
         self.client = mqtt.Client(client_id=self.client_id)
+        self.client._reconnect_on_failure = True
         self.client.on_connect = self._on_connect
         self.client.on_message = self._on_message
         self.client.on_disconnect = self._on_disconnect
@@ -60,18 +60,16 @@ class MQTTHandler:
         self.register_handler(self.topics.get("control_response", "/control_response"), handler)
 
     def connect(self):
-        """Connect to the MQTT broker."""
         try:
-            self.client.connect(self.broker, self.port, keepalive=60)
+            self.client.connect(self.broker, self.port, keepalive=True)
             self.client.loop_start()
             self.logger.info(f"Connecting to MQTT broker at {self.broker}:{self.port}")
             return True
         except Exception as e:
-            self.logger.error(f"Connection failed: {str(e)}")
-            return False
+            self.logger.error(f"Connection failed in the connect function of the MQTTHandler: {str(e)}")
+            return False        
             
     def disconnect(self):
-        """Disconnect from the MQTT broker."""
         self.client.publish(self.topics.get('status', 'status'), 
                           json.dumps({"status": "offline"}), 
                           qos=1, 
@@ -79,18 +77,14 @@ class MQTTHandler:
         self.client.loop_stop()
         self.client.disconnect()
         self.logger.info("Disconnected from MQTT broker")
-        
+    
     def _on_connect(self, client, userdata, flags, rc):
-        """Handle connection events."""
         if rc == 0:
             self.connected = True
             self.logger.info("Successfully connected to MQTT broker")
-            
-            # Subscribe to registered topics
             for topic in self._message_handlers:
                 client.subscribe(topic)
-                
-            # Publish online status
+
             client.publish(self.topics.get('status', 'status'),
                          json.dumps({"status": "online"}),
                          qos=1,
@@ -99,13 +93,11 @@ class MQTTHandler:
             self.logger.error(f"Connection failed with code {rc}")
             
     def _on_disconnect(self, client, userdata, rc):
-        """Handle disconnection events."""
         self.connected = False
         if rc != 0:
             self.logger.warning(f"Unexpected disconnection (code: {rc})")
             
     def _on_message(self, client, userdata, msg):
-        """Route incoming messages to registered handlers."""
         try:
             payload = msg.payload.decode("utf-8")
             self.logger.debug(f"Received message on {msg.topic}: {payload}")
