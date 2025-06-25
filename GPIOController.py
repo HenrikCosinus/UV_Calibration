@@ -32,41 +32,42 @@ class GPIOController:
         print("GPIO cleanup complete")
 
     def Switch_1(self):
-        self.set_all_pins(state = False)
-        self.set_pin(pin_index=17, state=True)
+        self.set_all_pins(state=False)
+        self.set_pin(pin_index=0, state=True)  # GPIO 17
 
     def Switch_2(self):
-        self.set_all_pins(state = False)
-        self.set_pin(pin_index=17, state=True)
-        self.set_pin(pin_index=18, state=True)
+        self.set_all_pins(state=False)
+        self.set_pin(pin_index=0, state=True)  # GPIO 17
+        self.set_pin(pin_index=1, state=True)  # GPIO 18
 
     def Switch_3(self):
-        self.set_all_pins(state = False)
-        self.set_pin(pin_index=17, state=True)
-        self.set_pin(pin_index=22, state=True)
+        self.set_all_pins(state=False)
+        self.set_pin(pin_index=0, state=True)  # GPIO 17
+        self.set_pin(pin_index=2, state=True)  # GPIO 22
 
     def Switch_4(self):
-        self.set_all_pins(state = False)
-        self.set_pin(pin_index=17, state=True)
-        self.set_pin(pin_index=18, state=True)
-        self.set_pin(pin_index=22, state=True)
+        self.set_all_pins(state=False)
+        self.set_pin(pin_index=0, state=True)
+        self.set_pin(pin_index=1, state=True)
+        self.set_pin(pin_index=2, state=True)
 
     def Switch_5(self):
-        self.set_all_pins(state = False)
-        self.set_pin(pin_index=17, state=True)
-        self.set_pin(pin_index=27, state=True)
+        self.set_all_pins(state=False)
+        self.set_pin(pin_index=0, state=True)
+        self.set_pin(pin_index=3, state=True)  # GPIO 27
 
     def Switch_6(self):
-        self.set_all_pins(state = False)
-        self.set_pin(pin_index=17, state=True)
-        self.set_pin(pin_index=27, state=True)
-        self.set_pin(pin_index=18, state=True)
-    
+        self.set_all_pins(state=False)
+        self.set_pin(pin_index=0, state=True)
+        self.set_pin(pin_index=3, state=True)
+        self.set_pin(pin_index=1, state=True)
+
     def Switch_7(self):
-        self.set_all_pins(state = False)
-        self.set_pin(pin_index=17, state=True)
-        self.set_pin(pin_index=27, state=True)
-        self.set_pin(pin_index=22, state=True)
+        self.set_all_pins(state=False)
+        self.set_pin(pin_index=0, state=True)
+        self.set_pin(pin_index=3, state=True)
+        self.set_pin(pin_index=2, state=True)
 
     def Switch_8(self):
-        self.set_all_pins(state = True)
+        self.set_all_pins(state=True)
+

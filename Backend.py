@@ -47,15 +47,16 @@ class HighLevelControl():
         self.mqtt.on_ui_command(self.handle_ui_command)
         self.mqtt.on_status_update(self.update_system_status)
         logger.info("MQTT handlers configured")
-    
-    def update_system_status(self):
+
+    def update_system_status(self, msg=None):
         status = {
-            "channel": self.current_channel,
+            "channel": getattr(self, "current_channel", None),
             "status": self.system_status,
             "timestamp": time.time()
         }
         self.mqtt.update_status(status)
         logger.debug(f"Status updated: {status}")
+
     
     def connect_to_generator(self):
         for port in Agilent33250A.find_usb_serial_ports():
@@ -160,7 +161,6 @@ class HighLevelControl():
             raise
 
     def activate_channel(self, channel: int):
-        """Activate specific UV LED channel"""
         channel_methods = {
             1: self.GPIOController.Switch_1,
             2: self.GPIOController.Switch_2,
