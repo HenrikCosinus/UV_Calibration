@@ -1,7 +1,6 @@
 import logging
 import time
 import RPi.GPIO as GPIO
-from Backend import HighLevelControl
 from nicegui import ui
 import paho.mqtt.client as mqtt
 import json
@@ -17,7 +16,7 @@ class Frontend():
         
         self.mqtt = MQTTHandler(
             client_id="web_ui",
-            broker="raspberrypi.local",
+            broker="172.17.0.1",
             port=1883,
             topics=topics
         )
