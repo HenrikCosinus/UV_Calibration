@@ -46,7 +46,7 @@ class Agilent33250A:
             data_bits=8,
             parity=constants.Parity.none,
             stop_bits=constants.StopBits.one,
-            flow_control=constants.VI_ASRL_FLOW_NONE,
+            flow_control=constants.VI_ASRL_FLOW_RTS_CTS,
             write_termination='',
             read_termination='\n',
             send_end=False,
@@ -71,7 +71,7 @@ class Agilent33250A:
                 data_bits=8,
                 parity=constants.Parity.none,
                 stop_bits=constants.StopBits.one,
-                flow_control=constants.VI_ASRL_FLOW_NONE,
+                flow_control=constants.VI_ASRL_FLOW_RTS_CTS,
                 write_termination='',
                 read_termination='\n',
                 send_end=False,
@@ -93,12 +93,14 @@ class Agilent33250A:
             self.inst.close()
             self.inst = None
             logger.info("Agilent33250A disconnected")
-
+    
     def send(self, cmd: str):
         logger.info(f"SCPI: {cmd!r}")
         raw = cmd.strip().encode() + b'\r\n'
         logger.info(f"RAW BYTES SENT: {raw!r}")
+        print(f"send() called: {raw!r}")
         self.inst.write_raw(raw)
+
 
     def query(self, cmd: str):
         logger.info(f"SCPI QUERY: {cmd!r}")
