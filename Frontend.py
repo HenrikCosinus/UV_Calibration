@@ -68,30 +68,28 @@ class Frontend():
             ui.button("Send Signal Settings", on_click=send_signal_settings).classes('mt-2 w-full bg-purple-600')
 
             ui.separator()
-            burst_cycles_input = ui.input(label='Burst Cycles', value='5').props('type=number step=1')
-            def send_burst_command():
+            def send_burst_trigger():
                 try:
-                    burst_cycles = int(burst_cycles_input.value)
-
                     self.mqtt.publish(
                         topic="/ui_command",
                         payload=json.dumps({
-                            "type": "burst",
-                            "cycles": burst_cycles
+                            "type": "trigger_burst"
                         }),
                         qos=1
                     )
-                    ui.notify(f"Triggered burst of {burst_cycles} cycles", color='positive')
+                    ui.notify(f"Triggered burst series", color='positive')
                 except Exception as e:
                     ui.notify(f"Burst trigger failed: {str(e)}", color='negative')
 
-            ui.button("Trigger Burst Series", on_click=send_burst_command).classes('mt-2 w-full bg-orange-600')
+            ui.button(
+                "Trigger Burst Series",
+                on_click=send_burst_trigger
+            ).classes('mt-2 w-full bg-orange-600')
 
 
         with ui.card().classes('m-4'):
             ui.label('Signal Generator').classes('text-h6')
-            status_label = ui.label('Status: Disconnected').classes('mt-2')
-
+            #status_label = ui.label('Status: Disconnected').classes('mt-2')
 
             def connect_generator():
                 try:
@@ -102,10 +100,10 @@ class Frontend():
                         }),
                         qos=1
                     )
-                    status_label.text = 'Status: Connecting...'
+                    #status_label.text = 'Status: Connecting...'
                     ui.notify('Connect command sent via MQTT', color='info')
                 except Exception as e:
-                    status_label.text = f'Connection command error: {str(e)}'
+                    #status_label.text = f'Connection command error: {str(e)}'
                     ui.notify(f'Error sending connect command: {str(e)}', color='negative')
 
 
@@ -118,16 +116,15 @@ class Frontend():
                         }),
                         qos=1
                     )
-                    status_label.text = 'Status: Disconnecting...'
+                    #status_label.text = 'Status: Disconnecting...'
                     ui.notify('Disconnect command sent via MQTT', color='info')
                 except Exception as e:
                     ui.notify(f'Error sending disconnect command: {str(e)}', color='negative')
 
 
             with ui.row():
-                connect_btn = ui.button('Connect', on_click=connect_generator).classes('mt-2 bg-green-700')
+                connect_btn = ui.button('Reset and Reconnect', on_click=connect_generator).classes('mt-2 bg-green-700')
                 disconnect_btn = ui.button('Disconnect', on_click=disconnect_generator).classes('mt-2 bg-red-700')
-                disconnect_btn.visible = False
 
     def execute_switch(self):
         selected_channel = self.switch_dropdown.value

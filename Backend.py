@@ -92,6 +92,9 @@ class HighLevelControl():
 
             elif command_type == "all_off":
                 self.all_off()
+            
+            elif command_type == "trigger_burst":
+                self.agilent.send_trigger()
 
             else:
                 logger.warning(f"Unknown command type: {command_type}")
@@ -113,6 +116,7 @@ class HighLevelControl():
             frequency = float(command.get("frequency", 1000))                   # Default 1 kHz
             burst_count = int(command.get("bursts", 10))                        # Default 10 bursts
             duty_cycle = float(command.get("duty_cycle", 50.0))                 # Default 50%
+            amplitude = float(command.get("amplitude", 3.0))                    # Default 3 V
             inter_block_delay = float(command.get("inter_burst_wait", 0.5))     # Default 0.5s wait between blocks
 
             # Call the actual configuration logic that sets the agilent controller.
@@ -121,6 +125,7 @@ class HighLevelControl():
                 frequency=frequency,
                 burst_count=burst_count,
                 duty_cycle=duty_cycle,
+                amplitude=amplitude,
                 inter_block_delay=inter_block_delay
             )
 
@@ -131,17 +136,32 @@ class HighLevelControl():
             logger.error(f"Error in handle_signal_config: {str(e)}")
             self.mqtt.send_response({"error": f"Signal config failed: {str(e)}"})
 
-    def configure_signal(self, frequency, burst_count, duty_cycle, inter_block_delay):
+    def configure_signal(self, frequency, burst_count, duty_cycle, amplitude, inter_block_delay):
         try:
-            self.agilent.set_frequency(frequency)
-            self.agilent.set_burst_count(burst_count)
-            self.agilent.set_duty_cycle(duty_cycle)
+            period = 1.0 / frequency
+            width = period * (duty_cycle / 100.0)
+            edge_time = min(1e-6, 0.1 * width)  # Or use a fixed safe value
+
+            self.agilent.configure_pulse(
+                frequency=frequency,
+                width=width,
+                edge_time=edge_time
+            )
+            self.agilent.send("OUTPUT ON")
+            self.agilent.set_burst_mode(
+                cycles=burst_count,
+                trigger_source="BUS",
+                enable=True
+            )
+
             self.inter_block_delay = inter_block_delay
 
-            logging.info(f"Signal configured: {frequency=}, {burst_count=}, {duty_cycle=}, {inter_block_delay=}")
+            logger.info(f"Signal configured: frequency={frequency}, period={period}, width={width}, duty_cycle={duty_cycle}, bursts={burst_count}, inter_block_delay={inter_block_delay}")
+
         except Exception as e:
-            logging.error(f"Failed to configure signal: {str(e)}")
+            logger.error(f"Failed to configure signal: {str(e)}")
             raise
+
 
     def handle_channel_selection(self, channel: int):
         try:
@@ -199,18 +219,21 @@ class HighLevelControl():
 
     def n_burst_series(self, n: int):
         try:
-            self.agilent.apply_waveform("PULS", 10000, 1.0)
-            self.agilent.send("FUNC:PULS:DCYCLE 20")
+            period = 1.0 / 10000
+            width = period * 0.2  # 20% duty cycle
+            self.agilent.configure_pulse(frequency=10000, width=width, edge_time=1e-6)
+
             for cycle_count in range(n, 0, -1):
                 self.agilent.set_burst_mode(cycles=cycle_count, trigger_source="BUS", enable=True)
                 self.agilent.send_trigger()
                 time.sleep(0.1)
-                
+
             logger.info(f"Completed {n} burst cycles")
-            
+
         except Exception as e:
             logger.error(f"Burst operation failed: {str(e)}")
             raise
+
 
     def demo_basic_waveforms(self):
         # Sine wave
