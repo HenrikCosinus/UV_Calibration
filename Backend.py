@@ -200,7 +200,7 @@ class HighLevelControl():
     def n_burst_series(self, n: int):
         try:
             self.agilent.apply_waveform("PULS", 10000, 1.0)
-            self.agilent.inst.write("FUNC:PULS:DCYCLE 20")
+            self.agilent.send("FUNC:PULS:DCYCLE 20")
             for cycle_count in range(n, 0, -1):
                 self.agilent.set_burst_mode(cycles=cycle_count, trigger_source="BUS", enable=True)
                 self.agilent.send_trigger()
