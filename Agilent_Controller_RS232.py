@@ -47,19 +47,18 @@ class Agilent33250A:
             parity=constants.Parity.none,
             stop_bits=constants.StopBits.one,
             flow_control=constants.VI_ASRL_FLOW_NONE,
-            write_termination='\n',
+            write_termination='',
             read_termination='\n',
+            send_end=False,
             timeout=50000
         )
         #self.inst = cast(SerialInstrument, resource)
         self.inst = cast(MessageBasedResource, resource)
-
-        print(dir(self.inst))
+        # print(dir(self.inst))
         try:
-            idn = self.inst.query("*IDN?")
+            idn = self.query("*IDN?")
             logger.info(f"Connecting to: {idn}")
-            #self.reset()
-        
+            self.reset()
         except Exception as e:
             logger.error(f"Connection failed: {str(e)}")
             raise
@@ -73,14 +72,15 @@ class Agilent33250A:
                 parity=constants.Parity.none,
                 stop_bits=constants.StopBits.one,
                 flow_control=constants.VI_ASRL_FLOW_NONE,
-                write_termination='\n',
+                write_termination='',
                 read_termination='\n',
+                send_end=False,
                 timeout=self.timeout
             )
             self.inst = cast(MessageBasedResource, resource)
-            idn = self.inst.query("*IDN?")
+            idn = self.query("*IDN?")
             logger.info(f"Connected to: {idn}")
-            self.reset()
+            #self.reset()
         except Exception as e:
             logger.error(f"Failed to connect to Agilent33250A: {str(e)}")
             raise
@@ -93,15 +93,31 @@ class Agilent33250A:
             self.inst.close()
             self.inst = None
             logger.info("Agilent33250A disconnected")
-    
+
+    def send(self, cmd: str):
+        logger.info(f"SCPI: {cmd!r}")
+        raw = cmd.strip().encode() + b'\r\n'
+        logger.info(f"RAW BYTES SENT: {raw!r}")
+        self.inst.write_raw(raw)
+
+    def query(self, cmd: str):
+        logger.info(f"SCPI QUERY: {cmd!r}")
+        raw = cmd.strip().encode() + b'\r\n'
+        logger.info(f"RAW BYTES SENT: {raw!r}")
+        self.inst.write_raw(raw)
+        time.sleep(0.05)  # Give the instrument time to reply
+        response = self.inst.read().strip()
+        logger.info(f"RESPONSE: {response!r}")
+        return response
+
     def reset(self):
         logger.info("Resetting instrument...")
-        self.inst.write("*RST")
-        self.inst.write("*CLS")
+        self.send("*RST")
+        self.send("*CLS")
         
     def check_errors(self):
         while True:
-            err = self.inst.query(":SYST:ERR?").strip()
+            err = self.query(":SYST:ERR?").strip()
             err_num = int(err.split(',')[0])
             if err_num == 0:
                 break
@@ -119,15 +135,15 @@ class Agilent33250A:
             load (str): Output load in ohms or "INF" for high impedance
             state (bool): Enable/disable output
         """
-        self.inst.write(f"OUTPUT:LOAD {load}")
-        self.inst.write(f"OUTPUT:STATE {'ON' if state else 'OFF'}")
+        self.send(f"OUTPUT:LOAD {load}")
+        self.send(f"OUTPUT:STATE {'ON' if state else 'OFF'}")
         
     def configure_sync(self, state=True):
         """
         Args:
             state (bool): Enable/disable sync output
         """
-        self.inst.write(f"OUTPUT:SYNC {'ON' if state else 'OFF'}")
+        self.send(f"OUTPUT:SYNC {'ON' if state else 'OFF'}")
         
     def apply_waveform(self, waveform_type, frequency, amplitude, offset=0):
         """
@@ -141,7 +157,7 @@ class Agilent33250A:
         """
         cmd = f"APPLY:{waveform_type} {frequency},{amplitude},{offset}"
         logger.info(f"Applying waveform: {cmd}")
-        self.inst.write(cmd)
+        self.send(cmd)
         
     def set_am_modulation(self, depth=80, mod_frequency=1000, mod_shape="SIN", enable=True):
         """
@@ -153,10 +169,10 @@ class Agilent33250A:
             mod_shape (str): SIN, SQU, RAMP, NOIS, or USER
             enable (bool): Enable/disable modulation
         """
-        self.inst.write(f"AM:INTERNAL:FUNCTION {mod_shape}")
-        self.inst.write(f"AM:INTERNAL:FREQUENCY {mod_frequency}")
-        self.inst.write(f"AM:DEPTH {depth}")
-        self.inst.write(f"AM:STATE {'ON' if enable else 'OFF'}")
+        self.send(f"AM:INTERNAL:FUNCTION {mod_shape}")
+        self.send(f"AM:INTERNAL:FREQUENCY {mod_frequency}")
+        self.send(f"AM:DEPTH {depth}")
+        self.send(f"AM:STATE {'ON' if enable else 'OFF'}")
         
     def set_fm_modulation(self, deviation=1000, mod_frequency=1000, mod_shape="SIN", enable=True):
         """
@@ -168,10 +184,10 @@ class Agilent33250A:
             mod_shape (str): SIN, SQU, RAMP, NOIS, or USER
             enable (bool): Enable/disable modulation
         """
-        self.inst.write(f"FM:INTERNAL:FUNCTION {mod_shape}")
-        self.inst.write(f"FM:INTERNAL:FREQUENCY {mod_frequency}")
-        self.inst.write(f"FM:DEVIATION {deviation}")
-        self.inst.write(f"FM:STATE {'ON' if enable else 'OFF'}")
+        self.send(f"FM:INTERNAL:FUNCTION {mod_shape}")
+        self.send(f"FM:INTERNAL:FREQUENCY {mod_frequency}")
+        self.send(f"FM:DEVIATION {deviation}")
+        self.send(f"FM:STATE {'ON' if enable else 'OFF'}")
         
     def set_frequency_sweep(self, start_freq=100, stop_freq=1000, sweep_time=1, enable=True):
         """
@@ -183,10 +199,10 @@ class Agilent33250A:
             sweep_time (float): Sweep time in seconds
             enable (bool): Enable/disable sweep
         """
-        self.inst.write(f"FREQUENCY:START {start_freq}")
-        self.inst.write(f"FREQUENCY:STOP {stop_freq}")
-        self.inst.write(f"SWEEP:TIME {sweep_time}")
-        self.inst.write(f"SWEEP:STATE {'ON' if enable else 'OFF'}")
+        self.send(f"FREQUENCY:START {start_freq}")
+        self.send(f"FREQUENCY:STOP {stop_freq}")
+        self.send(f"SWEEP:TIME {sweep_time}")
+        self.send(f"SWEEP:STATE {'ON' if enable else 'OFF'}")
 
     def configure_pulse(self, frequency=1000, width=100e-6, edge_time=10e-6):
         """
@@ -198,10 +214,10 @@ class Agilent33250A:
             edge_time (float): Edge time in seconds
         """
         period = 1.0 / frequency
-        self.inst.write(f"FUNCTION PULSE")
-        self.inst.write(f"PULSE:PERIOD {period}")
-        self.inst.write(f"PULSE:WIDTH {width}")
-        self.inst.write(f"PULSE:TRANSITION {edge_time}")
+        self.send(f"FUNCTION PULSE")
+        self.send(f"PULSE:PERIOD {period}")
+        self.send(f"PULSE:WIDTH {width}")
+        self.send(f"PULSE:TRANSITION {edge_time}")
         
     def set_burst_mode(self, cycles=3, phase=0, trigger_source="BUS", enable=True):
         """
@@ -213,15 +229,15 @@ class Agilent33250A:
             trigger_source (str): IMM, EXT, or BUS
             enable (bool): Enable/disable burst mode
         """
-        self.inst.write(f"BURST:MODE TRIG")
-        self.inst.write(f"BURST:NCYCLES {cycles}")
-        self.inst.write(f"BURST:PHASE {phase}")
-        self.inst.write(f"TRIGGER:SOURCE {trigger_source}")
-        self.inst.write(f"BURST:STATE {'ON' if enable else 'OFF'}")
+        self.send(f"BURST:MODE TRIG")
+        self.send(f"BURST:NCYCLES {cycles}")
+        self.send(f"BURST:PHASE {phase}")
+        self.send(f"TRIGGER:SOURCE {trigger_source}")
+        self.send(f"BURST:STATE {'ON' if enable else 'OFF'}")
         
     def send_trigger(self):
         """Send software trigger"""
-        self.inst.write("*TRG")
+        self.send("*TRG")
         
     def upload_arbitrary_waveform(self, data, name="VOLATILE"):
         """
@@ -240,7 +256,7 @@ class Agilent33250A:
         data_str = ",".join(str(x) for x in data_list)
         cmd = f"DATA:{name} "
         logger.info(f"Uploading arbitrary waveform ({len(data_list)} points)")
-        self.inst.write(cmd + data_str)
+        self.send(cmd + data_str)
         
     def upload_arbitrary_waveform_binary(self, data, name="VOLATILE"):
         """
@@ -267,11 +283,11 @@ class Agilent33250A:
         Args:
             name (str): Waveform name (default: VOLATILE)
         """
-        self.inst.write(f"FUNCTION:USER {name}")
+        self.send(f"FUNCTION:USER {name}")
         
     def get_status_byte(self):
         """Get and return the status byte"""
-        return int(self.inst.query("*STB?").strip())
+        return int(self.query("*STB?").strip())
     
     
     def wait_for_completion(self, timeout=10):
@@ -284,7 +300,7 @@ class Agilent33250A:
         Returns:
             bool: True if successful, False if timed out
         """
-        self.inst.write("*OPC")
+        self.send("*OPC")
         start_time = time.time()
         while (time.time() - start_time) < timeout:
             stb = self.get_status_byte()
@@ -299,7 +315,7 @@ class Agilent33250A:
         Args:
             frequency (float): Frequency in Hz
         """
-        self.inst.write(f"FREQUENCY {frequency}")
+        self.send(f"FREQUENCY {frequency}")
         logger.info(f"Frequency set to {frequency} Hz")
 
     def set_burst_count(self, burst_count: int):
@@ -308,7 +324,7 @@ class Agilent33250A:
         Args:
             burst_count (int): Number of cycles in a burst
         """
-        self.inst.write(f"BURST:NCYCLES {burst_count}")
+        self.send(f"BURST:NCYCLES {burst_count}")
         logger.info(f"Burst count set to {burst_count} cycles")
 
     def set_duty_cycle(self, duty_cycle: float):
@@ -317,9 +333,8 @@ class Agilent33250A:
         Args:
             duty_cycle (float): Duty cycle in percent (0–100)
         """
-        self.inst.write("FUNCTION PULSE")
-
-        self.inst.write(f"PULSE:DUTY {duty_cycle}")
+        self.send("FUNCTION PULSE")
+        self.send(f"PULSE:DUTY {duty_cycle}")
         logger.info(f"Duty cycle set to {duty_cycle}%")
 
     
