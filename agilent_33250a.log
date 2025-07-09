@@ -3730,3 +3730,131 @@
 2025-07-02 15:25:06,002 - WARNING - Unexpected disconnection (code: 7)
 2025-07-02 15:25:07,006 - INFO - Successfully connected to MQTT broker
 2025-07-02 15:25:07,008 - INFO - Successfully connected to MQTT broker
+2025-07-02 16:55:01,843 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-07-02 16:55:01,860 - INFO - SCPI QUERY: '*IDN?'
+2025-07-02 16:55:01,861 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-07-02 16:55:01,914 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-07-02 16:55:01,915 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-07-02 16:55:01,915 - INFO - Resetting instrument...
+2025-07-02 16:55:01,916 - INFO - SCPI: '*RST'
+2025-07-02 16:55:01,917 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-07-02 16:55:01,918 - INFO - SCPI: '*CLS'
+2025-07-02 16:55:01,918 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-07-02 16:55:01,920 - INFO - Hardware initialized successfully
+2025-07-02 16:55:01,921 - INFO - hardware initialization worked in the _init_
+2025-07-02 16:55:01,923 - INFO - on_ui_command is reached
+2025-07-02 16:55:01,923 - INFO - MQTT handlers configured
+2025-07-02 16:55:01,928 - INFO - Successfully connected to MQTT broker
+2025-07-02 16:55:01,929 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-07-02 16:55:01,933 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-07-02 16:55:01,933 - INFO - Successfully connected to MQTT broker
+2025-07-02 16:55:35,169 - INFO - Published to /ui_command: {"type": "signal_config", "frequency": 1.0, "bursts": 5, "duty_cycle": 50.0, "inter_block_delay": 2.0} (result: 0)
+2025-07-02 16:55:35,171 - INFO - Received command: {'type': 'signal_config', 'frequency': 1.0, 'bursts': 5, 'duty_cycle': 50.0, 'inter_block_delay': 2.0}
+2025-07-02 16:55:35,176 - INFO - handle_signal_config reaches at least up to the config transmittance to the agilent <bound method HighLevelControl.configure_signal of <Backend.HighLevelControl object at 0x7f8df63390>>
+2025-07-02 16:55:35,177 - INFO - SCPI: 'FUNCTION PULSE'
+2025-07-02 16:55:35,178 - INFO - RAW BYTES SENT: b'FUNCTION PULSE\r\n'
+2025-07-02 16:55:35,180 - INFO - SCPI: 'PULSE:PERIOD 1.0'
+2025-07-02 16:55:35,181 - INFO - RAW BYTES SENT: b'PULSE:PERIOD 1.0\r\n'
+2025-07-02 16:55:35,182 - INFO - SCPI: 'PULSE:WIDTH 0.5'
+2025-07-02 16:55:35,188 - INFO - RAW BYTES SENT: b'PULSE:WIDTH 0.5\r\n'
+2025-07-02 16:55:35,189 - INFO - SCPI: 'PULSE:TRANSITION 1e-06'
+2025-07-02 16:55:35,190 - INFO - RAW BYTES SENT: b'PULSE:TRANSITION 1e-06\r\n'
+2025-07-02 16:55:35,192 - INFO - SCPI: 'OUTPUT ON'
+2025-07-02 16:55:35,193 - INFO - RAW BYTES SENT: b'OUTPUT ON\r\n'
+2025-07-02 16:55:35,194 - INFO - SCPI: 'BURST:MODE TRIG'
+2025-07-02 16:55:35,195 - INFO - RAW BYTES SENT: b'BURST:MODE TRIG\r\n'
+2025-07-02 16:55:35,196 - INFO - SCPI: 'BURST:NCYCLES 5'
+2025-07-02 16:55:35,197 - INFO - RAW BYTES SENT: b'BURST:NCYCLES 5\r\n'
+2025-07-02 16:55:35,199 - INFO - SCPI: 'BURST:PHASE 0'
+2025-07-02 16:55:35,200 - INFO - RAW BYTES SENT: b'BURST:PHASE 0\r\n'
+2025-07-02 16:55:35,201 - INFO - SCPI: 'TRIGGER:SOURCE BUS'
+2025-07-02 16:55:35,202 - INFO - RAW BYTES SENT: b'TRIGGER:SOURCE BUS\r\n'
+2025-07-02 16:55:35,203 - INFO - SCPI: 'BURST:STATE ON'
+2025-07-02 16:55:35,204 - INFO - RAW BYTES SENT: b'BURST:STATE ON\r\n'
+2025-07-02 16:55:35,206 - INFO - Signal configured: frequency=1.0, period=1.0, width=0.5, duty_cycle=50.0, bursts=5, inter_block_delay=0.5
+2025-07-02 16:55:35,207 - INFO - Signal configuration handled successfully.
+2025-07-02 16:55:35,208 - INFO - Published to /control_response: {"status": "Signal configuration applied."} (result: 0)
+2025-07-02 16:56:28,191 - INFO - Published to /ui_command: {"type": "connect_generator"} (result: 0)
+2025-07-02 16:56:28,193 - INFO - Received command: {'type': 'connect_generator'}
+2025-07-02 16:56:30,238 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-07-02 16:56:30,250 - INFO - SCPI QUERY: '*IDN?'
+2025-07-02 16:56:30,251 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-07-02 16:56:30,302 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-07-02 16:56:30,303 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-07-02 16:56:30,303 - INFO - Resetting instrument...
+2025-07-02 16:56:30,303 - INFO - SCPI: '*RST'
+2025-07-02 16:56:30,304 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-07-02 16:56:30,304 - INFO - SCPI: '*CLS'
+2025-07-02 16:56:30,304 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-07-02 16:56:30,305 - WARNING - Unexpected disconnection (code: 7)
+2025-07-02 16:56:31,307 - INFO - Successfully connected to MQTT broker
+2025-07-02 16:56:35,385 - INFO - Published to /ui_command: {"type": "disconnect_generator"} (result: 0)
+2025-07-02 16:56:35,386 - INFO - Received command: {'type': 'disconnect_generator'}
+2025-07-02 16:56:35,396 - INFO - Agilent33250A disconnected
+2025-07-02 16:56:48,825 - INFO - Published to /ui_command: {"type": "signal_config", "frequency": 1.0, "bursts": 5, "duty_cycle": 50.0, "inter_block_delay": 2.0} (result: 0)
+2025-07-02 16:56:48,826 - INFO - Received command: {'type': 'signal_config', 'frequency': 1.0, 'bursts': 5, 'duty_cycle': 50.0, 'inter_block_delay': 2.0}
+2025-07-02 16:56:48,830 - INFO - handle_signal_config reaches at least up to the config transmittance to the agilent <bound method HighLevelControl.configure_signal of <Backend.HighLevelControl object at 0x7f8df63390>>
+2025-07-02 16:56:48,831 - INFO - SCPI: 'FUNCTION PULSE'
+2025-07-02 16:56:48,831 - INFO - RAW BYTES SENT: b'FUNCTION PULSE\r\n'
+2025-07-02 16:56:48,831 - ERROR - Failed to configure signal: 'NoneType' object has no attribute 'write_raw'
+2025-07-02 16:56:48,834 - ERROR - Error in handle_signal_config: 'NoneType' object has no attribute 'write_raw'
+2025-07-02 16:56:48,836 - INFO - Published to /control_response: {"error": "Signal config failed: 'NoneType' object has no attribute 'write_raw'"} (result: 0)
+2025-07-02 16:56:51,685 - INFO - Published to /ui_command: {"type": "signal_config", "frequency": 1.0, "bursts": 5, "duty_cycle": 50.0, "inter_block_delay": 2.0} (result: 0)
+2025-07-02 16:56:51,688 - INFO - Received command: {'type': 'signal_config', 'frequency': 1.0, 'bursts': 5, 'duty_cycle': 50.0, 'inter_block_delay': 2.0}
+2025-07-02 16:56:51,688 - INFO - handle_signal_config reaches at least up to the config transmittance to the agilent <bound method HighLevelControl.configure_signal of <Backend.HighLevelControl object at 0x7f8df63390>>
+2025-07-02 16:56:51,689 - INFO - SCPI: 'FUNCTION PULSE'
+2025-07-02 16:56:51,689 - INFO - RAW BYTES SENT: b'FUNCTION PULSE\r\n'
+2025-07-02 16:56:51,690 - ERROR - Failed to configure signal: 'NoneType' object has no attribute 'write_raw'
+2025-07-02 16:56:51,690 - ERROR - Error in handle_signal_config: 'NoneType' object has no attribute 'write_raw'
+2025-07-02 16:56:51,691 - INFO - Published to /control_response: {"error": "Signal config failed: 'NoneType' object has no attribute 'write_raw'"} (result: 0)
+2025-07-02 16:56:56,091 - INFO - Published to /ui_command: {"type": "connect_generator"} (result: 0)
+2025-07-02 16:56:56,092 - INFO - Received command: {'type': 'connect_generator'}
+2025-07-02 16:56:58,146 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-07-02 16:56:58,165 - INFO - SCPI QUERY: '*IDN?'
+2025-07-02 16:56:58,165 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-07-02 16:56:58,218 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-07-02 16:56:58,219 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-07-02 16:56:58,220 - INFO - Resetting instrument...
+2025-07-02 16:56:58,220 - INFO - SCPI: '*RST'
+2025-07-02 16:56:58,221 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-07-02 16:56:58,222 - INFO - SCPI: '*CLS'
+2025-07-02 16:56:58,222 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-07-02 16:56:58,225 - WARNING - Unexpected disconnection (code: 7)
+2025-07-02 16:56:59,228 - INFO - Successfully connected to MQTT broker
+2025-07-02 16:57:01,331 - INFO - Published to /ui_command: {"type": "signal_config", "frequency": 1.0, "bursts": 5, "duty_cycle": 50.0, "inter_block_delay": 2.0} (result: 0)
+2025-07-02 16:57:01,334 - INFO - Received command: {'type': 'signal_config', 'frequency': 1.0, 'bursts': 5, 'duty_cycle': 50.0, 'inter_block_delay': 2.0}
+2025-07-02 16:57:01,334 - INFO - handle_signal_config reaches at least up to the config transmittance to the agilent <bound method HighLevelControl.configure_signal of <Backend.HighLevelControl object at 0x7f8df63390>>
+2025-07-02 16:57:01,335 - INFO - SCPI: 'FUNCTION PULSE'
+2025-07-02 16:57:01,335 - INFO - RAW BYTES SENT: b'FUNCTION PULSE\r\n'
+2025-07-02 16:57:01,336 - INFO - SCPI: 'PULSE:PERIOD 1.0'
+2025-07-02 16:57:01,337 - INFO - RAW BYTES SENT: b'PULSE:PERIOD 1.0\r\n'
+2025-07-02 16:57:01,338 - INFO - SCPI: 'PULSE:WIDTH 0.5'
+2025-07-02 16:57:01,338 - INFO - RAW BYTES SENT: b'PULSE:WIDTH 0.5\r\n'
+2025-07-02 16:57:01,339 - INFO - SCPI: 'PULSE:TRANSITION 1e-06'
+2025-07-02 16:57:01,339 - INFO - RAW BYTES SENT: b'PULSE:TRANSITION 1e-06\r\n'
+2025-07-02 16:57:01,340 - INFO - SCPI: 'OUTPUT ON'
+2025-07-02 16:57:01,340 - INFO - RAW BYTES SENT: b'OUTPUT ON\r\n'
+2025-07-02 16:57:01,341 - INFO - SCPI: 'BURST:MODE TRIG'
+2025-07-02 16:57:01,341 - INFO - RAW BYTES SENT: b'BURST:MODE TRIG\r\n'
+2025-07-02 16:57:01,342 - INFO - SCPI: 'BURST:NCYCLES 5'
+2025-07-02 16:57:01,342 - INFO - RAW BYTES SENT: b'BURST:NCYCLES 5\r\n'
+2025-07-02 16:57:01,342 - INFO - SCPI: 'BURST:PHASE 0'
+2025-07-02 16:57:01,343 - INFO - RAW BYTES SENT: b'BURST:PHASE 0\r\n'
+2025-07-02 16:57:01,343 - INFO - SCPI: 'TRIGGER:SOURCE BUS'
+2025-07-02 16:57:01,344 - INFO - RAW BYTES SENT: b'TRIGGER:SOURCE BUS\r\n'
+2025-07-02 16:57:01,344 - INFO - SCPI: 'BURST:STATE ON'
+2025-07-02 16:57:01,345 - INFO - RAW BYTES SENT: b'BURST:STATE ON\r\n'
+2025-07-02 16:57:01,345 - INFO - Signal configured: frequency=1.0, period=1.0, width=0.5, duty_cycle=50.0, bursts=5, inter_block_delay=0.5
+2025-07-02 16:57:01,346 - INFO - Signal configuration handled successfully.
+2025-07-02 16:57:01,347 - INFO - Published to /control_response: {"status": "Signal configuration applied."} (result: 0)
+2025-07-09 10:29:57,259 - INFO - Available resources: ()
+2025-07-09 10:29:57,260 - ERROR - Hardware initialization failed: [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2025-07-09 10:30:23,182 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-07-09 10:30:35,661 - INFO - Published to /ui_command: {"type": "trigger_burst"} (result: 4)
+2025-07-09 10:30:37,289 - INFO - Published to /ui_command: {"type": "pulse_train_sweep"} (result: 4)
+2025-07-09 10:36:21,152 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-07-09 10:36:53,955 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-07-09 10:39:54,336 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-07-09 10:45:29,571 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-07-09 10:47:39,889 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-07-09 10:48:10,716 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused

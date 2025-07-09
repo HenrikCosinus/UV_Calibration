@@ -96,6 +96,9 @@ class HighLevelControl():
             elif command_type == "trigger_burst":
                 self.agilent.send_trigger()
 
+            elif command_type == "pulse_train_sweep":
+                self.sweeping_pulse_train()
+
             else:
                 logger.warning(f"Unknown command type: {command_type}")
                 self.mqtt.send_response({
@@ -233,7 +236,32 @@ class HighLevelControl():
         except Exception as e:
             logger.error(f"Burst operation failed: {str(e)}")
             raise
+    
+    def sweeping_pulse_train(self, max_pulses=20, min_pulses=1, inter_train_wait=0.1):
+        try:
+            self.agilent.send("*RST")
+            self.agilent.send("*CLS")
+            self.agilent.send("FUNCTION SQUARE")
+            self.agilent.send("FREQUENCY 5E6")  # 5 MHz
+            self.agilent.send("OUTPUT ON")
+            self.agilent.send("BURST:MODE TRIG")
+            self.agilent.send("BURST:PHASE 0")
+            self.agilent.send("TRIGGER:SOURCE BUS")
+            self.agilent.send("BURST:STATE ON")
 
+            logger.info("Starting pulse train sweep")
+
+            for n in range(max_pulses, min_pulses - 1, -1):
+                self.agilent.send(f"BURST:NCYCLES {n}")
+                self.agilent.send_trigger()
+                logger.info(f"Triggered {n} pulse(s) at 5 MHz")
+                time.sleep(inter_train_wait)  # Wait 100 ms or as needed
+
+            logger.info("Pulse train sweep complete.")
+
+        except Exception as e:
+            logger.error(f"Pulse train sweep failed: {str(e)}")
+            raise
 
     def demo_basic_waveforms(self):
         # Sine wave
