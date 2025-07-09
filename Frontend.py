@@ -4,6 +4,7 @@ import RPi.GPIO as GPIO
 from nicegui import ui
 import paho.mqtt.client as mqtt
 import json
+from pathlib import Path
 from MQTTHandler import MQTTHandler
 
 class Frontend():
@@ -13,6 +14,9 @@ class Frontend():
             'UI_command': f"/ui_command",
             'control_response': f"/control_response",
         }
+        self.notes_file = Path('channel_notes.json')
+        self.channel_notes_store = {} 
+        self.load_notes()
         
         self.mqtt = MQTTHandler(
             client_id="web_ui",
@@ -26,43 +30,42 @@ class Frontend():
         with ui.row().classes("w-full justify-start"):
             with ui.card().classes("w-1/2"):
                 ui.label('Select UV_LED:').classes('mt-4')
-                switch_options = [
-                    'Switch 1', 'Switch 2', 'Switch 3', 'Switch 4',
-                    'Switch 5', 'Switch 6', 'Switch 7', 'Switch 8',
-                    'All Off'
-                ]
-                self.switch_dropdown = ui.select(
-                    label='Available UV-LEDs',
-                    options=switch_options,
-                    value='Switch 1'  # Default to first switch
-                ).classes('w-full')
 
+                with ui.row().classes('items-start gap-4'):
+                    self.switch_dropdown = ui.select(
+                        label='Available UV-LEDs',
+                        options=[
+                            'Switch 1', 'Switch 2', 'Switch 3', 'Switch 4',
+                            'Switch 5', 'Switch 6', 'Switch 7', 'Switch 8',
+                            'All Off'
+                        ],
+                        value='Switch 1'
+                    ).classes('w-full')
+
+                    initial_note = self.channel_notes_store.get('Switch 1', '')
+                    self.channel_notes = ui.textarea(
+                        label='Channel Notes',
+                        placeholder='Add notes for the channels...',
+                        value=initial_note  # <<< load on startup
+                    ).classes('w-full')
+                
+                def save_notes_for_channel():
+                    channel = self.switch_dropdown.value
+                    self.channel_notes_store[channel] = self.channel_notes.value
+                    self.save_notes()
+                    ui.notify(f"Notes for {channel} saved.", color='positive')
+                ui.button('Save Notes', on_click=save_notes_for_channel).classes('mt-2 bg-green-600')
                 ui.button('Activate Channel', on_click=self.execute_switch).classes('mt-2 w-full bg-blue-700')
-            """ui.separator()
-                ui.label('Channel Notes').classes('mt-4')
 
-                self.notes_area = ui.textarea(
-                    label='Detector Notes',
-                    value=self.channel_notes,
-                    readonly=True
-                ).classes('w-full')
+                def update_notes_field(e):
+                    channel = self.switch_dropdown.value
+                    note = self.channel_notes_store.get(channel, '')
+                    self.channel_notes.value = note
+                self.switch_dropdown.on('update:model-value', update_notes_field)
+                #self.switch_dropdown.on('change', update_notes_field)
 
-                def toggle_notes_edit():
-                    if self.edit_mode:
-                        self.channel_notes = self.notes_area.value
-                        self.notes_area.readonly = True
-                        ui.notify("Notes saved!", color='positive')
-                    else:
-                        self.notes_area.readonly = False
-                    self.edit_mode = not self.edit_mode
 
-                ui.button(
-                    "Edit Notes" if not self.edit_mode else "Save Notes",
-                    on_click=toggle_notes_edit
-                ).classes('mt-2 bg-yellow-500')
-            """
-
-            with ui.card().classes("w-1/2"):
+            with ui.card().classes("w-1/3"):
                 ui.label('Signal Configuration').classes('text-h6')
 
                 frequency_input = ui.input(label='Frequency (Hz)', value='1000').props('type=number step=1')
@@ -110,7 +113,7 @@ class Frontend():
                 ).classes('mt-2 w-full bg-orange-600')
 
                 ui.separator()
-                with ui.card().classes("w-2/2"):
+                with ui.card().classes("w-1/3"):
                     ui.label(
                     '⚙️Pulse Train Sweep:\n\n'
                     'This will run a preset sweep: \n'
@@ -204,3 +207,20 @@ class Frontend():
         except Exception as e:
             error_msg = f"MQTT error: {str(e)}"
             ui.notify(error_msg, color='negative')
+
+    def load_notes(self):
+        if self.notes_file.exists():
+            try:
+                with open(self.notes_file, 'r') as f:
+                    self.channel_notes_store = json.load(f)
+            except Exception as e:
+                print(f"Failed to load notes: {e}")
+        else:
+            self.channel_notes_store = {}
+
+    def save_notes(self):
+        try:
+            with open(self.notes_file, 'w') as f:
+                json.dump(self.channel_notes_store, f, indent=2)
+        except Exception as e:
+            print(f"Failed to save notes: {e}")
