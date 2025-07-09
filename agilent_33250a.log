@@ -3858,3 +3858,73 @@
 2025-07-09 10:45:29,571 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
 2025-07-09 10:47:39,889 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
 2025-07-09 10:48:10,716 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-07-09 12:46:43,184 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-07-09 12:49:40,525 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-07-09 12:50:27,775 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-07-09 12:51:16,612 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-07-09 12:51:52,029 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-07-09 12:52:33,134 - INFO - Published to /ui_command: {"type": "channel_select", "channel": 6} (result: 4)
+2025-07-09 12:52:42,505 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-07-09 13:04:54,481 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-07-09 13:05:17,599 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-07-09 13:07:54,235 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-07-09 13:12:12,931 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-07-09 13:12:24,955 - ERROR - 'GenericEventArguments' object has no attribute 'value'
+Traceback (most recent call last):
+  File "/home/COSINUS/Documents/UV_Calibration/.venv/lib/python3.11/site-packages/nicegui/events.py", line 437, in handle_event
+    result = cast(Callable[[EventT], Any], handler)(arguments)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/COSINUS/Documents/UV_Calibration/Frontend.py", line 61, in update_notes_field
+    channel = e.value
+              ^^^^^^^
+AttributeError: 'GenericEventArguments' object has no attribute 'value'
+2025-07-09 13:12:26,693 - ERROR - 'GenericEventArguments' object has no attribute 'value'
+Traceback (most recent call last):
+  File "/home/COSINUS/Documents/UV_Calibration/.venv/lib/python3.11/site-packages/nicegui/events.py", line 437, in handle_event
+    result = cast(Callable[[EventT], Any], handler)(arguments)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/COSINUS/Documents/UV_Calibration/Frontend.py", line 61, in update_notes_field
+    channel = e.value
+              ^^^^^^^
+AttributeError: 'GenericEventArguments' object has no attribute 'value'
+2025-07-09 13:12:29,025 - ERROR - 'GenericEventArguments' object has no attribute 'value'
+Traceback (most recent call last):
+  File "/home/COSINUS/Documents/UV_Calibration/.venv/lib/python3.11/site-packages/nicegui/events.py", line 437, in handle_event
+    result = cast(Callable[[EventT], Any], handler)(arguments)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/COSINUS/Documents/UV_Calibration/Frontend.py", line 61, in update_notes_field
+    channel = e.value
+              ^^^^^^^
+AttributeError: 'GenericEventArguments' object has no attribute 'value'
+2025-07-09 13:12:49,220 - ERROR - 'GenericEventArguments' object has no attribute 'value'
+Traceback (most recent call last):
+  File "/home/COSINUS/Documents/UV_Calibration/.venv/lib/python3.11/site-packages/nicegui/events.py", line 437, in handle_event
+    result = cast(Callable[[EventT], Any], handler)(arguments)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/COSINUS/Documents/UV_Calibration/Frontend.py", line 61, in update_notes_field
+    channel = e.value
+              ^^^^^^^
+AttributeError: 'GenericEventArguments' object has no attribute 'value'
+2025-07-09 13:12:53,643 - ERROR - 'GenericEventArguments' object has no attribute 'value'
+Traceback (most recent call last):
+  File "/home/COSINUS/Documents/UV_Calibration/.venv/lib/python3.11/site-packages/nicegui/events.py", line 437, in handle_event
+    result = cast(Callable[[EventT], Any], handler)(arguments)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/COSINUS/Documents/UV_Calibration/Frontend.py", line 61, in update_notes_field
+    channel = e.value
+              ^^^^^^^
+AttributeError: 'GenericEventArguments' object has no attribute 'value'
+2025-07-09 13:13:46,809 - ERROR - 'GenericEventArguments' object has no attribute 'value'
+Traceback (most recent call last):
+  File "/home/COSINUS/Documents/UV_Calibration/.venv/lib/python3.11/site-packages/nicegui/events.py", line 437, in handle_event
+    result = cast(Callable[[EventT], Any], handler)(arguments)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/COSINUS/Documents/UV_Calibration/Frontend.py", line 61, in update_notes_field
+    channel = e.value
+              ^^^^^^^
+AttributeError: 'GenericEventArguments' object has no attribute 'value'
+2025-07-09 13:13:49,218 - INFO - Published to /ui_command: {"type": "channel_select", "channel": 4} (result: 4)
+2025-07-09 13:22:08,222 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-07-09 13:23:35,805 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-07-09 13:27:33,658 - INFO - Published to /ui_command: {"type": "channel_select", "channel": 4} (result: 4)
+2025-07-09 13:30:17,116 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
