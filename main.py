@@ -21,7 +21,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 def main():
-    backend = HighLevelControl()
+    #backend = HighLevelControl()
     frontend = Frontend()
     frontend.create_ui()
 
