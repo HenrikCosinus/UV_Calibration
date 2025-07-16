@@ -6,8 +6,8 @@ import RPi.GPIO as GPIO
 import time
 
 class GPIOController:    
-    def __init__(self, pins=[17, 18, 22, 27]):
-        'Pin 17: On/Off, Pins 18, 22, 27 are A2, A1 and A0 respectively. Aka 18 = 0/1, 22 = 2/0, 27 = 4/0 from binary numbering'
+    def __init__(self, pins=[24, 23, 22, 27]):
+        'Pin 24: On/Off, Pins 23, 22, 27 are A2, A1 and A0 respectively. Aka 18 = 0/1, 22 = 2/0, 27 = 4/0 from binary numbering. Also all Pin references are BCM'
         self.pins = pins
         GPIO.setmode(GPIO.BCM)
         GPIO.setwarnings(False)
@@ -33,17 +33,17 @@ class GPIOController:
 
     def Switch_1(self):
         self.set_all_pins(state=False)
-        self.set_pin(pin_index=0, state=True)  # GPIO 17
+        self.set_pin(pin_index=0, state=True) 
 
     def Switch_2(self):
         self.set_all_pins(state=False)
-        self.set_pin(pin_index=0, state=True)  # GPIO 17
-        self.set_pin(pin_index=1, state=True)  # GPIO 18
+        self.set_pin(pin_index=0, state=True) 
+        self.set_pin(pin_index=1, state=True) 
 
     def Switch_3(self):
         self.set_all_pins(state=False)
-        self.set_pin(pin_index=0, state=True)  # GPIO 17
-        self.set_pin(pin_index=2, state=True)  # GPIO 22
+        self.set_pin(pin_index=0, state=True) 
+        self.set_pin(pin_index=2, state=True) 
 
     def Switch_4(self):
         self.set_all_pins(state=False)
@@ -54,7 +54,7 @@ class GPIOController:
     def Switch_5(self):
         self.set_all_pins(state=False)
         self.set_pin(pin_index=0, state=True)
-        self.set_pin(pin_index=3, state=True)  # GPIO 27
+        self.set_pin(pin_index=3, state=True) 
 
     def Switch_6(self):
         self.set_all_pins(state=False)
@@ -71,3 +71,13 @@ class GPIOController:
     def Switch_8(self):
         self.set_all_pins(state=True)
 
+class Potentiometer_controller:
+    def __init__(self, pins=[]):
+        self.pins = pins
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setwarnings(False)
+        for pin in self.pins:
+            GPIO.setup(pin, GPIO.OUT)
+            GPIO.output(pin, GPIO.LOW)
+        
+        print(f"GPIO Controller initialized with pins: {self.pins}")

@@ -3928,3 +3928,5 @@ AttributeError: 'GenericEventArguments' object has no attribute 'value'
 2025-07-09 13:23:35,805 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
 2025-07-09 13:27:33,658 - INFO - Published to /ui_command: {"type": "channel_select", "channel": 4} (result: 4)
 2025-07-09 13:30:17,116 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-07-09 13:37:05,777 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-07-09 13:44:22,397 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
