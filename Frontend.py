@@ -54,13 +54,15 @@ class Frontend():
                     self.channel_notes_store[channel] = self.channel_notes.value
                     self.save_notes()
                     ui.notify(f"Notes for {channel} saved.", color='positive')
-                ui.button('Save Notes', on_click=save_notes_for_channel).classes('mt-2 bg-green-600')
-                ui.button('Activate Channel', on_click=self.execute_switch).classes('mt-2 w-full bg-blue-700')
 
                 def update_notes_field(e):
                     channel = self.switch_dropdown.value
                     note = self.channel_notes_store.get(channel, '')
                     self.channel_notes.value = note
+
+                ui.button('Save Notes', on_click=save_notes_for_channel).classes('mt-2 bg-green-600')
+                ui.button('Activate Channel', on_click=self.execute_switch).classes('mt-2 w-full bg-blue-700')
+
                 self.switch_dropdown.on('update:model-value', update_notes_field)
                 #self.switch_dropdown.on('change', update_notes_field)
 
