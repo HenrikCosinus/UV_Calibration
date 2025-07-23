@@ -94,7 +94,7 @@ class HighLevelControl():
                 self.all_off()
             
             elif command_type == "trigger_burst":
-                self.agilent.send_trigger()
+                self.agilent.send_trigger(command)
 
             elif command_type == "pulse_train_sweep":
                 self.sweeping_pulse_train()
