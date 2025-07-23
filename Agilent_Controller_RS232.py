@@ -237,9 +237,16 @@ class Agilent33250A:
         self.send(f"TRIGGER:SOURCE {trigger_source}")
         self.send(f"BURST:STATE {'ON' if enable else 'OFF'}")
         
-    def send_trigger(self):
+    def send_trigger(self, command):
         """Send software trigger"""
-        self.send("*TRG")
+        #self.send("*TRG")
+        inter_block_delay = float(command.get("inter_burst_wait", 0.5))     # Default 0.5s wait between blocks        # Call the actual configuration logic that sets the agilent controller.
+        for i in range(10):
+                self.send("*TRG")
+                logger.info(f"Burst {i+1}/10 triggered.")
+                time.sleep(inter_block_delay)
+
+        logger.info("All 10 bursts completed.")
         
     def upload_arbitrary_waveform(self, data, name="VOLATILE"):
         """
