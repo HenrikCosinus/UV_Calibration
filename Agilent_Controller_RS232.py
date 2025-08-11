@@ -239,6 +239,7 @@ class Agilent33250A:
         
     def send_trigger(self, command):
         """Send software trigger"""
+<<<<<<< HEAD
         #self.send("*TRG")
         inter_block_delay = float(command.get("inter_burst_wait", 0.5))     # Default 0.5s wait between blocks        # Call the actual configuration logic that sets the agilent controller.
         for i in range(10):
@@ -247,6 +248,10 @@ class Agilent33250A:
                 time.sleep(inter_block_delay)
 
         logger.info("All 10 bursts completed.")
+=======
+        logger.info(f"Trigger Signal sent now")
+        self.send("*TRG")
+>>>>>>> 5769ba4 (logging Python time stamp at which the Trigger signal is sent. Best I can do, since apparently the Agilent does not have the functionality to output its own signal timem stamps)
         
     def upload_arbitrary_waveform(self, data, name="VOLATILE"):
         """
