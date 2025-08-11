@@ -5,6 +5,21 @@ Controls 4 GPIO pins that can be set high or low.
 import RPi.GPIO as GPIO
 import time
 import spidev
+import logging
+import sys
+import json
+from dataclasses import dataclass
+from dataclasses import asdict
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler("GPIO logging"),
+        logging.StreamHandler(sys.stdout)
+    ]
+)
+logger = logging.getLogger(__name__)
 
 class GPIOController:    
     def __init__(self, pins=[24, 23, 22, 27]):
@@ -16,12 +31,12 @@ class GPIOController:
             GPIO.setup(pin, GPIO.OUT)
             GPIO.output(pin, GPIO.LOW)
         
-        print(f"GPIO Controller initialized with pins: {self.pins}")
+        logging.info(f"GPIO Controller initialized with pins: {self.pins}")
     
     def set_pin(self, pin_index, state):        
         pin = self.pins[pin_index]
         GPIO.output(pin, GPIO.HIGH if state else GPIO.LOW)
-        print(f"Pin {pin} (index {pin_index}) set to {'HIGH' if state else 'LOW'}")
+        logging.info(f"Pin {pin} (index {pin_index}) set to {'HIGH' if state else 'LOW'}")
         return True
     
     def set_all_pins(self, state):
@@ -30,7 +45,7 @@ class GPIOController:
     
     def cleanup(self):
         GPIO.cleanup()
-        print("GPIO cleanup complete")
+        logging.info("GPIO cleanup complete")
 
     def Switch_1(self):
         self.set_all_pins(state=False)
@@ -72,99 +87,125 @@ class GPIOController:
     def Switch_8(self):
         self.set_all_pins(state=True)
 
-class SPIController:
-    """
-    SPI controller for two devices:
-    - Digital Potentiometer: uses hardware SPI plus GPIO PR* control.
-    - PT100 sensor board.
-    """
-    def __init__(self, pinsPoti=[14, 9, 10, 25, 8], pinsPT=[18, 10, 14, 11, 9]):
-        """
-        pinsPoti: [CLK, SDO, SDI, PR*, CS*]
-        pinsPT:   [DRDY, SDI, SCLK, CS*, SDO]
-        """
-        # Store pin mappings
-        self.Poti_CLK = pinsPoti[0]
-        self.Poti_SDO = pinsPoti[1]  # MISO
-        self.Poti_SDI = pinsPoti[2]  # MOSI
-        self.Poti_PR = pinsPoti[3]   # Parallel Reset
-        self.Poti_CS = pinsPoti[4]
+@dataclass
+class CalibrationPoint:
+    name: str
+    code: int
+    voltage: float
+    notes: str = ""
 
-        self.PT_DRDY = pinsPT[0]
-        self.PT_SDI = pinsPT[1]
-        self.PT_SCLK = pinsPT[2]
-        self.PT_CS = pinsPT[3]
-        self.PT_SDO = pinsPT[4]
+class AD5260Controller:
+    def __init__(self, pins=[14, 9, 10, 25, 8], rab=20000, vdd=5.0, vss=0.0):
+        """
+        Initialize SPI interface for AD5260 control.
+        Parameters:
+        - pins: [CLK, SDO, SDI, PR*, CS*] (BCM numbering)
+        - rab: Nominal resistance (20kΩ, 50kΩ, or 200kΩ)
+        - vdd: Positive supply voltage (default 5.0V)
+        - vss: Negative supply voltage (default 0.0V)
+        """
+        self.CLK = pins[0]  # Clock
+        self.SDO = pins[1]  # MISO (not used for AD5260 write)
+        self.SDI = pins[2]  # MOSI
+        self.PR = pins[3]   # Parallel Reset (active low)
+        self.CS = pins[4]   # Chip Select (active low)
+
+        self.rab = rab      # Nominal resistance (ohms)
+        self.rw = 60        # Wiper resistance (ohms)
+        self.vdd = vdd      # Positive supply
+        self.vss = vss      # Negative supply
+
+        self.calibration_points = []
 
         GPIO.setmode(GPIO.BCM)
         GPIO.setwarnings(False)
-
-        GPIO.setup(self.Poti_PR, GPIO.OUT)
-        GPIO.output(self.Poti_PR, GPIO.HIGH) 
-
-        GPIO.setup(self.PT_DRDY, GPIO.IN)
-
-        GPIO.setup(self.PT_CS, GPIO.OUT)
-        GPIO.output(self.PT_CS, GPIO.HIGH)
-
-        # Setup SPI bus
-        bus = 0
-        device = 1  # Using CE1 for Poti
+        GPIO.setup(self.PR, GPIO.OUT)
+        GPIO.output(self.PR, GPIO.HIGH)  # Deassert reset
+        GPIO.setup(self.CS, GPIO.OUT)
+        GPIO.output(self.CS, GPIO.HIGH)  # Deselect device
+        
+        # Setup SPI bus (using hardware SPI)
         self.spi = spidev.SpiDev()
-        self.spi.open(bus, device)
-        self.spi.max_speed_hz = 500_000
-        self.spi.mode = 0
+        self.spi.open(0, 1)  # Bus 0, CE1
+        self.spi.max_speed_hz = 500000
+        self.spi.mode = 0b00  # CPOL=0, CPHA=0
+        
+        logging.info(f"[AD5260] Initialized | RAB={rab/1000}kΩ | VDD={vdd}V | VSS={vss}V")
 
-        print("[SPI] Initialized on bus 0 device 1")
+    def reset(self):
+        GPIO.output(self.PR, GPIO.LOW)
+        time.sleep(0.01)  # 10ms pulse width
+        GPIO.output(self.PR, GPIO.HIGH)
+        logging.info("[AD5260] Reset to midscale (code 128)")
 
-    def reset_poti(self):
-        """Toggle PR* to reset the potentiometer."""
-        print("[Poti] Resetting digipot via PR*")
-        GPIO.output(self.Poti_PR, GPIO.LOW)
-        time.sleep(0.01)
-        GPIO.output(self.Poti_PR, GPIO.HIGH)
-        time.sleep(0.01)
-
-    def write_poti(self, data):
-        """Send bytes to the digital potentiometer."""
-        print(f"[Poti] Writing: {data}")
+    def set_resistance(self, code):
+        """
+        Set wiper position (0-255)
+        0 = minimum resistance (A terminal)
+        255 = maximum resistance (B terminal)
+        """
+        if not 0 <= code <= 255:
+            raise ValueError("Code must be 0-255")
+            
+        data = [code]
+        GPIO.output(self.CS, GPIO.LOW)
         self.spi.xfer2(data)
+        GPIO.output(self.CS, GPIO.HIGH)
+        
+        logging.info(f"[AD5260] Set code: {code} | Expected voltage: {self.calculate_voltage(code):.2f}V")
 
-    def write_pt(self, data):
-        """Write bytes to the PT device using software CS."""
-        print(f"[PT] Writing: {data}")
-        GPIO.output(self.PT_CS, GPIO.LOW)
-        time.sleep(0.001)
+    def calculate_voltage(self, code):
+        """
+        Calculate expected wiper voltage based on current code.
+        Formula from AD5260 datasheet: V_W = (D/256)*(V_A - V_B) + V_B
+        """
+        return (code / 256) * (self.vdd - self.vss) + self.vss
 
-        self.spi.xfer2(data)
+    def voltage_sweep(self, start_v, end_v, steps, duration=0.1):
+        if not (self.vss <= start_v <= self.vdd) or not (self.vss <= end_v <= self.vdd):
+            raise ValueError(f"Voltages must be between {self.vss}V and {self.vdd}V")
+        results = []
+        step_size = (end_v - start_v) / steps
+        logging.info(f"[AD5260] Starting sweep: {start_v}V → {end_v}V ({steps} steps)")
+        
+        for step in range(steps + 1):
+            target_v = start_v + step * step_size
+            code = int(255 * (target_v - self.vss) / (self.vdd - self.vss))
+            code = max(0, min(255, code))  # Clamp to valid range
+            
+            self.set_resistance(code)
+            time.sleep(duration)
+            
+            results.append({
+                'step': step,
+                'code': code,
+                'target_v': target_v,
+                'actual_v': self.calculate_voltage(code),
+                'timestamp': time.time()
+            })
+        
+        return results
 
-        GPIO.output(self.PT_CS, GPIO.HIGH)
+    def save_calibration(self, filename="ad5260_calibration.json"):
+        #Save calibration data to JSON file
+        data = {
+            'device': 'AD5260',
+            'rab': self.rab,
+            'vdd': self.vdd,
+            'vss': self.vss,
+            'calibration': [asdict(p) for p in self.calibration_points]
+        }
+        with open(filename, 'w') as f:
+            json.dump(data, f, indent=2)
+        logging.info(f"[AD5260] Saved calibration to {filename}")
 
-    def read_pt(self, length=1):
-        """Read bytes from the PT device (software CS)."""
-        GPIO.output(self.PT_CS, GPIO.LOW)
-        time.sleep(0.001)
-
-        result = self.spi.readbytes(length)
-
-        GPIO.output(self.PT_CS, GPIO.HIGH)
-        print(f"[PT] Read: {result}")
-        return result
-
-    def wait_for_drdy(self, timeout=1.0):
-        """Block until DRDY goes low, or timeout (in seconds)."""
-        print("[PT] Waiting for DRDY...")
-        start = time.time()
-        while GPIO.input(self.PT_DRDY) == GPIO.HIGH:
-            if time.time() - start > timeout:
-                print("[PT] DRDY timeout!")
-                return False
-            time.sleep(0.001)
-        print("[PT] DRDY is LOW, ready.")
-        return True
+    def load_calibration(self, filename="ad5260_calibration.json"):
+        with open(filename) as f:
+            data = json.load(f)
+        self.calibration_points = [CalibrationPoint(**p) for p in data['calibration']]
+        print(f"[AD5260] Loaded {len(self.calibration_points)} calibration points")
 
     def cleanup(self):
-        """Clean up SPI and GPIO."""
-        print("[SPI] Cleaning up...")
         self.spi.close()
         GPIO.cleanup()
+        print("[AD5260] Cleaned up SPI and GPIO")
