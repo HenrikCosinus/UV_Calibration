@@ -8,8 +8,10 @@ import spidev
 import logging
 import sys
 import json
-from dataclasses import dataclass
-from dataclasses import asdict
+from dataclasses import dataclass, asdict
+import board
+import digitalio
+import adafruit_max31865
 
 logging.basicConfig(
     level=logging.INFO,
@@ -209,3 +211,32 @@ class AD5260Controller:
         self.spi.close()
         GPIO.cleanup()
         print("[AD5260] Cleaned up SPI and GPIO")
+
+class MAX31865Controller:
+    def __init__(self, cs_pin=5, wires=4, rtd_nominal=100.0, ref_resistor=430.0):
+        """
+        cs_pin: BCM pin for chip select
+        wires: 2, 3, or 4 (default: 4 for PT100)
+        """
+        self.spi = board.SPI()
+        self.cs = digitalio.DigitalInOut(getattr(board, f"D{cs_pin}"))
+        self.sensor = adafruit_max31865.MAX31865(
+            self.spi, self.cs,
+            rtd_nominal=int(rtd_nominal), #super confused why this needs type-casting but ref_resistor doesn't
+            ref_resistor=ref_resistor,
+            wires=wires
+        )
+        logging.info(f"[MAX31865] Initialized | Wires={wires} | Nominal={rtd_nominal}Ω | Ref={ref_resistor}Ω")
+
+    def read_temperature(self):
+        """Return temperature in Kelvin"""
+        temp_c = self.sensor.temperature
+        temp_k = temp_c - 273,15
+        logging.info(f"[MAX31865] Temperature: {temp_k:.2f} K")
+        return temp_k
+
+    def read_resistance(self):
+        """Return measured RTD resistance."""
+        resistance = self.sensor.resistance
+        logging.info(f"[MAX31865] Resistance: {resistance:.2f} Ω")
+        return resistance
