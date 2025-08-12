@@ -1,7 +1,8 @@
 from Agilent_Controller_RS232 import Agilent33250A
-from GPIOController import GPIOController
+from GPIOController import GPIOController, AD5260Controller, MAX31865Controller
 import logging
 import sys
+import os
 import serial
 import RPi.GPIO as GPIO
 import time
@@ -37,8 +38,15 @@ class HighLevelControl():
     def initialize_hardware(self):
         try:
             self.agilent = Agilent33250A(port="/dev/ttyUSB0", baud_rate=57600, timeout=5000)
+            logger.info("agilent intialized")
             self.GPIOController = GPIOController(pins=[17, 18, 22, 27])
-            logger.info("Hardware initialized successfully")
+            logger.info("GPIO intialized")
+            self.AD5260Controller = AD5260Controller(pins=[14, 9, 10, 25, 8], rab=20000, vdd=5.0, vss=0.0)
+            logger.info("potentiometer intialized")
+            self.MAX31865Controller = MAX31865Controller(cs_pin=5, wires=4, rtd_nominal=100.0, ref_resistor=430.0)
+            self.update_temp_loop(interval = 5)
+            logger.info("temperature measurer intialized")
+            logger.info("All hardware initialized successfully")
         except Exception as e:
             logger.error(f"Hardware initialization failed: {str(e)}")
             raise
@@ -57,7 +65,33 @@ class HighLevelControl():
         self.mqtt.update_status(status)
         logger.debug(f"Status updated: {status}")
 
-    
+    def update_temp_loop(self, interval):
+        file_path = "Temperature_measurements.json"
+        if not os.path.exists(file_path):
+            with open(file_path, "w") as f:
+                json.dump([], f)
+        while True:
+            try:
+                temp_k = self.MAX31865Controller.read_temperature()
+                payload = json.dumps({"temperature_c": temp_k})
+                timestamp = time.time()
+                measurement = {
+                    "timestamp": timestamp,
+                    "temperature_k": temp_k
+                }
+                payload = json.dumps(measurement)
+                self.mqtt.publish("/temperature", payload, qos=1)
+                logging.info(f"[MAX31865] Published {temp_k:.2f} K to /temperature")
+                with open(file_path, "r+") as f:
+                    data = json.load(f)
+                    data.append(measurement)
+                    f.seek(0)
+                    json.dump(data, f, indent=2)
+
+            except Exception as e:
+                logging.error(f"[MAX31865] Read error: {e}")
+            time.sleep(interval)
+
     def connect_to_generator(self):
         for port in Agilent33250A.find_usb_serial_ports():
             try:
@@ -99,6 +133,8 @@ class HighLevelControl():
             elif command_type == "pulse_train_sweep":
                 self.sweeping_pulse_train()
 
+            elif command_type == "potentiometer_voltage_sweep":
+                self.voltage_sweep(command)
             else:
                 logger.warning(f"Unknown command type: {command_type}")
                 self.mqtt.send_response({
@@ -164,7 +200,14 @@ class HighLevelControl():
         except Exception as e:
             logger.error(f"Failed to configure signal: {str(e)}")
             raise
-
+    
+    def voltage_sweep(self, command):
+        #very similarly to the "handle config" function, getting the info from the command JSON sent through and then just passing it on to the backend
+        voltage_start_v = float(command.get("start_v", 0))
+        voltage_end_v = float(command.get("end_v", 10))
+        voltage_sweep_steps = float(command.get("sweep_steps", 256))
+        voltage_sweep_duration = float(command.get("sweep_duration", 5))
+        self.AD5260Controller.voltage_sweep(start_v= voltage_start_v, end_v= voltage_end_v, steps = voltage_sweep_steps, duration= voltage_sweep_duration)
 
     def handle_channel_selection(self, channel: int):
         try:
@@ -228,7 +271,7 @@ class HighLevelControl():
 
             for cycle_count in range(n, 0, -1):
                 self.agilent.set_burst_mode(cycles=cycle_count, trigger_source="BUS", enable=True)
-                self.agilent.send_trigger()
+                self.agilent.send_trigger(cycle_count)
                 time.sleep(0.1)
 
             logger.info(f"Completed {n} burst cycles")
@@ -253,8 +296,7 @@ class HighLevelControl():
 
             for n in range(max_pulses, min_pulses - 1, -1):
                 self.agilent.send(f"BURST:NCYCLES {n}")
-                self.agilent.send_trigger()
-                logger.info(f"Triggered {n} pulse(s) at 5 MHz")
+                self.agilent.send_trigger(n)
                 time.sleep(inter_train_wait)  # Wait 100 ms or as needed
 
             logger.info("Pulse train sweep complete.")

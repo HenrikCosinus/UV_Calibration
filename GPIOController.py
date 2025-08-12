@@ -205,12 +205,12 @@ class AD5260Controller:
         with open(filename) as f:
             data = json.load(f)
         self.calibration_points = [CalibrationPoint(**p) for p in data['calibration']]
-        print(f"[AD5260] Loaded {len(self.calibration_points)} calibration points")
+        logging.info(f"[AD5260] Loaded {len(self.calibration_points)} calibration points")
 
     def cleanup(self):
         self.spi.close()
         GPIO.cleanup()
-        print("[AD5260] Cleaned up SPI and GPIO")
+        logging.info("[AD5260] Cleaned up SPI and GPIO")
 
 class MAX31865Controller:
     def __init__(self, cs_pin=5, wires=4, rtd_nominal=100.0, ref_resistor=430.0):
@@ -229,14 +229,12 @@ class MAX31865Controller:
         logging.info(f"[MAX31865] Initialized | Wires={wires} | Nominal={rtd_nominal}Ω | Ref={ref_resistor}Ω")
 
     def read_temperature(self):
-        """Return temperature in Kelvin"""
         temp_c = self.sensor.temperature
-        temp_k = temp_c - 273,15
+        temp_k = temp_c + 273,15
         logging.info(f"[MAX31865] Temperature: {temp_k:.2f} K")
         return temp_k
 
     def read_resistance(self):
-        """Return measured RTD resistance."""
         resistance = self.sensor.resistance
         logging.info(f"[MAX31865] Resistance: {resistance:.2f} Ω")
         return resistance

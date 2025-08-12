@@ -9,15 +9,15 @@ from MQTTHandler import MQTTHandler
 
 class Frontend():
     def __init__(self):
+        self.notes_file = Path('channel_notes.json')
+        self.channel_notes_store = {} 
+        self.load_notes()
         topics = {
+            'temperature': f"/temperature",
             'operation_status': f"/status",
             'UI_command': f"/ui_command",
             'control_response': f"/control_response",
         }
-        self.notes_file = Path('channel_notes.json')
-        self.channel_notes_store = {} 
-        self.load_notes()
-        
         self.mqtt = MQTTHandler(
             client_id="web_ui",
             broker="172.17.0.1",
@@ -176,11 +176,65 @@ class Frontend():
                         ui.notify('Disconnect command sent via MQTT', color='info')
                     except Exception as e:
                         ui.notify(f'Error sending disconnect command: {str(e)}', color='negative')
-
-
+                        
                 with ui.row():
                     connect_btn = ui.button('Reset and Reconnect', on_click=connect_generator).classes('mt-2 bg-green-700')
                     disconnect_btn = ui.button('Disconnect', on_click=disconnect_generator).classes('mt-2 bg-red-700')
+                
+            ui.separator()
+            ui.label('Potentiometer control').classes('text-h6')
+            with ui.card().classes("w-1/3"):
+                ui.label('Sweep Configuration').classes('text-h6')
+                start_v = ui.input(label='start_v', value='0').props('type=number step=1')
+                end_v = ui.input(label='end_v', value='10').props('type=number step=1')
+                steps = ui.input(label='steps (max 256)', value='256').props('type=number step=1')
+                sweep_duration = ui.input(label='Sweep duration', value='1').props('type=number step=0.1')
+
+                def voltage_sweep():
+                    try:
+                        settings = {
+                            "type": "potentiometer_voltage_sweep",
+                            "voltage_start_v" : float(start_v.value),
+                            "voltage_end_v" : float(end_v.value),
+                            "voltage_sweep_steps" : float(steps.value),
+                            "voltage_sweep_duration" : float(sweep_duration.value)
+                        }
+
+                        self.mqtt.publish(
+                            topic="/ui_command",
+                            payload=json.dumps(settings),
+                            qos=1
+                        )
+                        ui.notify('Voltage sweep command sent', color='positive')
+                    except Exception as e:
+                        #status_label.text = f'Connection command error: {str(e)}'
+                        ui.notify(f'Error sending connect command: {str(e)}', color='negative')
+
+                ui.button("Do voltage sweep", on_click=voltage_sweep).classes('mt-2 w-full bg-purple-600')
+
+
+            ui.separator()
+            with ui.card().classes("w-1/3"):
+                ui.label('Live Temperature Readout').classes('text-h6')
+
+                temp_display = ui.column().classes("gap-1")
+                self.temp_readings = []
+
+                def add_temperature_reading(temp_value):
+                    # Keep only the last 20 readings
+                    self.temp_readings.append(temp_value)
+                    if len(self.temp_readings) > 20:
+                        self.temp_readings.pop(0)
+                    temp_display.clear()
+
+                def on_temp_message(client, userdata, message):
+                    try:
+                        payload = json.loads(message.payload.decode())
+                        if "temperature_c" in payload:
+                            add_temperature_reading(payload["temperature_c"])
+                    except Exception as e:
+                        ui.notify(f"Temperature parse error: {e}", color="negative")
+
 
     def execute_switch(self):
         selected_channel = self.switch_dropdown.value

@@ -3933,3 +3933,16 @@ AttributeError: 'GenericEventArguments' object has no attribute 'value'
 2025-07-21 13:42:02,466 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
 2025-07-23 13:27:39,442 - INFO - Available resources: ()
 2025-07-23 13:27:39,444 - ERROR - Hardware initialization failed: [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2025-08-12 15:53:01,959 - INFO - Available resources: ()
+2025-08-12 15:53:01,968 - ERROR - Hardware initialization failed: [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2025-08-12 15:53:48,159 - INFO - hardware initialization worked in the _init_
+2025-08-12 15:53:48,160 - INFO - on_ui_command is reached
+2025-08-12 15:53:48,160 - INFO - MQTT handlers configured
+2025-08-12 15:53:48,162 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-12 15:53:48,163 - INFO - Successfully connected to MQTT broker
+2025-08-12 15:53:48,169 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-12 15:53:48,169 - INFO - Successfully connected to MQTT broker
+2025-08-12 15:54:07,909 - INFO - Published to /ui_command: {"type": "potentiometer_voltage_sweep", "voltage_start_v": 1.0, "voltage_end_v": 9.0, "voltage_sweep_steps": 253.0, "voltage_sweep_duration": 1.1} (result: 0)
+2025-08-12 15:54:07,911 - INFO - Received command: {'type': 'potentiometer_voltage_sweep', 'voltage_start_v': 1.0, 'voltage_end_v': 9.0, 'voltage_sweep_steps': 253.0, 'voltage_sweep_duration': 1.1}
+2025-08-12 15:54:07,917 - ERROR - Command handling error: 'HighLevelControl' object has no attribute 'AD5260Controller'
+2025-08-12 15:54:07,919 - INFO - Published to /control_response: {"error": "'HighLevelControl' object has no attribute 'AD5260Controller'", "command": {"type": "potentiometer_voltage_sweep", "voltage_start_v": 1.0, "voltage_end_v": 9.0, "voltage_sweep_steps": 253.0, "voltage_sweep_duration": 1.1}} (result: 0)

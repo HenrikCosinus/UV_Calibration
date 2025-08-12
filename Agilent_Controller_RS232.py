@@ -16,6 +16,8 @@ import argparse
 import sys
 import logging
 from typing import cast
+import datetime
+import json
 
 
 # Configure logging
@@ -237,21 +239,32 @@ class Agilent33250A:
         self.send(f"TRIGGER:SOURCE {trigger_source}")
         self.send(f"BURST:STATE {'ON' if enable else 'OFF'}")
         
-    def send_trigger(self, command):
-        """Send software trigger"""
-<<<<<<< HEAD
-        #self.send("*TRG")
-        inter_block_delay = float(command.get("inter_burst_wait", 0.5))     # Default 0.5s wait between blocks        # Call the actual configuration logic that sets the agilent controller.
+    def send_trigger(self, n, logfile="trigger_log.json"):
+        """inter_block_delay = float(command.get("inter_burst_wait", 0.5))     # Default 0.5s wait between blocks        # Call the actual configuration logic that sets the agilent controller.
         for i in range(10):
                 self.send("*TRG")
                 logger.info(f"Burst {i+1}/10 triggered.")
-                time.sleep(inter_block_delay)
-
-        logger.info("All 10 bursts completed.")
-=======
-        logger.info(f"Trigger Signal sent now")
+                time.sleep(inter_block_delay)"""
+        trigger_event = {
+            "burst_number": n,
+            "timestamp": datetime.datetime.now().isoformat(),
+            "timestamp_unix": time.time(),
+            "command": "*TRG"
+        }
+        logger.info(f"Burst {n} triggered at {trigger_event['timestamp']}")
         self.send("*TRG")
->>>>>>> 5769ba4 (logging Python time stamp at which the Trigger signal is sent. Best I can do, since apparently the Agilent does not have the functionality to output its own signal timem stamps)
+        try:
+            try:
+                with open(logfile, 'r') as f:
+                    data = json.load(f)
+            except (FileNotFoundError, json.JSONDecodeError):
+                data = {"triggers": []}
+
+            data["triggers"].append(trigger_event)
+            with open(logfile, 'w') as f:
+                json.dump(data, f, indent=2)
+        except Exception as e:
+            logger.error(f"Failed to log trigger event: {str(e)}")
         
     def upload_arbitrary_waveform(self, data, name="VOLATILE"):
         """
