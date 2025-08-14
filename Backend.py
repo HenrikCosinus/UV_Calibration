@@ -53,17 +53,7 @@ class HighLevelControl():
 
     def setup_mqtt_handlers(self):
         self.mqtt.on_ui_command(self.handle_ui_command)
-        self.mqtt.on_status_update(self.update_system_status)
         logger.info("MQTT handlers configured")
-
-    def update_system_status(self, msg=None):
-        status = {
-            "channel": getattr(self, "current_channel", None),
-            "status": self.system_status,
-            "timestamp": time.time()
-        }
-        self.mqtt.update_status(status)
-        logger.debug(f"Status updated: {status}")
 
     def update_temp_loop(self, interval):
         file_path = "Temperature_measurements.json"
@@ -110,10 +100,10 @@ class HighLevelControl():
             command_type = command.get("type")
 
             if command_type == "channel_select":
-                self.handle_channel_selection(command["channel"])
+                self.handle_channel_selection(command)
 
             elif command_type == "burst":
-                self.handle_burst_command(command["cycles"])
+                self.handle_burst_command(command)
 
             elif command_type == "signal_config":
                 self.handle_signal_config(command)
@@ -135,6 +125,10 @@ class HighLevelControl():
 
             elif command_type == "potentiometer_voltage_sweep":
                 self.voltage_sweep(command)
+
+            elif command_type == "potentiometer_set_percent":
+                self.handle_channel_selection(command)
+
             else:
                 logger.warning(f"Unknown command type: {command_type}")
                 self.mqtt.send_response({
@@ -158,16 +152,8 @@ class HighLevelControl():
             amplitude = float(command.get("amplitude", 3.0))                    # Default 3 V
             inter_block_delay = float(command.get("inter_burst_wait", 0.5))     # Default 0.5s wait between blocks
 
-            # Call the actual configuration logic that sets the agilent controller.
             logger.info(f"handle_signal_config reaches at least up to the config transmittance to the agilent {self.configure_signal}")
-            self.configure_signal(
-                frequency=frequency,
-                burst_count=burst_count,
-                duty_cycle=duty_cycle,
-                amplitude=amplitude,
-                inter_block_delay=inter_block_delay
-            )
-
+            self.configure_signal(frequency=frequency, burst_count=burst_count, duty_cycle=duty_cycle, amplitude=amplitude, inter_block_delay=inter_block_delay)s
             logger.info("Signal configuration handled successfully.")
             self.mqtt.send_response({"status": "Signal configuration applied."})
 
@@ -209,38 +195,20 @@ class HighLevelControl():
         voltage_sweep_duration = float(command.get("sweep_duration", 5))
         self.AD5260Controller.voltage_sweep(start_v= voltage_start_v, end_v= voltage_end_v, steps = voltage_sweep_steps, duration= voltage_sweep_duration)
 
-    def set_potentiometer_percent(self, command):
+    def handle_channel_selection(self, command):
         try:
-            channel = command.get("channel")
-            percent = float(command.get("percent", 50))
+            channel = command.get("channel", self.current_channel)  # Default to current if not given
+            if channel is not None and (1 <= channel <= 8) and channel != self.current_channel:
+                self.activate_channel(channel)
+                self.current_channel = channel
+
+            percent = command.get("percent", 50)
             if not (0 <= percent <= 100):
                 raise ValueError("Percent must be between 0 and 100")
             code = int((percent / 100) * 255)
             self.AD5260Controller.set_resistance(code)
             logger.info(f"[Backend] Potentiometer for channel {channel} set to {percent:.1f}% (code {code})")
 
-        except Exception as e:
-            logger.error(f"[Backend] Failed to set potentiometer percent: {e}")
-            self.mqtt.send_response({
-                "type": "potentiometer_set_percent",
-                "error": str(e),
-                "command": command
-            })
-
-
-    def handle_channel_selection(self, channel: int):
-        try:
-            if 1 <= channel <= 8:
-                self.activate_channel(channel)
-            else:
-                raise ValueError("Invalid channel number")
-            self.current_channel = channel
-            self.update_system_status()
-            self.mqtt.send_response({
-                "type": "channel_status",
-                "channel": channel,
-                "success": True
-            })
         except Exception as e:
             logger.error(f"Channel selection error: {str(e)}")
             raise
@@ -270,8 +238,9 @@ class HighLevelControl():
         self.mqtt.disconnect()
         logger.info("Cleanup completed")
     
-    def handle_burst_command(self, cycles: int):
+    def handle_burst_command(self, command):
         try:
+            cycles = command.get("cycles")
             self.n_burst_series(cycles)
             self.mqtt.send_response({
                 "type": "burst_status",
