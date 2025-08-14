@@ -57,7 +57,7 @@ class Frontend():
                 current_channel = self.switch_dropdown.value
                 initial_percent = self.channel_pot_settings.get(current_channel, 50)
 
-                pot_percent_input = ui.number(
+                self.pot_percent_input = ui.number(
                     label='Potentiometer level (%)',
                     value=initial_percent,
                     min=0,
@@ -71,42 +71,20 @@ class Frontend():
                     self.save_notes()
                     ui.notify(f"Notes for {channel} saved.", color='positive')
 
-                def update_notes_field(e):
+                def update_notes_field():
                     channel = self.switch_dropdown.value
                     note = self.channel_notes_store.get(channel, '')
                     self.channel_notes.value = note
 
-                def update_pot_input(e):
+                def update_pot_input():
                     channel = self.switch_dropdown.value
-                    pot_percent_input.value = self.channel_pot_settings.get(channel, 50)
+                    self.pot_percent_input.value = self.channel_pot_settings.get(channel, 50)
 
-                def save_pot_for_channel():
-                    channel = self.switch_dropdown.value
-                    percent = float(pot_percent_input.value)
-                    self.channel_pot_settings[channel] = percent
-                    self.save_pot_settings()
 
-                    # Send over MQTT
-                    settings = {
-                        "type": "potentiometer_set_percent",
-                        "channel": channel,
-                        "percent": percent
-                    }
-                    self.mqtt.publish(
-                        topic="/ui_command",
-                        payload=json.dumps(settings),
-                        qos=1
-                    )
-                    ui.notify(f"Potentiometer for {channel} set to {percent:.1f}%", color='positive')
-
-                ui.button('Set Potentiometer Level', on_click=save_pot_for_channel).classes('mt-2 w-full bg-teal-600')
                 self.switch_dropdown.on('update:model-value', update_pot_input)
+                self.switch_dropdown.on('update:model-value', update_notes_field)
                 ui.button('Save Notes', on_click=save_notes_for_channel).classes('mt-2 bg-green-600')
                 ui.button('Activate Channel', on_click=self.execute_switch).classes('mt-2 w-full bg-blue-700')
-
-                self.switch_dropdown.on('update:model-value', update_notes_field)
-                #self.switch_dropdown.on('change', update_notes_field)
-
 
             with ui.card().classes("w-1/3"):
                 ui.label('Signal Configuration').classes('text-h6')
@@ -228,7 +206,7 @@ class Frontend():
                 ui.label('Sweep Configuration').classes('text-h6')
                 start_v = ui.input(label='start_v', value='0').props('type=number step=1')
                 end_v = ui.input(label='end_v', value='10').props('type=number step=1')
-                steps = ui.input(label='steps (max 256)', value='256').props('type=number step=1')
+                steps = ui.input(label='steps (max 255)', value='255').props('type=number step=1')
                 sweep_duration = ui.input(label='Sweep duration', value='1').props('type=number step=0.1')
 
                 def voltage_sweep():
@@ -276,9 +254,7 @@ class Frontend():
                     except Exception as e:
                         ui.notify(f"Temperature parse error: {e}", color="negative")
 
-            
-
-
+        
     def execute_switch(self):
         selected_channel = self.switch_dropdown.value
         if selected_channel is None:
@@ -288,13 +264,16 @@ class Frontend():
             if "Switch" in selected_channel:
                 channel_number = int(selected_channel.split()[1])
                 command_type = "channel_select"
+                percent = float(self.pot_percent_input.value)
             else:
                 channel_number = 0
                 command_type = "all_off"
-
+                percent = None
+        
             payload = {
                 "type": command_type,
-                "channel": channel_number
+                "channel": channel_number,
+                "percent": percent
             }
 
             self.mqtt.publish(
@@ -302,7 +281,8 @@ class Frontend():
                 payload=json.dumps(payload),
                 qos=1
             )
-            ui.notify(f'Channel {selected_channel} selected', color='positive')
+            ui.notify(f'Channel {selected_channel} selected with voltage percentage: {percent}', color='positive')
+        
         except Exception as e:
             error_msg = f"MQTT error: {str(e)}"
             ui.notify(error_msg, color='negative')
