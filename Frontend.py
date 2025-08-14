@@ -12,6 +12,9 @@ class Frontend():
         self.notes_file = Path('channel_notes.json')
         self.channel_notes_store = {} 
         self.load_notes()
+        self.pot_settings_file = Path('potentiometer_settings.json')
+        self.channel_pot_settings = {}
+        self.load_pot_settings()
         topics = {
             'temperature': f"/temperature",
             'operation_status': f"/status",
@@ -48,6 +51,19 @@ class Frontend():
                         placeholder='Add notes for the channels...',
                         value=initial_note  # <<< load on startup
                     ).classes('w-full')
+
+                ui.separator()
+                ui.label('Set Potentiometer Level').classes('text-h6')
+                current_channel = self.switch_dropdown.value
+                initial_percent = self.channel_pot_settings.get(current_channel, 50)
+
+                pot_percent_input = ui.number(
+                    label='Potentiometer level (%)',
+                    value=initial_percent,
+                    min=0,
+                    max=100,
+                    step=1
+                ).classes('w-full')
                 
                 def save_notes_for_channel():
                     channel = self.switch_dropdown.value
@@ -60,6 +76,31 @@ class Frontend():
                     note = self.channel_notes_store.get(channel, '')
                     self.channel_notes.value = note
 
+                def update_pot_input(e):
+                    channel = self.switch_dropdown.value
+                    pot_percent_input.value = self.channel_pot_settings.get(channel, 50)
+
+                def save_pot_for_channel():
+                    channel = self.switch_dropdown.value
+                    percent = float(pot_percent_input.value)
+                    self.channel_pot_settings[channel] = percent
+                    self.save_pot_settings()
+
+                    # Send over MQTT
+                    settings = {
+                        "type": "potentiometer_set_percent",
+                        "channel": channel,
+                        "percent": percent
+                    }
+                    self.mqtt.publish(
+                        topic="/ui_command",
+                        payload=json.dumps(settings),
+                        qos=1
+                    )
+                    ui.notify(f"Potentiometer for {channel} set to {percent:.1f}%", color='positive')
+
+                ui.button('Set Potentiometer Level', on_click=save_pot_for_channel).classes('mt-2 w-full bg-teal-600')
+                self.switch_dropdown.on('update:model-value', update_pot_input)
                 ui.button('Save Notes', on_click=save_notes_for_channel).classes('mt-2 bg-green-600')
                 ui.button('Activate Channel', on_click=self.execute_switch).classes('mt-2 w-full bg-blue-700')
 
@@ -235,6 +276,8 @@ class Frontend():
                     except Exception as e:
                         ui.notify(f"Temperature parse error: {e}", color="negative")
 
+            
+
 
     def execute_switch(self):
         selected_channel = self.switch_dropdown.value
@@ -280,3 +323,20 @@ class Frontend():
                 json.dump(self.channel_notes_store, f, indent=2)
         except Exception as e:
             print(f"Failed to save notes: {e}")
+
+    def load_pot_settings(self):
+        if self.pot_settings_file.exists():
+            try:
+                with open(self.pot_settings_file, 'r') as f:
+                    self.channel_pot_settings = json.load(f)
+            except Exception as e:
+                print(f"Failed to load potentiometer settings: {e}")
+        else:
+            self.channel_pot_settings = {}
+
+    def save_pot_settings(self):
+        try:
+            with open(self.pot_settings_file, 'w') as f:
+                json.dump(self.channel_pot_settings, f, indent=2)
+        except Exception as e:
+            print(f"Failed to save potentiometer settings: {e}")

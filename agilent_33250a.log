@@ -3946,3 +3946,9 @@ AttributeError: 'GenericEventArguments' object has no attribute 'value'
 2025-08-12 15:54:07,911 - INFO - Received command: {'type': 'potentiometer_voltage_sweep', 'voltage_start_v': 1.0, 'voltage_end_v': 9.0, 'voltage_sweep_steps': 253.0, 'voltage_sweep_duration': 1.1}
 2025-08-12 15:54:07,917 - ERROR - Command handling error: 'HighLevelControl' object has no attribute 'AD5260Controller'
 2025-08-12 15:54:07,919 - INFO - Published to /control_response: {"error": "'HighLevelControl' object has no attribute 'AD5260Controller'", "command": {"type": "potentiometer_voltage_sweep", "voltage_start_v": 1.0, "voltage_end_v": 9.0, "voltage_sweep_steps": 253.0, "voltage_sweep_duration": 1.1}} (result: 0)
+2025-08-14 12:17:13,587 - INFO - Available resources: ()
+2025-08-14 12:17:13,593 - ERROR - Hardware initialization failed: [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2025-08-14 12:17:31,529 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-08-14 12:17:57,626 - INFO - Published to /ui_command: {"type": "potentiometer_set_percent", "channel": "Switch 1", "percent": 30.0} (result: 4)
+2025-08-14 12:18:03,563 - INFO - Published to /ui_command: {"type": "potentiometer_set_percent", "channel": "Switch 4", "percent": 40.0} (result: 4)
+2025-08-14 12:18:33,403 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused

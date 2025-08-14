@@ -179,7 +179,7 @@ class HighLevelControl():
         try:
             period = 1.0 / frequency
             width = period * (duty_cycle / 100.0)
-            edge_time = min(1e-6, 0.1 * width)  # Or use a fixed safe value
+            edge_time = min(1e-6, 0.1 * width)
 
             self.agilent.configure_pulse(
                 frequency=frequency,
@@ -208,6 +208,25 @@ class HighLevelControl():
         voltage_sweep_steps = float(command.get("sweep_steps", 256))
         voltage_sweep_duration = float(command.get("sweep_duration", 5))
         self.AD5260Controller.voltage_sweep(start_v= voltage_start_v, end_v= voltage_end_v, steps = voltage_sweep_steps, duration= voltage_sweep_duration)
+
+    def set_potentiometer_percent(self, command):
+        try:
+            channel = command.get("channel")
+            percent = float(command.get("percent", 50))
+            if not (0 <= percent <= 100):
+                raise ValueError("Percent must be between 0 and 100")
+            code = int((percent / 100) * 255)
+            self.AD5260Controller.set_resistance(code)
+            logger.info(f"[Backend] Potentiometer for channel {channel} set to {percent:.1f}% (code {code})")
+
+        except Exception as e:
+            logger.error(f"[Backend] Failed to set potentiometer percent: {e}")
+            self.mqtt.send_response({
+                "type": "potentiometer_set_percent",
+                "error": str(e),
+                "command": command
+            })
+
 
     def handle_channel_selection(self, channel: int):
         try:
