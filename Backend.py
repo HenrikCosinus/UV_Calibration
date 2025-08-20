@@ -153,7 +153,7 @@ class HighLevelControl():
             inter_block_delay = float(command.get("inter_burst_wait", 0.5))     # Default 0.5s wait between blocks
 
             logger.info(f"handle_signal_config reaches at least up to the config transmittance to the agilent {self.configure_signal}")
-            self.configure_signal(frequency=frequency, burst_count=burst_count, duty_cycle=duty_cycle, amplitude=amplitude, inter_block_delay=inter_block_delay)s
+            self.configure_signal(frequency=frequency, burst_count=burst_count, duty_cycle=duty_cycle, amplitude=amplitude, inter_block_delay=inter_block_delay)
             logger.info("Signal configuration handled successfully.")
             self.mqtt.send_response({"status": "Signal configuration applied."})
 

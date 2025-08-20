@@ -3953,3 +3953,4 @@ AttributeError: 'GenericEventArguments' object has no attribute 'value'
 2025-08-14 12:18:03,563 - INFO - Published to /ui_command: {"type": "potentiometer_set_percent", "channel": "Switch 4", "percent": 40.0} (result: 4)
 2025-08-14 12:18:33,403 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
 2025-08-14 14:05:47,782 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-08-20 14:38:13,653 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
