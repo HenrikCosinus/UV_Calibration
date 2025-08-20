@@ -12,7 +12,7 @@ from nicegui import ui
 
 
 def main():
-    #backend = HighLevelControl()
+    backend = HighLevelControl()
     frontend = Frontend()
     frontend.create_ui()
 
