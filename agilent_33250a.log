@@ -3954,3 +3954,532 @@ AttributeError: 'GenericEventArguments' object has no attribute 'value'
 2025-08-14 12:18:33,403 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
 2025-08-14 14:05:47,782 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
 2025-08-20 14:38:13,653 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-08-21 14:25:10,839 - INFO - Available resources: ()
+2025-08-21 14:25:10,843 - ERROR - Hardware initialization failed: [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2025-08-21 14:26:34,241 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-21 14:26:34,255 - INFO - SCPI QUERY: '*IDN?'
+2025-08-21 14:26:34,256 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-21 14:26:34,397 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-21 14:26:34,397 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-21 14:26:34,398 - INFO - Resetting instrument...
+2025-08-21 14:26:34,398 - INFO - SCPI: '*RST'
+2025-08-21 14:26:34,398 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-21 14:26:34,398 - INFO - SCPI: '*CLS'
+2025-08-21 14:26:34,399 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-21 14:26:34,399 - INFO - agilent intialized
+2025-08-21 14:26:34,400 - INFO - GPIO Controller initialized with pins: [17, 18, 22, 27]
+2025-08-21 14:26:34,400 - INFO - GPIO intialized
+2025-08-21 14:26:34,400 - INFO - [AD5260] Initialized | RAB=20.0kΩ | VDD=5.0V | VSS=0.0V
+2025-08-21 14:26:34,400 - INFO - potentiometer intialized
+2025-08-21 14:26:34,413 - INFO - [MAX31865] Initialized | Wires=4 | Nominal=100.0Ω | Ref=430.0Ω
+2025-08-21 14:26:34,491 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:26:39,569 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:26:44,647 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:26:49,725 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:26:54,803 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:26:59,885 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:27:04,965 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:27:10,043 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:27:15,120 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:27:20,198 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:27:25,276 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:27:30,358 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:27:35,436 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:27:40,516 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:27:45,603 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:27:50,681 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:27:55,759 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:28:00,837 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:28:05,915 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:28:10,993 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:28:16,076 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:28:21,154 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:28:26,241 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:28:31,322 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:28:36,400 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:28:41,478 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:28:46,560 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:28:51,643 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:28:56,729 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:29:01,806 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:29:06,888 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:29:11,967 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:29:17,050 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:29:22,128 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:29:27,206 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:29:32,289 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:29:37,367 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:29:42,446 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:29:51,191 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-21 14:29:51,209 - INFO - SCPI QUERY: '*IDN?'
+2025-08-21 14:29:51,209 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-21 14:29:51,261 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-21 14:29:51,262 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-21 14:29:51,262 - INFO - Resetting instrument...
+2025-08-21 14:29:51,263 - INFO - SCPI: '*RST'
+2025-08-21 14:29:51,263 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-21 14:29:51,264 - INFO - SCPI: '*CLS'
+2025-08-21 14:29:51,265 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-21 14:29:51,265 - INFO - agilent intialized
+2025-08-21 14:29:51,266 - INFO - GPIO Controller initialized with pins: [17, 18, 22, 27]
+2025-08-21 14:29:51,266 - INFO - GPIO intialized
+2025-08-21 14:29:51,274 - INFO - [MAX31865] Initialized | Wires=4 | Nominal=100.0Ω | Ref=430.0Ω
+2025-08-21 14:29:51,353 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:29:56,433 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:30:01,512 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:30:06,590 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:31:26,405 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-21 14:31:26,420 - INFO - SCPI QUERY: '*IDN?'
+2025-08-21 14:31:26,421 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-21 14:31:26,473 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-21 14:31:26,473 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-21 14:31:26,473 - INFO - Resetting instrument...
+2025-08-21 14:31:26,474 - INFO - SCPI: '*RST'
+2025-08-21 14:31:26,474 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-21 14:31:26,474 - INFO - SCPI: '*CLS'
+2025-08-21 14:31:26,475 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-21 14:31:26,475 - INFO - agilent intialized
+2025-08-21 14:31:26,476 - INFO - GPIO Controller initialized with pins: [17, 18, 22, 27]
+2025-08-21 14:31:26,476 - INFO - GPIO intialized
+2025-08-21 14:31:26,483 - INFO - [MAX31865] Initialized | Wires=4 | Nominal=100.0Ω | Ref=430.0Ω
+2025-08-21 14:31:26,562 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:31:31,643 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:31:36,723 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:31:41,801 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:33:57,248 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-21 14:33:57,265 - INFO - SCPI QUERY: '*IDN?'
+2025-08-21 14:33:57,266 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-21 14:33:57,318 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-21 14:33:57,318 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-21 14:33:57,318 - INFO - Resetting instrument...
+2025-08-21 14:33:57,319 - INFO - SCPI: '*RST'
+2025-08-21 14:33:57,320 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-21 14:33:57,320 - INFO - SCPI: '*CLS'
+2025-08-21 14:33:57,321 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-21 14:33:57,322 - INFO - agilent intialized
+2025-08-21 14:33:57,322 - INFO - GPIO Controller initialized with pins: [17, 18, 22, 27]
+2025-08-21 14:33:57,322 - INFO - GPIO intialized
+2025-08-21 14:33:57,330 - INFO - [MAX31865] Initialized | Wires=4 | Nominal=100.0Ω | Ref=430.0Ω
+2025-08-21 14:33:57,409 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:34:02,490 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:36:22,067 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-21 14:36:22,084 - INFO - SCPI QUERY: '*IDN?'
+2025-08-21 14:36:22,085 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-21 14:36:22,137 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-21 14:36:22,137 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-21 14:36:22,138 - INFO - Resetting instrument...
+2025-08-21 14:36:22,139 - INFO - SCPI: '*RST'
+2025-08-21 14:36:22,139 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-21 14:36:22,140 - INFO - SCPI: '*CLS'
+2025-08-21 14:36:22,140 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-21 14:36:22,141 - INFO - agilent intialized
+2025-08-21 14:36:22,142 - INFO - GPIO Controller initialized with pins: [17, 18, 22, 27]
+2025-08-21 14:36:22,144 - INFO - GPIO intialized
+2025-08-21 14:36:22,151 - INFO - [MAX31865] Initialized | Wires=4 | Nominal=100.0Ω | Ref=430.0Ω
+2025-08-21 14:36:22,231 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:36:27,309 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:39:36,301 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-21 14:39:36,315 - INFO - SCPI QUERY: '*IDN?'
+2025-08-21 14:39:36,316 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-21 14:39:36,368 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-21 14:39:36,368 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-21 14:39:36,369 - INFO - Resetting instrument...
+2025-08-21 14:39:36,369 - INFO - SCPI: '*RST'
+2025-08-21 14:39:36,370 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-21 14:39:36,370 - INFO - SCPI: '*CLS'
+2025-08-21 14:39:36,371 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-21 14:39:36,371 - INFO - agilent intialized
+2025-08-21 14:39:36,372 - INFO - GPIO Controller initialized with pins: [17, 18, 22, 27]
+2025-08-21 14:39:36,372 - INFO - GPIO intialized
+2025-08-21 14:39:36,380 - INFO - [MAX31865] Initialized | Wires=4 | Nominal=100.0Ω | Ref=430.0Ω
+2025-08-21 14:39:36,459 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:39:41,537 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:42:24,651 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-21 14:42:24,667 - INFO - SCPI QUERY: '*IDN?'
+2025-08-21 14:42:24,667 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-21 14:42:24,719 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-21 14:42:24,719 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-21 14:42:24,720 - INFO - Resetting instrument...
+2025-08-21 14:42:24,720 - INFO - SCPI: '*RST'
+2025-08-21 14:42:24,720 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-21 14:42:24,721 - INFO - SCPI: '*CLS'
+2025-08-21 14:42:24,721 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-21 14:42:24,721 - INFO - agilent intialized
+2025-08-21 14:42:24,722 - INFO - GPIO Controller initialized with pins: [17, 18, 22, 27]
+2025-08-21 14:42:24,722 - INFO - GPIO intialized
+2025-08-21 14:42:24,729 - INFO - [MAX31865] Initialized | Wires=4 | Nominal=100.0Ω | Ref=430.0Ω
+2025-08-21 14:42:24,808 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:42:29,890 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:42:34,972 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:42:40,051 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:42:45,130 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:42:50,208 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:45:48,095 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-21 14:45:48,111 - INFO - SCPI QUERY: '*IDN?'
+2025-08-21 14:45:48,112 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-21 14:45:48,163 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-21 14:45:48,164 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-21 14:45:48,164 - INFO - Resetting instrument...
+2025-08-21 14:45:48,164 - INFO - SCPI: '*RST'
+2025-08-21 14:45:48,165 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-21 14:45:48,165 - INFO - SCPI: '*CLS'
+2025-08-21 14:45:48,165 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-21 14:45:48,166 - INFO - agilent intialized
+2025-08-21 14:45:48,167 - INFO - GPIO Controller initialized with pins: [17, 18, 22, 27]
+2025-08-21 14:45:48,167 - INFO - GPIO intialized
+2025-08-21 14:45:48,175 - INFO - [MAX31865] Initialized | Wires=4 | Nominal=100.0Ω | Ref=430.0Ω
+2025-08-21 14:45:48,253 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:45:53,335 - ERROR - [MAX31865] Read error: unsupported format string passed to tuple.__format__
+2025-08-21 14:46:44,814 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-21 14:46:44,830 - INFO - SCPI QUERY: '*IDN?'
+2025-08-21 14:46:44,831 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-21 14:46:44,883 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-21 14:46:44,884 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-21 14:46:44,884 - INFO - Resetting instrument...
+2025-08-21 14:46:44,884 - INFO - SCPI: '*RST'
+2025-08-21 14:46:44,884 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-21 14:46:44,885 - INFO - SCPI: '*CLS'
+2025-08-21 14:46:44,885 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-21 14:46:44,885 - INFO - agilent intialized
+2025-08-21 14:46:44,886 - INFO - GPIO Controller initialized with pins: [17, 18, 22, 27]
+2025-08-21 14:46:44,886 - INFO - GPIO intialized
+2025-08-21 14:46:44,894 - INFO - [MAX31865] Initialized | Wires=4 | Nominal=100.0Ω | Ref=430.0Ω
+2025-08-21 14:46:44,972 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 14:46:44,973 - ERROR - [MAX31865] Read error: 'HighLevelControl' object has no attribute 'mqtt'
+2025-08-21 14:46:50,050 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 14:46:50,051 - ERROR - [MAX31865] Read error: 'HighLevelControl' object has no attribute 'mqtt'
+2025-08-21 14:46:55,133 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 14:46:55,134 - ERROR - [MAX31865] Read error: 'HighLevelControl' object has no attribute 'mqtt'
+2025-08-21 14:47:00,212 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 14:47:00,213 - ERROR - [MAX31865] Read error: 'HighLevelControl' object has no attribute 'mqtt'
+2025-08-21 14:47:05,294 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 14:47:05,295 - ERROR - [MAX31865] Read error: 'HighLevelControl' object has no attribute 'mqtt'
+2025-08-21 14:47:10,373 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 14:47:10,374 - ERROR - [MAX31865] Read error: 'HighLevelControl' object has no attribute 'mqtt'
+2025-08-21 14:47:15,455 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 14:47:15,456 - ERROR - [MAX31865] Read error: 'HighLevelControl' object has no attribute 'mqtt'
+2025-08-21 14:48:29,393 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-21 14:48:29,407 - INFO - SCPI QUERY: '*IDN?'
+2025-08-21 14:48:29,408 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-21 14:48:29,459 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-21 14:48:29,460 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-21 14:48:29,460 - INFO - Resetting instrument...
+2025-08-21 14:48:29,460 - INFO - SCPI: '*RST'
+2025-08-21 14:48:29,461 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-21 14:48:29,461 - INFO - SCPI: '*CLS'
+2025-08-21 14:48:29,462 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-21 14:48:29,463 - INFO - agilent intialized
+2025-08-21 14:48:29,463 - INFO - GPIO Controller initialized with pins: [17, 18, 22, 27]
+2025-08-21 14:48:29,464 - INFO - GPIO intialized
+2025-08-21 14:48:29,471 - INFO - [MAX31865] Initialized | Wires=4 | Nominal=100.0Ω | Ref=430.0Ω
+2025-08-21 14:48:29,551 - INFO - [MAX31865] Temperature: -242.02 K
+2025-08-21 14:48:29,551 - ERROR - [MAX31865] Read error: 'HighLevelControl' object has no attribute 'mqtt'
+2025-08-21 14:48:34,629 - INFO - [MAX31865] Temperature: -242.02 K
+2025-08-21 14:48:34,630 - ERROR - [MAX31865] Read error: 'HighLevelControl' object has no attribute 'mqtt'
+2025-08-21 14:48:39,708 - INFO - [MAX31865] Temperature: -242.02 K
+2025-08-21 14:48:39,709 - ERROR - [MAX31865] Read error: 'HighLevelControl' object has no attribute 'mqtt'
+2025-08-21 14:48:44,789 - INFO - [MAX31865] Temperature: -242.02 K
+2025-08-21 14:48:44,789 - ERROR - [MAX31865] Read error: 'HighLevelControl' object has no attribute 'mqtt'
+2025-08-21 14:48:49,867 - INFO - [MAX31865] Temperature: -242.02 K
+2025-08-21 14:48:49,868 - ERROR - [MAX31865] Read error: 'HighLevelControl' object has no attribute 'mqtt'
+2025-08-21 14:50:44,326 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-21 14:50:44,341 - INFO - SCPI QUERY: '*IDN?'
+2025-08-21 14:50:44,341 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-21 14:50:44,393 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-21 14:50:44,394 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-21 14:50:44,394 - INFO - Resetting instrument...
+2025-08-21 14:50:44,395 - INFO - SCPI: '*RST'
+2025-08-21 14:50:44,395 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-21 14:50:44,396 - INFO - SCPI: '*CLS'
+2025-08-21 14:50:44,396 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-21 14:50:44,397 - INFO - agilent intialized
+2025-08-21 14:50:44,398 - INFO - GPIO Controller initialized with pins: [17, 18, 22, 27]
+2025-08-21 14:50:44,398 - INFO - GPIO intialized
+2025-08-21 14:50:44,405 - INFO - [MAX31865] Initialized | Wires=4 | Nominal=100.0Ω | Ref=430.0Ω
+2025-08-21 14:50:44,484 - INFO - [MAX31865] Temperature: -242.02 K
+2025-08-21 14:50:44,485 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 14:50:49,563 - INFO - [MAX31865] Temperature: -242.02 K
+2025-08-21 14:50:49,564 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 14:50:54,646 - INFO - [MAX31865] Temperature: -242.02 K
+2025-08-21 14:50:54,647 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 14:50:59,727 - INFO - [MAX31865] Temperature: -242.02 K
+2025-08-21 14:50:59,728 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 14:52:20,837 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-21 14:52:20,853 - INFO - SCPI QUERY: '*IDN?'
+2025-08-21 14:52:20,853 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-21 14:52:20,905 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-21 14:52:20,905 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-21 14:52:20,905 - INFO - Resetting instrument...
+2025-08-21 14:52:20,906 - INFO - SCPI: '*RST'
+2025-08-21 14:52:20,906 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-21 14:52:20,906 - INFO - SCPI: '*CLS'
+2025-08-21 14:52:20,907 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-21 14:52:20,907 - INFO - agilent intialized
+2025-08-21 14:52:20,908 - INFO - GPIO Controller initialized with pins: [17, 18, 22, 27]
+2025-08-21 14:52:20,908 - INFO - GPIO intialized
+2025-08-21 14:52:20,915 - INFO - [MAX31865] Initialized | Wires=4 | Nominal=100.0Ω | Ref=430.0Ω
+2025-08-21 14:52:20,994 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 14:52:20,994 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 14:52:26,078 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 14:52:26,079 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 14:52:31,158 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 14:52:31,158 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 14:58:36,195 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-21 14:58:36,214 - INFO - SCPI QUERY: '*IDN?'
+2025-08-21 14:58:36,215 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-21 14:58:36,267 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-21 14:58:36,268 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-21 14:58:36,268 - INFO - Resetting instrument...
+2025-08-21 14:58:36,269 - INFO - SCPI: '*RST'
+2025-08-21 14:58:36,269 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-21 14:58:36,270 - INFO - SCPI: '*CLS'
+2025-08-21 14:58:36,271 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-21 14:58:36,272 - INFO - agilent intialized
+2025-08-21 14:58:36,273 - INFO - GPIO Controller initialized with pins: [17, 18, 22, 27]
+2025-08-21 14:58:36,273 - INFO - GPIO intialized
+2025-08-21 14:58:36,280 - INFO - [MAX31865] Initialized | Wires=4 | Nominal=100.0Ω | Ref=430.0Ω
+2025-08-21 14:58:36,358 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 14:58:36,359 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 14:58:41,441 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 14:58:41,442 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 14:58:46,522 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 14:58:46,522 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 14:58:51,605 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 14:58:51,606 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 14:58:56,685 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 14:58:56,686 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 15:10:58,461 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-21 15:10:58,481 - INFO - SCPI QUERY: '*IDN?'
+2025-08-21 15:10:58,482 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-21 15:10:58,535 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-21 15:10:58,536 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-21 15:10:58,537 - INFO - Resetting instrument...
+2025-08-21 15:10:58,538 - INFO - SCPI: '*RST'
+2025-08-21 15:10:58,539 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-21 15:10:58,541 - INFO - SCPI: '*CLS'
+2025-08-21 15:10:58,543 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-21 15:10:58,545 - INFO - agilent intialized
+2025-08-21 15:10:58,546 - INFO - GPIO Controller initialized with pins: [17, 18, 22, 27]
+2025-08-21 15:10:58,547 - INFO - GPIO intialized
+2025-08-21 15:10:58,560 - INFO - [MAX31865] Initialized | Wires=4 | Nominal=100.0Ω | Ref=430.0Ω
+2025-08-21 15:10:58,644 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 15:10:58,645 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 15:11:03,727 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 15:11:03,727 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 15:11:08,806 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 15:11:08,807 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 15:11:13,885 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 15:11:13,886 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 15:11:18,968 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 15:11:18,969 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 15:11:24,049 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 15:11:24,050 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 15:11:29,129 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 15:11:29,129 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 15:11:34,212 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 15:11:34,213 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 15:11:39,293 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 15:11:39,294 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 15:11:44,378 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 15:11:44,379 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 15:11:49,458 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 15:11:49,458 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 15:11:54,542 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 15:11:54,543 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 15:11:59,627 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 15:11:59,628 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 15:12:04,708 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 15:12:04,709 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 15:12:09,792 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 15:12:09,793 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 15:12:14,874 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 15:12:14,874 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 15:12:19,957 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 15:12:19,958 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 15:12:25,039 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 15:12:25,040 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 15:12:30,119 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 15:12:30,119 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 15:12:42,534 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-21 15:12:42,550 - INFO - SCPI QUERY: '*IDN?'
+2025-08-21 15:12:42,550 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-21 15:12:42,602 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-21 15:12:42,603 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-21 15:12:42,603 - INFO - Resetting instrument...
+2025-08-21 15:12:42,604 - INFO - SCPI: '*RST'
+2025-08-21 15:12:42,604 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-21 15:12:42,604 - INFO - SCPI: '*CLS'
+2025-08-21 15:12:42,604 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-21 15:12:42,605 - INFO - agilent intialized
+2025-08-21 15:12:42,605 - INFO - GPIO Controller initialized with pins: [17, 18, 22, 27]
+2025-08-21 15:12:42,606 - INFO - GPIO intialized
+2025-08-21 15:12:42,613 - INFO - [MAX31865] Initialized | Wires=4 | Nominal=100.0Ω | Ref=430.0Ω
+2025-08-21 15:12:42,691 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 15:12:42,692 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 15:12:47,774 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 15:12:47,775 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 15:19:45,891 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-21 15:19:45,905 - INFO - SCPI QUERY: '*IDN?'
+2025-08-21 15:19:45,905 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-21 15:19:45,957 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-21 15:19:45,958 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-21 15:19:45,958 - INFO - Resetting instrument...
+2025-08-21 15:19:45,958 - INFO - SCPI: '*RST'
+2025-08-21 15:19:45,958 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-21 15:19:45,959 - INFO - SCPI: '*CLS'
+2025-08-21 15:19:45,959 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-21 15:19:45,959 - INFO - agilent intialized
+2025-08-21 15:19:45,960 - INFO - GPIO Controller multiplexer initialized with pins: [17, 18, 22, 27]
+2025-08-21 15:19:45,960 - INFO - GPIO intialized
+2025-08-21 15:19:45,964 - ERROR - Hardware initialization failed: 'DigitalInOut' object has no attribute 'try_lock'
+2025-08-21 15:22:35,419 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-21 15:22:35,435 - INFO - SCPI QUERY: '*IDN?'
+2025-08-21 15:22:35,435 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-21 15:22:35,487 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-21 15:22:35,488 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-21 15:22:35,488 - INFO - Resetting instrument...
+2025-08-21 15:22:35,489 - INFO - SCPI: '*RST'
+2025-08-21 15:22:35,489 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-21 15:22:35,490 - INFO - SCPI: '*CLS'
+2025-08-21 15:22:35,490 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-21 15:22:35,491 - INFO - agilent intialized
+2025-08-21 15:22:35,491 - INFO - GPIO Controller multiplexer initialized with pins: [17, 18, 22, 27]
+2025-08-21 15:22:35,492 - INFO - GPIO intialized
+2025-08-21 15:22:35,492 - ERROR - Hardware initialization failed: MAX31865Controller.__init__() got multiple values for argument 'spi_pin'
+2025-08-21 15:23:50,426 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-21 15:23:50,442 - INFO - SCPI QUERY: '*IDN?'
+2025-08-21 15:23:50,442 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-21 15:23:50,494 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-21 15:23:50,495 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-21 15:23:50,496 - INFO - Resetting instrument...
+2025-08-21 15:23:50,497 - INFO - SCPI: '*RST'
+2025-08-21 15:23:50,498 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-21 15:23:50,499 - INFO - SCPI: '*CLS'
+2025-08-21 15:23:50,499 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-21 15:23:50,500 - INFO - agilent intialized
+2025-08-21 15:23:50,501 - INFO - GPIO Controller multiplexer initialized with pins: [17, 18, 22, 27]
+2025-08-21 15:23:50,501 - INFO - GPIO intialized
+2025-08-21 15:23:50,502 - ERROR - Hardware initialization failed: MAX31865Controller.__init__() got multiple values for argument 'spi_pin'
+2025-08-21 15:25:13,551 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-21 15:25:13,566 - INFO - SCPI QUERY: '*IDN?'
+2025-08-21 15:25:13,567 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-21 15:25:13,618 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-21 15:25:13,619 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-21 15:25:13,619 - INFO - Resetting instrument...
+2025-08-21 15:25:13,619 - INFO - SCPI: '*RST'
+2025-08-21 15:25:13,620 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-21 15:25:13,620 - INFO - SCPI: '*CLS'
+2025-08-21 15:25:13,620 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-21 15:25:13,621 - INFO - agilent intialized
+2025-08-21 15:25:13,621 - INFO - GPIO Controller multiplexer initialized with pins: [17, 18, 22, 27]
+2025-08-21 15:25:13,621 - INFO - GPIO intialized
+2025-08-21 15:25:13,621 - ERROR - Hardware initialization failed: MAX31865Controller.__init__() got multiple values for argument 'spi_pin'
+2025-08-21 15:27:46,636 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-21 15:27:46,652 - INFO - SCPI QUERY: '*IDN?'
+2025-08-21 15:27:46,652 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-21 15:27:46,704 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-21 15:27:46,705 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-21 15:27:46,705 - INFO - Resetting instrument...
+2025-08-21 15:27:46,705 - INFO - SCPI: '*RST'
+2025-08-21 15:27:46,705 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-21 15:27:46,706 - INFO - SCPI: '*CLS'
+2025-08-21 15:27:46,706 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-21 15:27:46,707 - INFO - agilent intialized
+2025-08-21 15:27:46,707 - INFO - GPIO Controller multiplexer initialized with pins: [17, 18, 22, 27]
+2025-08-21 15:27:46,707 - INFO - GPIO intialized
+2025-08-21 15:27:46,712 - ERROR - Hardware initialization failed: 'int' object has no attribute 'switch_to_output'
+2025-08-21 15:30:18,898 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-21 15:30:18,912 - INFO - SCPI QUERY: '*IDN?'
+2025-08-21 15:30:18,912 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-21 15:30:18,964 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-21 15:30:18,964 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-21 15:30:18,965 - INFO - Resetting instrument...
+2025-08-21 15:30:18,965 - INFO - SCPI: '*RST'
+2025-08-21 15:30:18,965 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-21 15:30:18,966 - INFO - SCPI: '*CLS'
+2025-08-21 15:30:18,966 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-21 15:30:18,966 - INFO - agilent intialized
+2025-08-21 15:30:18,967 - INFO - GPIO Controller multiplexer initialized with pins: [17, 18, 22, 27]
+2025-08-21 15:30:18,967 - INFO - GPIO intialized
+2025-08-21 15:30:18,972 - ERROR - Hardware initialization failed: 'DigitalInOut' object has no attribute 'try_lock'
+2025-08-21 16:01:41,756 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-21 16:01:41,773 - INFO - SCPI QUERY: '*IDN?'
+2025-08-21 16:01:41,774 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-21 16:01:41,826 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-21 16:01:41,826 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-21 16:01:41,826 - INFO - Resetting instrument...
+2025-08-21 16:01:41,827 - INFO - SCPI: '*RST'
+2025-08-21 16:01:41,827 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-21 16:01:41,827 - INFO - SCPI: '*CLS'
+2025-08-21 16:01:41,828 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-21 16:01:41,828 - INFO - agilent intialized
+2025-08-21 16:01:41,829 - INFO - GPIO Controller multiplexer initialized with pins: [17, 18, 22, 27]
+2025-08-21 16:01:41,829 - INFO - GPIO intialized
+2025-08-21 16:01:41,836 - INFO - [MAX31865] Initialized | Wires=3 | Nominal=1000.0Ω | Ref=4300.0Ω
+2025-08-21 16:01:41,915 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 16:01:41,915 - ERROR - [MAX31865] Read error: 'HighLevelControl' object has no attribute 'mqtt'
+2025-08-21 16:01:46,993 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 16:01:46,993 - ERROR - [MAX31865] Read error: 'HighLevelControl' object has no attribute 'mqtt'
+2025-08-21 16:08:02,663 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-21 16:08:02,678 - INFO - SCPI QUERY: '*IDN?'
+2025-08-21 16:08:02,678 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-21 16:08:02,730 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-21 16:08:02,731 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-21 16:08:02,731 - INFO - Resetting instrument...
+2025-08-21 16:08:02,731 - INFO - SCPI: '*RST'
+2025-08-21 16:08:02,731 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-21 16:08:02,732 - INFO - SCPI: '*CLS'
+2025-08-21 16:08:02,732 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-21 16:08:02,732 - INFO - agilent intialized
+2025-08-21 16:08:02,733 - INFO - GPIO Controller multiplexer initialized with pins: [17, 18, 22, 27]
+2025-08-21 16:08:02,733 - INFO - GPIO intialized
+2025-08-21 16:08:02,740 - INFO - [MAX31865] Initialized | Wires=3 | Nominal=1000.0Ω | Ref=4300.0Ω
+2025-08-21 16:08:02,740 - INFO - temperature measurer intialized
+2025-08-21 16:08:02,740 - INFO - All hardware initialized successfully
+2025-08-21 16:08:02,741 - INFO - hardware initialization worked in the _init_
+2025-08-21 16:08:02,741 - INFO - on_ui_command is reached
+2025-08-21 16:08:02,741 - INFO - MQTT handlers configured
+2025-08-21 16:08:02,744 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-21 16:08:02,744 - INFO - Successfully connected to MQTT broker
+2025-08-21 16:09:07,764 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-21 16:09:07,780 - INFO - SCPI QUERY: '*IDN?'
+2025-08-21 16:09:07,780 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-21 16:09:07,832 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-21 16:09:07,832 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-21 16:09:07,833 - INFO - Resetting instrument...
+2025-08-21 16:09:07,833 - INFO - SCPI: '*RST'
+2025-08-21 16:09:07,833 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-21 16:09:07,833 - INFO - SCPI: '*CLS'
+2025-08-21 16:09:07,834 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-21 16:09:07,834 - INFO - agilent intialized
+2025-08-21 16:09:07,834 - INFO - GPIO Controller multiplexer initialized with pins: [17, 18, 22, 27]
+2025-08-21 16:09:07,835 - INFO - GPIO intialized
+2025-08-21 16:09:07,843 - INFO - [MAX31865] Initialized | Wires=3 | Nominal=1000.0Ω | Ref=4300.0Ω
+2025-08-21 16:09:07,844 - INFO - temperature measurer intialized
+2025-08-21 16:09:07,844 - INFO - All hardware initialized successfully
+2025-08-21 16:09:07,844 - INFO - hardware initialization worked in the _init_
+2025-08-21 16:09:07,845 - INFO - on_ui_command is reached
+2025-08-21 16:09:07,845 - INFO - MQTT handlers configured
+2025-08-21 16:09:07,847 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-21 16:09:07,848 - INFO - Successfully connected to MQTT broker
+2025-08-21 16:09:07,848 - INFO - Temperature loop started in background thread
+2025-08-21 16:09:07,855 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-21 16:09:07,856 - INFO - Successfully connected to MQTT broker
+2025-08-21 16:09:07,950 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 16:09:07,951 - INFO - Published to /temperature: {"timestamp": 1755788947.9511545, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-21 16:09:07,958 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 16:09:13,044 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 16:09:13,046 - INFO - Published to /temperature: {"timestamp": 1755788953.0447938, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-21 16:09:13,048 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 16:09:18,131 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 16:09:18,132 - INFO - Published to /temperature: {"timestamp": 1755788958.1318247, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-21 16:09:18,132 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 16:09:23,212 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 16:09:23,213 - INFO - Published to /temperature: {"timestamp": 1755788963.2129009, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-21 16:09:23,213 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 16:09:28,293 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 16:09:28,294 - INFO - Published to /temperature: {"timestamp": 1755788968.2942877, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-21 16:09:28,295 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-21 16:09:33,375 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-21 16:09:33,375 - INFO - Published to /temperature: {"timestamp": 1755788973.375431, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-21 16:09:33,376 - INFO - [MAX31865] Published 31.13 K to /temperature
