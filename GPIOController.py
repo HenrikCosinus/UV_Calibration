@@ -33,7 +33,7 @@ class GPIOController:
             GPIO.setup(pin, GPIO.OUT)
             GPIO.output(pin, GPIO.LOW)
         
-        logging.info(f"GPIO Controller initialized with pins: {self.pins}")
+        logging.info(f"GPIO Controller multiplexer initialized with pins: {self.pins}")
     
     def set_pin(self, pin_index, state):        
         pin = self.pins[pin_index]
@@ -106,6 +106,7 @@ class AD5260Controller:
         - vdd: Positive supply voltage (default 5.0V)
         - vss: Negative supply voltage (default 0.0V)
         """
+        print(f"Initializing AD5260 with pins: {pins}, RAB: {rab}Ω, VDD: {vdd}V, VSS: {vss}V")
         self.CLK = pins[0]  # Clock
         self.SDO = pins[1]  # MISO (not used for AD5260 write)
         self.SDI = pins[2]  # MOSI
@@ -213,7 +214,7 @@ class AD5260Controller:
         logging.info("[AD5260] Cleaned up SPI and GPIO")
 
 class MAX31865Controller:
-    def __init__(self, cs_pin=5, wires=4, rtd_nominal=100.0, ref_resistor=430.0):
+    def __init__(self, cs_pin, wires, rtd_nominal, ref_resistor):
         """
         cs_pin: BCM pin for chip select
         wires: 2, 3, or 4 (default: 4 for PT100)
@@ -230,7 +231,7 @@ class MAX31865Controller:
 
     def read_temperature(self):
         temp_c = self.sensor.temperature
-        temp_k = temp_c + 273,15
+        temp_k = (temp_c + 273.15)
         logging.info(f"[MAX31865] Temperature: {temp_k:.2f} K")
         return temp_k
 

@@ -10,6 +10,7 @@ import numpy as np
 import json
 import paho.mqtt.client as mqtt
 from MQTTHandler import MQTTHandler
+import threading
 
 logging.basicConfig(
     level=logging.INFO,
@@ -34,6 +35,7 @@ class HighLevelControl():
         self.mqtt = MQTTHandler(client_id="backend_controller", broker="172.17.0.1", port=1883, topics=topics)
         self.setup_mqtt_handlers()
         self.mqtt.connect()
+        self.start_temp_loop(interval = 5)
 
     def initialize_hardware(self):
         try:
@@ -41,10 +43,9 @@ class HighLevelControl():
             logger.info("agilent intialized")
             self.GPIOController = GPIOController(pins=[17, 18, 22, 27])
             logger.info("GPIO intialized")
-            self.AD5260Controller = AD5260Controller(pins=[14, 9, 10, 25, 8], rab=20000, vdd=5.0, vss=0.0)
-            logger.info("potentiometer intialized")
-            self.MAX31865Controller = MAX31865Controller(cs_pin=5, wires=4, rtd_nominal=100.0, ref_resistor=430.0)
-            self.update_temp_loop(interval = 5)
+            #self.AD5260Controller = AD5260Controller(pins=[14, 9, 10, 25, 8], rab=20000, vdd=5.0, vss=0.0)
+            #logger.info("potentiometer intialized")
+            self.MAX31865Controller = MAX31865Controller(cs_pin=11, wires=3, rtd_nominal=1000.0, ref_resistor=4300.0)
             logger.info("temperature measurer intialized")
             logger.info("All hardware initialized successfully")
         except Exception as e:
@@ -55,6 +56,11 @@ class HighLevelControl():
         self.mqtt.on_ui_command(self.handle_ui_command)
         logger.info("MQTT handlers configured")
 
+    def start_temp_loop(self, interval):
+        temp_thread = threading.Thread(target=self.update_temp_loop, args=(interval,), daemon=True)
+        temp_thread.start()
+        logger.info("Temperature loop started in background thread")
+
     def update_temp_loop(self, interval):
         file_path = "Temperature_measurements.json"
         if not os.path.exists(file_path):
@@ -62,8 +68,7 @@ class HighLevelControl():
                 json.dump([], f)
         while True:
             try:
-                temp_k = self.MAX31865Controller.read_temperature()
-                payload = json.dumps({"temperature_c": temp_k})
+                temp_k = float(self.MAX31865Controller.read_temperature())
                 timestamp = time.time()
                 measurement = {
                     "timestamp": timestamp,
