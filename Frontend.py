@@ -6,6 +6,7 @@ import paho.mqtt.client as mqtt
 import json
 from pathlib import Path
 from MQTTHandler import MQTTHandler
+import threading
 
 class Frontend():
     def __init__(self):
@@ -235,7 +236,6 @@ class Frontend():
             ui.separator()
             with ui.card().classes("w-1/3"):
                 ui.label('Live Temperature Readout').classes('text-h6')
-
                 temp_display = ui.column().classes("gap-1")
                 self.temp_readings = []
 
@@ -244,15 +244,26 @@ class Frontend():
                     self.temp_readings.append(temp_value)
                     if len(self.temp_readings) > 20:
                         self.temp_readings.pop(0)
-                    temp_display.clear()
 
                 def on_temp_message(client, userdata, message):
                     try:
                         payload = json.loads(message.payload.decode())
-                        if "temperature_c" in payload:
-                            add_temperature_reading(payload["temperature_c"])
+                        print("Got MQTT message:", payload)
+                        if "temperature_k" in payload:
+                            add_temperature_reading(payload["temperature_k"])
                     except Exception as e:
                         ui.notify(f"Temperature parse error: {e}", color="negative")
+
+                # Subscribe callback to /temperature topic
+                self.mqtt.client.subscribe("/temperature", qos=1)
+                self.mqtt.client.message_callback_add("/temperature", on_temp_message)
+
+                def refresh_ui():
+                    temp_display.clear()
+                    for temp in self.temp_readings:
+                        ui.label(f"{temp:.2f} K")
+
+                ui.timer(interval=5.0, callback=refresh_ui)
 
         
     def execute_switch(self):

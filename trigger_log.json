@@ -1,0 +1,124 @@
+{
+  "triggers": [
+    {
+      "burst_number": 20,
+      "timestamp": "2025-08-22T13:12:07.995736",
+      "timestamp_unix": 1755864727.9957662,
+      "command": "*TRG"
+    },
+    {
+      "burst_number": 19,
+      "timestamp": "2025-08-22T13:12:08.099297",
+      "timestamp_unix": 1755864728.0993237,
+      "command": "*TRG"
+    },
+    {
+      "burst_number": 18,
+      "timestamp": "2025-08-22T13:12:08.202335",
+      "timestamp_unix": 1755864728.202364,
+      "command": "*TRG"
+    },
+    {
+      "burst_number": 17,
+      "timestamp": "2025-08-22T13:12:08.305256",
+      "timestamp_unix": 1755864728.3052833,
+      "command": "*TRG"
+    },
+    {
+      "burst_number": 16,
+      "timestamp": "2025-08-22T13:12:08.409096",
+      "timestamp_unix": 1755864728.4091344,
+      "command": "*TRG"
+    },
+    {
+      "burst_number": 15,
+      "timestamp": "2025-08-22T13:12:08.514455",
+      "timestamp_unix": 1755864728.5144784,
+      "command": "*TRG"
+    },
+    {
+      "burst_number": 14,
+      "timestamp": "2025-08-22T13:12:08.618751",
+      "timestamp_unix": 1755864728.6187751,
+      "command": "*TRG"
+    },
+    {
+      "burst_number": 13,
+      "timestamp": "2025-08-22T13:12:08.724551",
+      "timestamp_unix": 1755864728.7245898,
+      "command": "*TRG"
+    },
+    {
+      "burst_number": 12,
+      "timestamp": "2025-08-22T13:12:08.830510",
+      "timestamp_unix": 1755864728.8305364,
+      "command": "*TRG"
+    },
+    {
+      "burst_number": 11,
+      "timestamp": "2025-08-22T13:12:08.936966",
+      "timestamp_unix": 1755864728.9369931,
+      "command": "*TRG"
+    },
+    {
+      "burst_number": 10,
+      "timestamp": "2025-08-22T13:12:09.041109",
+      "timestamp_unix": 1755864729.0411344,
+      "command": "*TRG"
+    },
+    {
+      "burst_number": 9,
+      "timestamp": "2025-08-22T13:12:09.144835",
+      "timestamp_unix": 1755864729.1448622,
+      "command": "*TRG"
+    },
+    {
+      "burst_number": 8,
+      "timestamp": "2025-08-22T13:12:09.247519",
+      "timestamp_unix": 1755864729.2475488,
+      "command": "*TRG"
+    },
+    {
+      "burst_number": 7,
+      "timestamp": "2025-08-22T13:12:09.350413",
+      "timestamp_unix": 1755864729.350442,
+      "command": "*TRG"
+    },
+    {
+      "burst_number": 6,
+      "timestamp": "2025-08-22T13:12:09.453326",
+      "timestamp_unix": 1755864729.453353,
+      "command": "*TRG"
+    },
+    {
+      "burst_number": 5,
+      "timestamp": "2025-08-22T13:12:09.556395",
+      "timestamp_unix": 1755864729.556422,
+      "command": "*TRG"
+    },
+    {
+      "burst_number": 4,
+      "timestamp": "2025-08-22T13:12:09.659050",
+      "timestamp_unix": 1755864729.659078,
+      "command": "*TRG"
+    },
+    {
+      "burst_number": 3,
+      "timestamp": "2025-08-22T13:12:09.761849",
+      "timestamp_unix": 1755864729.7618759,
+      "command": "*TRG"
+    },
+    {
+      "burst_number": 2,
+      "timestamp": "2025-08-22T13:12:09.864654",
+      "timestamp_unix": 1755864729.8646822,
+      "command": "*TRG"
+    },
+    {
+      "burst_number": 1,
+      "timestamp": "2025-08-22T13:12:09.967954",
+      "timestamp_unix": 1755864729.9679823,
+      "command": "*TRG"
+    }
+  ]
+}

@@ -4483,3 +4483,1509 @@ AttributeError: 'GenericEventArguments' object has no attribute 'value'
 2025-08-21 16:09:33,375 - INFO - [MAX31865] Temperature: 31.13 K
 2025-08-21 16:09:33,375 - INFO - Published to /temperature: {"timestamp": 1755788973.375431, "temperature_k": 31.129999999999967} (result: 0)
 2025-08-21 16:09:33,376 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 12:28:02,166 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-22 12:28:02,182 - INFO - SCPI QUERY: '*IDN?'
+2025-08-22 12:28:02,183 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-22 12:28:48,980 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-22 12:28:48,994 - INFO - SCPI QUERY: '*IDN?'
+2025-08-22 12:28:48,995 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-22 12:28:49,120 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-22 12:28:49,121 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-22 12:28:49,121 - INFO - Resetting instrument...
+2025-08-22 12:28:49,121 - INFO - SCPI: '*RST'
+2025-08-22 12:28:49,121 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-22 12:28:49,122 - INFO - SCPI: '*CLS'
+2025-08-22 12:28:49,122 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-22 12:28:49,123 - INFO - agilent intialized
+2025-08-22 12:28:49,123 - INFO - GPIO Controller multiplexer initialized with pins: [17, 18, 22, 27]
+2025-08-22 12:28:49,123 - INFO - GPIO intialized
+2025-08-22 12:28:49,137 - INFO - [MAX31865] Initialized | Wires=3 | Nominal=1000.0Ω | Ref=4300.0Ω
+2025-08-22 12:28:49,137 - INFO - temperature measurer intialized
+2025-08-22 12:28:49,137 - INFO - All hardware initialized successfully
+2025-08-22 12:28:49,138 - INFO - hardware initialization worked in the _init_
+2025-08-22 12:28:49,138 - INFO - on_ui_command is reached
+2025-08-22 12:28:49,138 - INFO - MQTT handlers configured
+2025-08-22 12:28:49,140 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-08-22 12:28:49,141 - INFO - Temperature loop started in background thread
+2025-08-22 12:28:49,145 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-08-22 12:28:49,242 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-22 12:28:49,244 - INFO - Published to /temperature: {"timestamp": 1755862129.2441616, "temperature_k": 31.129999999999967} (result: 4)
+2025-08-22 12:28:49,245 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 12:28:54,339 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-22 12:28:54,341 - INFO - Published to /temperature: {"timestamp": 1755862134.3403525, "temperature_k": 31.129999999999967} (result: 4)
+2025-08-22 12:28:54,342 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 12:28:59,424 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-22 12:28:59,425 - INFO - Published to /temperature: {"timestamp": 1755862139.425078, "temperature_k": 31.129999999999967} (result: 4)
+2025-08-22 12:28:59,425 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 12:29:04,504 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-22 12:29:04,505 - INFO - Published to /temperature: {"timestamp": 1755862144.5048745, "temperature_k": 31.129999999999967} (result: 4)
+2025-08-22 12:29:04,505 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 12:29:09,584 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-22 12:29:09,585 - INFO - Published to /temperature: {"timestamp": 1755862149.584914, "temperature_k": 31.129999999999967} (result: 4)
+2025-08-22 12:29:09,586 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 12:29:14,665 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-22 12:29:14,666 - INFO - Published to /temperature: {"timestamp": 1755862154.6664333, "temperature_k": 31.129999999999967} (result: 4)
+2025-08-22 12:29:14,667 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 12:29:19,747 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-22 12:29:19,747 - INFO - Published to /temperature: {"timestamp": 1755862159.747396, "temperature_k": 31.129999999999967} (result: 4)
+2025-08-22 12:29:19,748 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 12:29:24,827 - INFO - [MAX31865] Temperature: 31.13 K
+2025-08-22 12:29:24,828 - INFO - Published to /temperature: {"timestamp": 1755862164.8278863, "temperature_k": 31.129999999999967} (result: 4)
+2025-08-22 12:29:24,828 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 12:42:48,802 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-22 12:42:48,816 - INFO - SCPI QUERY: '*IDN?'
+2025-08-22 12:42:48,817 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-22 12:42:48,869 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-22 12:42:48,869 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-22 12:42:48,869 - INFO - Resetting instrument...
+2025-08-22 12:42:48,870 - INFO - SCPI: '*RST'
+2025-08-22 12:42:48,870 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-22 12:42:48,870 - INFO - SCPI: '*CLS'
+2025-08-22 12:42:48,870 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-22 12:42:48,871 - INFO - agilent intialized
+2025-08-22 12:42:48,871 - INFO - GPIO Controller multiplexer initialized with pins: [17, 18, 22, 27]
+2025-08-22 12:42:48,872 - INFO - GPIO intialized
+2025-08-22 12:42:48,879 - INFO - [MAX31865] Initialized | Wires=3 | Nominal=1000.0Ω | Ref=4300.0Ω
+2025-08-22 12:42:48,879 - INFO - temperature measurer intialized
+2025-08-22 12:42:48,880 - INFO - All hardware initialized successfully
+2025-08-22 12:42:48,880 - INFO - hardware initialization worked in the _init_
+2025-08-22 12:42:48,881 - INFO - on_ui_command is reached
+2025-08-22 12:42:48,881 - INFO - MQTT handlers configured
+2025-08-22 12:42:48,882 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-08-22 12:42:48,883 - INFO - Temperature loop started in background thread
+2025-08-22 12:42:48,886 - ERROR - Connection failed in the connect function of the MQTTHandler: [Errno 111] Connection refused
+2025-08-22 12:42:48,973 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:42:48,976 - INFO - Published to /temperature: {"timestamp": 1755862968.9758208, "temperature_k": 1261.9421105972187} (result: 4)
+2025-08-22 12:42:48,976 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:42:54,068 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:42:54,070 - INFO - Published to /temperature: {"timestamp": 1755862974.0696504, "temperature_k": 1261.9421105972187} (result: 4)
+2025-08-22 12:42:54,071 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:42:59,158 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:42:59,159 - INFO - Published to /temperature: {"timestamp": 1755862979.1592238, "temperature_k": 1261.9421105972187} (result: 4)
+2025-08-22 12:42:59,160 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:43:04,243 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:43:04,244 - INFO - Published to /temperature: {"timestamp": 1755862984.2442544, "temperature_k": 1261.9421105972187} (result: 4)
+2025-08-22 12:43:04,244 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:43:09,329 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:43:09,330 - INFO - Published to /temperature: {"timestamp": 1755862989.3300188, "temperature_k": 1261.9421105972187} (result: 4)
+2025-08-22 12:43:09,333 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:43:14,417 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:43:14,417 - INFO - Published to /temperature: {"timestamp": 1755862994.4174006, "temperature_k": 1261.9421105972187} (result: 4)
+2025-08-22 12:43:14,418 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:43:19,506 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:43:19,508 - INFO - Published to /temperature: {"timestamp": 1755862999.5077162, "temperature_k": 1261.9421105972187} (result: 4)
+2025-08-22 12:43:19,509 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:43:24,598 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:43:24,600 - INFO - Published to /temperature: {"timestamp": 1755863004.5994678, "temperature_k": 1261.9421105972187} (result: 4)
+2025-08-22 12:43:24,600 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:43:29,689 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:43:29,690 - INFO - Published to /temperature: {"timestamp": 1755863009.6905048, "temperature_k": 1261.9421105972187} (result: 4)
+2025-08-22 12:43:29,691 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:43:34,780 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:43:34,781 - INFO - Published to /temperature: {"timestamp": 1755863014.7812295, "temperature_k": 1261.9421105972187} (result: 4)
+2025-08-22 12:43:34,784 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:43:39,869 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:43:39,869 - INFO - Published to /temperature: {"timestamp": 1755863019.8697903, "temperature_k": 1261.9421105972187} (result: 4)
+2025-08-22 12:43:39,870 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:43:44,954 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:43:44,955 - INFO - Published to /temperature: {"timestamp": 1755863024.9554791, "temperature_k": 1261.9421105972187} (result: 4)
+2025-08-22 12:43:44,960 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:43:50,044 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:43:50,045 - INFO - Published to /temperature: {"timestamp": 1755863030.0448215, "temperature_k": 1261.9421105972187} (result: 4)
+2025-08-22 12:43:50,045 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:43:55,130 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:43:55,131 - INFO - Published to /temperature: {"timestamp": 1755863035.1312997, "temperature_k": 1261.9421105972187} (result: 4)
+2025-08-22 12:43:55,132 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:44:00,220 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:44:00,221 - INFO - Published to /temperature: {"timestamp": 1755863040.221155, "temperature_k": 1261.9421105972187} (result: 4)
+2025-08-22 12:44:00,222 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:44:05,308 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:44:05,309 - INFO - Published to /temperature: {"timestamp": 1755863045.30901, "temperature_k": 1261.9421105972187} (result: 4)
+2025-08-22 12:44:05,309 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:49:33,420 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-22 12:49:33,436 - INFO - SCPI QUERY: '*IDN?'
+2025-08-22 12:49:33,436 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-22 12:49:33,488 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-22 12:49:33,489 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-22 12:49:33,489 - INFO - Resetting instrument...
+2025-08-22 12:49:33,489 - INFO - SCPI: '*RST'
+2025-08-22 12:49:33,490 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-22 12:49:33,490 - INFO - SCPI: '*CLS'
+2025-08-22 12:49:33,490 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-22 12:49:33,491 - INFO - agilent intialized
+2025-08-22 12:49:33,491 - INFO - GPIO Controller multiplexer initialized with pins: [17, 18, 22, 27]
+2025-08-22 12:49:33,492 - INFO - GPIO intialized
+2025-08-22 12:49:33,492 - INFO - [AD5260] Initialized | RAB=20.0kΩ | VDD=5.0V | VSS=0.0V
+2025-08-22 12:49:33,492 - INFO - potentiometer intialized
+2025-08-22 12:49:33,499 - INFO - [MAX31865] Initialized | Wires=3 | Nominal=1000.0Ω | Ref=4300.0Ω
+2025-08-22 12:49:33,500 - INFO - temperature measurer intialized
+2025-08-22 12:49:33,500 - INFO - All hardware initialized successfully
+2025-08-22 12:49:33,500 - INFO - hardware initialization worked in the _init_
+2025-08-22 12:49:33,501 - INFO - on_ui_command is reached
+2025-08-22 12:49:33,501 - INFO - MQTT handlers configured
+2025-08-22 12:49:33,504 - INFO - Successfully connected to MQTT broker
+2025-08-22 12:49:33,504 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 12:49:33,507 - INFO - Temperature loop started in background thread
+2025-08-22 12:49:33,513 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 12:49:33,513 - INFO - Successfully connected to MQTT broker
+2025-08-22 12:49:33,602 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:49:33,606 - INFO - Published to /temperature: {"timestamp": 1755863373.6051593, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:49:33,607 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:49:38,694 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:49:38,695 - INFO - Published to /temperature: {"timestamp": 1755863378.6952233, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:49:38,696 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:49:43,783 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:49:43,784 - INFO - Published to /temperature: {"timestamp": 1755863383.7840445, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:49:43,786 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:49:48,877 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:49:48,879 - INFO - Published to /temperature: {"timestamp": 1755863388.8785117, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:49:48,881 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:49:53,966 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:49:53,967 - INFO - Published to /temperature: {"timestamp": 1755863393.967153, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:49:53,968 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:49:59,050 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:49:59,051 - INFO - Published to /temperature: {"timestamp": 1755863399.0509837, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:49:59,052 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:50:04,135 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:50:04,135 - INFO - Published to /temperature: {"timestamp": 1755863404.135549, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:50:04,136 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:50:09,217 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:50:09,218 - INFO - Published to /temperature: {"timestamp": 1755863409.2178931, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:50:09,218 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:50:14,304 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:50:14,306 - INFO - Published to /temperature: {"timestamp": 1755863414.3051107, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:50:14,309 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:50:19,394 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:50:19,394 - INFO - Published to /temperature: {"timestamp": 1755863419.3944907, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:50:19,397 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:50:24,479 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:50:24,480 - INFO - Published to /temperature: {"timestamp": 1755863424.4805365, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:50:24,481 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:50:29,562 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:50:29,563 - INFO - Published to /temperature: {"timestamp": 1755863429.5629463, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:50:29,566 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:50:34,648 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:50:34,649 - INFO - Published to /temperature: {"timestamp": 1755863434.6493936, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:50:34,656 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:50:39,740 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:50:39,741 - INFO - Published to /temperature: {"timestamp": 1755863439.7403793, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:50:39,741 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:50:44,822 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:50:44,823 - INFO - Published to /temperature: {"timestamp": 1755863444.8228586, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:50:44,824 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:50:49,905 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:50:49,906 - INFO - Published to /temperature: {"timestamp": 1755863449.9056044, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:50:49,906 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:50:54,999 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:50:54,999 - INFO - Published to /temperature: {"timestamp": 1755863454.9994597, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:50:55,004 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:51:00,095 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:51:00,097 - INFO - Published to /temperature: {"timestamp": 1755863460.0968764, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:51:00,100 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:51:38,962 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-22 12:51:38,978 - INFO - SCPI QUERY: '*IDN?'
+2025-08-22 12:51:38,979 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-22 12:51:39,030 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-22 12:51:39,031 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-22 12:51:39,031 - INFO - Resetting instrument...
+2025-08-22 12:51:39,031 - INFO - SCPI: '*RST'
+2025-08-22 12:51:39,032 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-22 12:51:39,032 - INFO - SCPI: '*CLS'
+2025-08-22 12:51:39,032 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-22 12:51:39,033 - INFO - agilent intialized
+2025-08-22 12:51:39,033 - INFO - GPIO Controller multiplexer initialized with pins: [17, 18, 22, 27]
+2025-08-22 12:51:39,034 - INFO - GPIO intialized
+2025-08-22 12:51:39,034 - INFO - [AD5260] Initialized | RAB=20.0kΩ | VDD=5.0V | VSS=0.0V
+2025-08-22 12:51:39,034 - INFO - potentiometer intialized
+2025-08-22 12:51:39,041 - INFO - [MAX31865] Initialized | Wires=3 | Nominal=1000.0Ω | Ref=4300.0Ω
+2025-08-22 12:51:39,041 - INFO - temperature measurer intialized
+2025-08-22 12:51:39,042 - INFO - All hardware initialized successfully
+2025-08-22 12:51:39,042 - INFO - hardware initialization worked in the _init_
+2025-08-22 12:51:39,042 - INFO - on_ui_command is reached
+2025-08-22 12:51:39,043 - INFO - MQTT handlers configured
+2025-08-22 12:51:39,045 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 12:51:39,045 - INFO - Successfully connected to MQTT broker
+2025-08-22 12:51:39,046 - INFO - Temperature loop started in background thread
+2025-08-22 12:51:39,052 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 12:51:39,053 - INFO - Successfully connected to MQTT broker
+2025-08-22 12:51:39,153 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:51:39,158 - INFO - Published to /temperature: {"timestamp": 1755863499.157999, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:51:39,159 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:51:44,248 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:51:44,251 - INFO - Published to /temperature: {"timestamp": 1755863504.2488606, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:51:44,253 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:51:49,348 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:51:49,349 - INFO - Published to /temperature: {"timestamp": 1755863509.3490584, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:51:49,349 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:51:54,441 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:51:54,443 - INFO - Published to /temperature: {"timestamp": 1755863514.4423122, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:51:54,445 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:51:59,535 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:51:59,536 - INFO - Published to /temperature: {"timestamp": 1755863519.5359514, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:51:59,539 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:52:04,630 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:52:04,632 - INFO - Published to /temperature: {"timestamp": 1755863524.6313293, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:52:04,634 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:52:09,591 - INFO - Published to /ui_command: {"type": "potentiometer_voltage_sweep", "voltage_start_v": 0.0, "voltage_end_v": 10.0, "voltage_sweep_steps": 255.0, "voltage_sweep_duration": 1.0} (result: 0)
+2025-08-22 12:52:09,594 - INFO - Received command: {'type': 'potentiometer_voltage_sweep', 'voltage_start_v': 0.0, 'voltage_end_v': 10.0, 'voltage_sweep_steps': 255.0, 'voltage_sweep_duration': 1.0}
+2025-08-22 12:52:09,594 - ERROR - Command handling error: Voltages must be between 0.0V and 5.0V
+2025-08-22 12:52:09,595 - INFO - Published to /control_response: {"error": "Voltages must be between 0.0V and 5.0V", "command": {"type": "potentiometer_voltage_sweep", "voltage_start_v": 0.0, "voltage_end_v": 10.0, "voltage_sweep_steps": 255.0, "voltage_sweep_duration": 1.0}} (result: 0)
+2025-08-22 12:52:09,720 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:52:09,721 - INFO - Published to /temperature: {"timestamp": 1755863529.7207742, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:52:09,722 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:52:14,808 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:52:14,809 - INFO - Published to /temperature: {"timestamp": 1755863534.8088098, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:52:14,810 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:52:19,898 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:52:19,899 - INFO - Published to /temperature: {"timestamp": 1755863539.8995633, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:52:19,900 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:52:24,982 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:52:24,983 - INFO - Published to /temperature: {"timestamp": 1755863544.9825907, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:52:24,983 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 12:52:30,071 - INFO - [MAX31865] Temperature: 1261.94 K
+2025-08-22 12:52:30,072 - INFO - Published to /temperature: {"timestamp": 1755863550.0717523, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 12:52:30,075 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:11:42,209 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-22 13:11:42,224 - INFO - SCPI QUERY: '*IDN?'
+2025-08-22 13:11:42,225 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-22 13:11:42,277 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-22 13:11:42,277 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-22 13:11:42,277 - INFO - Resetting instrument...
+2025-08-22 13:11:42,277 - INFO - SCPI: '*RST'
+2025-08-22 13:11:42,278 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-22 13:11:42,278 - INFO - SCPI: '*CLS'
+2025-08-22 13:11:42,278 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-22 13:11:42,279 - INFO - agilent intialized
+2025-08-22 13:11:42,279 - INFO - GPIO Controller multiplexer initialized with pins: [17, 18, 22, 27]
+2025-08-22 13:11:42,279 - INFO - GPIO intialized
+2025-08-22 13:11:42,280 - INFO - [AD5260] Initialized | RAB=20.0kΩ | VDD=5.0V | VSS=0.0V
+2025-08-22 13:11:42,280 - INFO - potentiometer intialized
+2025-08-22 13:11:42,287 - INFO - [MAX31865] Initialized | Wires=3 | Nominal=1000.0Ω | Ref=4300.0Ω
+2025-08-22 13:11:42,288 - INFO - temperature measurer intialized
+2025-08-22 13:11:42,288 - INFO - All hardware initialized successfully
+2025-08-22 13:11:42,288 - INFO - hardware initialization worked in the _init_
+2025-08-22 13:11:42,289 - INFO - on_ui_command is reached
+2025-08-22 13:11:42,289 - INFO - MQTT handlers configured
+2025-08-22 13:11:42,291 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 13:11:42,292 - INFO - Successfully connected to MQTT broker
+2025-08-22 13:11:42,293 - INFO - Temperature loop started in background thread
+2025-08-22 13:11:42,293 - ERROR - [MAX31865] Read error: 'MAX31865Controller' object has no attribute 'read_temperature'
+2025-08-22 13:11:42,298 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 13:11:42,298 - INFO - Successfully connected to MQTT broker
+2025-08-22 13:11:47,295 - ERROR - [MAX31865] Read error: 'MAX31865Controller' object has no attribute 'read_temperature'
+2025-08-22 13:11:52,300 - ERROR - [MAX31865] Read error: 'MAX31865Controller' object has no attribute 'read_temperature'
+2025-08-22 13:11:57,300 - ERROR - [MAX31865] Read error: 'MAX31865Controller' object has no attribute 'read_temperature'
+2025-08-22 13:12:01,266 - INFO - Published to /ui_command: {"type": "signal_config", "frequency": 1013.0, "bursts": 5, "duty_cycle": 50.0, "inter_block_delay": 2.0} (result: 0)
+2025-08-22 13:12:01,272 - INFO - Received command: {'type': 'signal_config', 'frequency': 1013.0, 'bursts': 5, 'duty_cycle': 50.0, 'inter_block_delay': 2.0}
+2025-08-22 13:12:01,275 - INFO - handle_signal_config reaches at least up to the config transmittance to the agilent <bound method HighLevelControl.configure_signal of <Backend.HighLevelControl object at 0x7fabeab0d0>>
+2025-08-22 13:12:01,276 - INFO - SCPI: 'FUNCTION PULSE'
+2025-08-22 13:12:01,277 - INFO - RAW BYTES SENT: b'FUNCTION PULSE\r\n'
+2025-08-22 13:12:01,278 - INFO - SCPI: 'PULSE:PERIOD 0.0009871668311944718'
+2025-08-22 13:12:01,279 - INFO - RAW BYTES SENT: b'PULSE:PERIOD 0.0009871668311944718\r\n'
+2025-08-22 13:12:01,280 - INFO - SCPI: 'PULSE:WIDTH 0.0004935834155972359'
+2025-08-22 13:12:01,280 - INFO - RAW BYTES SENT: b'PULSE:WIDTH 0.0004935834155972359\r\n'
+2025-08-22 13:12:01,281 - INFO - SCPI: 'PULSE:TRANSITION 1e-06'
+2025-08-22 13:12:01,282 - INFO - RAW BYTES SENT: b'PULSE:TRANSITION 1e-06\r\n'
+2025-08-22 13:12:01,283 - INFO - SCPI: 'OUTPUT ON'
+2025-08-22 13:12:01,284 - INFO - RAW BYTES SENT: b'OUTPUT ON\r\n'
+2025-08-22 13:12:01,285 - INFO - SCPI: 'BURST:MODE TRIG'
+2025-08-22 13:12:01,286 - INFO - RAW BYTES SENT: b'BURST:MODE TRIG\r\n'
+2025-08-22 13:12:01,287 - INFO - SCPI: 'BURST:NCYCLES 5'
+2025-08-22 13:12:01,287 - INFO - RAW BYTES SENT: b'BURST:NCYCLES 5\r\n'
+2025-08-22 13:12:01,288 - INFO - SCPI: 'BURST:PHASE 0'
+2025-08-22 13:12:01,289 - INFO - RAW BYTES SENT: b'BURST:PHASE 0\r\n'
+2025-08-22 13:12:01,290 - INFO - SCPI: 'TRIGGER:SOURCE BUS'
+2025-08-22 13:12:01,291 - INFO - RAW BYTES SENT: b'TRIGGER:SOURCE BUS\r\n'
+2025-08-22 13:12:01,292 - INFO - SCPI: 'BURST:STATE ON'
+2025-08-22 13:12:01,293 - INFO - RAW BYTES SENT: b'BURST:STATE ON\r\n'
+2025-08-22 13:12:01,295 - INFO - Signal configured: frequency=1013.0, period=0.0009871668311944718, width=0.0004935834155972359, duty_cycle=50.0, bursts=5, inter_block_delay=0.5
+2025-08-22 13:12:01,296 - INFO - Signal configuration handled successfully.
+2025-08-22 13:12:01,297 - INFO - Published to /control_response: {"status": "Signal configuration applied."} (result: 0)
+2025-08-22 13:12:02,301 - ERROR - [MAX31865] Read error: 'MAX31865Controller' object has no attribute 'read_temperature'
+2025-08-22 13:12:07,304 - ERROR - [MAX31865] Read error: 'MAX31865Controller' object has no attribute 'read_temperature'
+2025-08-22 13:12:07,982 - INFO - Published to /ui_command: {"type": "pulse_train_sweep"} (result: 0)
+2025-08-22 13:12:07,982 - INFO - Received command: {'type': 'pulse_train_sweep'}
+2025-08-22 13:12:07,984 - INFO - SCPI: '*RST'
+2025-08-22 13:12:07,984 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-22 13:12:07,984 - INFO - SCPI: '*CLS'
+2025-08-22 13:12:07,986 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-22 13:12:07,987 - INFO - SCPI: 'FUNCTION SQUARE'
+2025-08-22 13:12:07,987 - INFO - RAW BYTES SENT: b'FUNCTION SQUARE\r\n'
+2025-08-22 13:12:07,988 - INFO - SCPI: 'FREQUENCY 5E6'
+2025-08-22 13:12:07,988 - INFO - RAW BYTES SENT: b'FREQUENCY 5E6\r\n'
+2025-08-22 13:12:07,989 - INFO - SCPI: 'OUTPUT ON'
+2025-08-22 13:12:07,989 - INFO - RAW BYTES SENT: b'OUTPUT ON\r\n'
+2025-08-22 13:12:07,990 - INFO - SCPI: 'BURST:MODE TRIG'
+2025-08-22 13:12:07,990 - INFO - RAW BYTES SENT: b'BURST:MODE TRIG\r\n'
+2025-08-22 13:12:07,991 - INFO - SCPI: 'BURST:PHASE 0'
+2025-08-22 13:12:07,991 - INFO - RAW BYTES SENT: b'BURST:PHASE 0\r\n'
+2025-08-22 13:12:07,992 - INFO - SCPI: 'TRIGGER:SOURCE BUS'
+2025-08-22 13:12:07,992 - INFO - RAW BYTES SENT: b'TRIGGER:SOURCE BUS\r\n'
+2025-08-22 13:12:07,993 - INFO - SCPI: 'BURST:STATE ON'
+2025-08-22 13:12:07,993 - INFO - RAW BYTES SENT: b'BURST:STATE ON\r\n'
+2025-08-22 13:12:07,994 - INFO - Starting pulse train sweep
+2025-08-22 13:12:07,994 - INFO - SCPI: 'BURST:NCYCLES 20'
+2025-08-22 13:12:07,995 - INFO - RAW BYTES SENT: b'BURST:NCYCLES 20\r\n'
+2025-08-22 13:12:07,995 - INFO - Burst 20 triggered at 2025-08-22T13:12:07.995736
+2025-08-22 13:12:07,996 - INFO - SCPI: '*TRG'
+2025-08-22 13:12:07,996 - INFO - RAW BYTES SENT: b'*TRG\r\n'
+2025-08-22 13:12:08,098 - INFO - SCPI: 'BURST:NCYCLES 19'
+2025-08-22 13:12:08,098 - INFO - RAW BYTES SENT: b'BURST:NCYCLES 19\r\n'
+2025-08-22 13:12:08,099 - INFO - Burst 19 triggered at 2025-08-22T13:12:08.099297
+2025-08-22 13:12:08,099 - INFO - SCPI: '*TRG'
+2025-08-22 13:12:08,099 - INFO - RAW BYTES SENT: b'*TRG\r\n'
+2025-08-22 13:12:08,201 - INFO - SCPI: 'BURST:NCYCLES 18'
+2025-08-22 13:12:08,201 - INFO - RAW BYTES SENT: b'BURST:NCYCLES 18\r\n'
+2025-08-22 13:12:08,202 - INFO - Burst 18 triggered at 2025-08-22T13:12:08.202335
+2025-08-22 13:12:08,202 - INFO - SCPI: '*TRG'
+2025-08-22 13:12:08,203 - INFO - RAW BYTES SENT: b'*TRG\r\n'
+2025-08-22 13:12:08,304 - INFO - SCPI: 'BURST:NCYCLES 17'
+2025-08-22 13:12:08,304 - INFO - RAW BYTES SENT: b'BURST:NCYCLES 17\r\n'
+2025-08-22 13:12:08,305 - INFO - Burst 17 triggered at 2025-08-22T13:12:08.305256
+2025-08-22 13:12:08,305 - INFO - SCPI: '*TRG'
+2025-08-22 13:12:08,305 - INFO - RAW BYTES SENT: b'*TRG\r\n'
+2025-08-22 13:12:08,407 - INFO - SCPI: 'BURST:NCYCLES 16'
+2025-08-22 13:12:08,408 - INFO - RAW BYTES SENT: b'BURST:NCYCLES 16\r\n'
+2025-08-22 13:12:08,409 - INFO - Burst 16 triggered at 2025-08-22T13:12:08.409096
+2025-08-22 13:12:08,409 - INFO - SCPI: '*TRG'
+2025-08-22 13:12:08,410 - INFO - RAW BYTES SENT: b'*TRG\r\n'
+2025-08-22 13:12:08,513 - INFO - SCPI: 'BURST:NCYCLES 15'
+2025-08-22 13:12:08,513 - INFO - RAW BYTES SENT: b'BURST:NCYCLES 15\r\n'
+2025-08-22 13:12:08,514 - INFO - Burst 15 triggered at 2025-08-22T13:12:08.514455
+2025-08-22 13:12:08,515 - INFO - SCPI: '*TRG'
+2025-08-22 13:12:08,515 - INFO - RAW BYTES SENT: b'*TRG\r\n'
+2025-08-22 13:12:08,617 - INFO - SCPI: 'BURST:NCYCLES 14'
+2025-08-22 13:12:08,618 - INFO - RAW BYTES SENT: b'BURST:NCYCLES 14\r\n'
+2025-08-22 13:12:08,618 - INFO - Burst 14 triggered at 2025-08-22T13:12:08.618751
+2025-08-22 13:12:08,619 - INFO - SCPI: '*TRG'
+2025-08-22 13:12:08,619 - INFO - RAW BYTES SENT: b'*TRG\r\n'
+2025-08-22 13:12:08,721 - INFO - SCPI: 'BURST:NCYCLES 13'
+2025-08-22 13:12:08,722 - INFO - RAW BYTES SENT: b'BURST:NCYCLES 13\r\n'
+2025-08-22 13:12:08,724 - INFO - Burst 13 triggered at 2025-08-22T13:12:08.724551
+2025-08-22 13:12:08,725 - INFO - SCPI: '*TRG'
+2025-08-22 13:12:08,726 - INFO - RAW BYTES SENT: b'*TRG\r\n'
+2025-08-22 13:12:08,829 - INFO - SCPI: 'BURST:NCYCLES 12'
+2025-08-22 13:12:08,829 - INFO - RAW BYTES SENT: b'BURST:NCYCLES 12\r\n'
+2025-08-22 13:12:08,830 - INFO - Burst 12 triggered at 2025-08-22T13:12:08.830510
+2025-08-22 13:12:08,830 - INFO - SCPI: '*TRG'
+2025-08-22 13:12:08,831 - INFO - RAW BYTES SENT: b'*TRG\r\n'
+2025-08-22 13:12:08,936 - INFO - SCPI: 'BURST:NCYCLES 11'
+2025-08-22 13:12:08,936 - INFO - RAW BYTES SENT: b'BURST:NCYCLES 11\r\n'
+2025-08-22 13:12:08,937 - INFO - Burst 11 triggered at 2025-08-22T13:12:08.936966
+2025-08-22 13:12:08,937 - INFO - SCPI: '*TRG'
+2025-08-22 13:12:08,937 - INFO - RAW BYTES SENT: b'*TRG\r\n'
+2025-08-22 13:12:09,039 - INFO - SCPI: 'BURST:NCYCLES 10'
+2025-08-22 13:12:09,040 - INFO - RAW BYTES SENT: b'BURST:NCYCLES 10\r\n'
+2025-08-22 13:12:09,041 - INFO - Burst 10 triggered at 2025-08-22T13:12:09.041109
+2025-08-22 13:12:09,041 - INFO - SCPI: '*TRG'
+2025-08-22 13:12:09,042 - INFO - RAW BYTES SENT: b'*TRG\r\n'
+2025-08-22 13:12:09,144 - INFO - SCPI: 'BURST:NCYCLES 9'
+2025-08-22 13:12:09,144 - INFO - RAW BYTES SENT: b'BURST:NCYCLES 9\r\n'
+2025-08-22 13:12:09,144 - INFO - Burst 9 triggered at 2025-08-22T13:12:09.144835
+2025-08-22 13:12:09,145 - INFO - SCPI: '*TRG'
+2025-08-22 13:12:09,145 - INFO - RAW BYTES SENT: b'*TRG\r\n'
+2025-08-22 13:12:09,246 - INFO - SCPI: 'BURST:NCYCLES 8'
+2025-08-22 13:12:09,247 - INFO - RAW BYTES SENT: b'BURST:NCYCLES 8\r\n'
+2025-08-22 13:12:09,247 - INFO - Burst 8 triggered at 2025-08-22T13:12:09.247519
+2025-08-22 13:12:09,247 - INFO - SCPI: '*TRG'
+2025-08-22 13:12:09,248 - INFO - RAW BYTES SENT: b'*TRG\r\n'
+2025-08-22 13:12:09,349 - INFO - SCPI: 'BURST:NCYCLES 7'
+2025-08-22 13:12:09,350 - INFO - RAW BYTES SENT: b'BURST:NCYCLES 7\r\n'
+2025-08-22 13:12:09,350 - INFO - Burst 7 triggered at 2025-08-22T13:12:09.350413
+2025-08-22 13:12:09,350 - INFO - SCPI: '*TRG'
+2025-08-22 13:12:09,350 - INFO - RAW BYTES SENT: b'*TRG\r\n'
+2025-08-22 13:12:09,452 - INFO - SCPI: 'BURST:NCYCLES 6'
+2025-08-22 13:12:09,452 - INFO - RAW BYTES SENT: b'BURST:NCYCLES 6\r\n'
+2025-08-22 13:12:09,453 - INFO - Burst 6 triggered at 2025-08-22T13:12:09.453326
+2025-08-22 13:12:09,453 - INFO - SCPI: '*TRG'
+2025-08-22 13:12:09,453 - INFO - RAW BYTES SENT: b'*TRG\r\n'
+2025-08-22 13:12:09,555 - INFO - SCPI: 'BURST:NCYCLES 5'
+2025-08-22 13:12:09,555 - INFO - RAW BYTES SENT: b'BURST:NCYCLES 5\r\n'
+2025-08-22 13:12:09,556 - INFO - Burst 5 triggered at 2025-08-22T13:12:09.556395
+2025-08-22 13:12:09,556 - INFO - SCPI: '*TRG'
+2025-08-22 13:12:09,556 - INFO - RAW BYTES SENT: b'*TRG\r\n'
+2025-08-22 13:12:09,658 - INFO - SCPI: 'BURST:NCYCLES 4'
+2025-08-22 13:12:09,658 - INFO - RAW BYTES SENT: b'BURST:NCYCLES 4\r\n'
+2025-08-22 13:12:09,659 - INFO - Burst 4 triggered at 2025-08-22T13:12:09.659050
+2025-08-22 13:12:09,659 - INFO - SCPI: '*TRG'
+2025-08-22 13:12:09,659 - INFO - RAW BYTES SENT: b'*TRG\r\n'
+2025-08-22 13:12:09,761 - INFO - SCPI: 'BURST:NCYCLES 3'
+2025-08-22 13:12:09,761 - INFO - RAW BYTES SENT: b'BURST:NCYCLES 3\r\n'
+2025-08-22 13:12:09,761 - INFO - Burst 3 triggered at 2025-08-22T13:12:09.761849
+2025-08-22 13:12:09,762 - INFO - SCPI: '*TRG'
+2025-08-22 13:12:09,762 - INFO - RAW BYTES SENT: b'*TRG\r\n'
+2025-08-22 13:12:09,863 - INFO - SCPI: 'BURST:NCYCLES 2'
+2025-08-22 13:12:09,864 - INFO - RAW BYTES SENT: b'BURST:NCYCLES 2\r\n'
+2025-08-22 13:12:09,864 - INFO - Burst 2 triggered at 2025-08-22T13:12:09.864654
+2025-08-22 13:12:09,865 - INFO - SCPI: '*TRG'
+2025-08-22 13:12:09,865 - INFO - RAW BYTES SENT: b'*TRG\r\n'
+2025-08-22 13:12:09,967 - INFO - SCPI: 'BURST:NCYCLES 1'
+2025-08-22 13:12:09,967 - INFO - RAW BYTES SENT: b'BURST:NCYCLES 1\r\n'
+2025-08-22 13:12:09,968 - INFO - Burst 1 triggered at 2025-08-22T13:12:09.967954
+2025-08-22 13:12:09,968 - INFO - SCPI: '*TRG'
+2025-08-22 13:12:09,968 - INFO - RAW BYTES SENT: b'*TRG\r\n'
+2025-08-22 13:12:10,070 - INFO - Pulse train sweep complete.
+2025-08-22 13:12:10,071 - WARNING - Unexpected disconnection (code: 7)
+2025-08-22 13:12:11,072 - INFO - Successfully connected to MQTT broker
+2025-08-22 13:12:12,304 - ERROR - [MAX31865] Read error: 'MAX31865Controller' object has no attribute 'read_temperature'
+2025-08-22 13:12:17,305 - ERROR - [MAX31865] Read error: 'MAX31865Controller' object has no attribute 'read_temperature'
+2025-08-22 13:12:22,306 - ERROR - [MAX31865] Read error: 'MAX31865Controller' object has no attribute 'read_temperature'
+2025-08-22 13:14:05,899 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-22 13:14:05,915 - INFO - SCPI QUERY: '*IDN?'
+2025-08-22 13:14:05,915 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-22 13:14:05,967 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-22 13:14:05,968 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-22 13:14:05,968 - INFO - Resetting instrument...
+2025-08-22 13:14:05,968 - INFO - SCPI: '*RST'
+2025-08-22 13:14:05,968 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-22 13:14:05,969 - INFO - SCPI: '*CLS'
+2025-08-22 13:14:05,969 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-22 13:14:05,969 - INFO - agilent intialized
+2025-08-22 13:14:05,970 - INFO - GPIO Controller multiplexer initialized with pins: [17, 18, 22, 27]
+2025-08-22 13:14:05,970 - INFO - GPIO intialized
+2025-08-22 13:14:05,971 - INFO - [AD5260] Initialized | RAB=20.0kΩ | VDD=5.0V | VSS=0.0V
+2025-08-22 13:14:05,971 - INFO - potentiometer intialized
+2025-08-22 13:14:05,979 - INFO - [MAX31865] Initialized | Wires=3 | Nominal=1000.0Ω | Ref=4300.0Ω
+2025-08-22 13:14:05,980 - INFO - temperature measurer intialized
+2025-08-22 13:14:05,980 - INFO - All hardware initialized successfully
+2025-08-22 13:14:05,980 - INFO - hardware initialization worked in the _init_
+2025-08-22 13:14:05,981 - INFO - on_ui_command is reached
+2025-08-22 13:14:05,981 - INFO - MQTT handlers configured
+2025-08-22 13:14:05,983 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 13:14:05,984 - INFO - Successfully connected to MQTT broker
+2025-08-22 13:14:05,986 - INFO - Temperature loop started in background thread
+2025-08-22 13:14:05,993 - INFO - Successfully connected to MQTT broker
+2025-08-22 13:14:05,993 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 13:14:06,081 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:14:06,084 - INFO - Published to /temperature: {"timestamp": 1755864846.0834818, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:14:06,085 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:14:11,170 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:14:11,171 - INFO - Published to /temperature: {"timestamp": 1755864851.170798, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:14:11,172 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:14:16,254 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:14:16,255 - INFO - Published to /temperature: {"timestamp": 1755864856.254986, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:14:16,256 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:14:21,342 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:14:21,344 - INFO - Published to /temperature: {"timestamp": 1755864861.3431854, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:14:21,347 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:16:20,271 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-22 13:16:20,286 - INFO - SCPI QUERY: '*IDN?'
+2025-08-22 13:16:20,287 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-22 13:16:20,339 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-22 13:16:20,339 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-22 13:16:20,339 - INFO - Resetting instrument...
+2025-08-22 13:16:20,340 - INFO - SCPI: '*RST'
+2025-08-22 13:16:20,340 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-22 13:16:20,340 - INFO - SCPI: '*CLS'
+2025-08-22 13:16:20,341 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-22 13:16:20,341 - INFO - agilent intialized
+2025-08-22 13:16:20,341 - INFO - GPIO Controller multiplexer initialized with pins: [17, 18, 22, 27]
+2025-08-22 13:16:20,342 - INFO - GPIO intialized
+2025-08-22 13:16:20,342 - INFO - [AD5260] Initialized | RAB=20.0kΩ | VDD=5.0V | VSS=0.0V
+2025-08-22 13:16:20,343 - INFO - potentiometer intialized
+2025-08-22 13:16:20,351 - INFO - [MAX31865] Initialized | Wires=3 | Nominal=1000.0Ω | Ref=4300.0Ω
+2025-08-22 13:16:20,352 - INFO - temperature measurer intialized
+2025-08-22 13:16:20,352 - INFO - All hardware initialized successfully
+2025-08-22 13:16:20,352 - INFO - hardware initialization worked in the _init_
+2025-08-22 13:16:20,353 - INFO - on_ui_command is reached
+2025-08-22 13:16:20,353 - INFO - MQTT handlers configured
+2025-08-22 13:16:20,356 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 13:16:20,357 - INFO - Successfully connected to MQTT broker
+2025-08-22 13:16:20,357 - INFO - Temperature loop started in background thread
+2025-08-22 13:16:20,365 - INFO - Successfully connected to MQTT broker
+2025-08-22 13:16:20,366 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 13:16:20,453 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:16:20,455 - INFO - Published to /temperature: {"timestamp": 1755864980.4545856, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:16:20,457 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:16:25,547 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:16:25,549 - INFO - Published to /temperature: {"timestamp": 1755864985.5483441, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:16:25,550 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:16:30,638 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:16:30,639 - INFO - Published to /temperature: {"timestamp": 1755864990.6390216, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:16:30,639 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:32:53,345 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-22 13:32:53,361 - INFO - SCPI QUERY: '*IDN?'
+2025-08-22 13:32:53,361 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-22 13:32:53,413 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-22 13:32:53,413 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-22 13:32:53,414 - INFO - Resetting instrument...
+2025-08-22 13:32:53,414 - INFO - SCPI: '*RST'
+2025-08-22 13:32:53,414 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-22 13:32:53,415 - INFO - SCPI: '*CLS'
+2025-08-22 13:32:53,415 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-22 13:32:53,415 - INFO - agilent intialized
+2025-08-22 13:32:53,416 - INFO - GPIO Controller multiplexer initialized with pins: [17, 18, 22, 27]
+2025-08-22 13:32:53,416 - INFO - GPIO intialized
+2025-08-22 13:32:53,416 - INFO - [AD5260] Initialized | RAB=20.0kΩ | VDD=5.0V | VSS=0.0V
+2025-08-22 13:32:53,417 - INFO - potentiometer intialized
+2025-08-22 13:32:53,423 - INFO - [MAX31865] Initialized | Wires=3 | Nominal=1000.0Ω | Ref=4300.0Ω
+2025-08-22 13:32:53,424 - INFO - temperature measurer intialized
+2025-08-22 13:32:53,424 - INFO - All hardware initialized successfully
+2025-08-22 13:32:53,425 - INFO - hardware initialization worked in the _init_
+2025-08-22 13:32:53,425 - INFO - on_ui_command is reached
+2025-08-22 13:32:53,425 - INFO - MQTT handlers configured
+2025-08-22 13:32:53,428 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 13:32:53,428 - INFO - Successfully connected to MQTT broker
+2025-08-22 13:32:53,430 - INFO - Temperature loop started in background thread
+2025-08-22 13:32:53,437 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 13:32:53,454 - INFO - Successfully connected to MQTT broker
+2025-08-22 13:32:53,526 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:32:53,529 - INFO - Published to /temperature: {"timestamp": 1755865973.5287378, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:32:53,530 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:32:58,612 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:32:58,613 - INFO - Published to /temperature: {"timestamp": 1755865978.6129959, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:32:58,614 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:33:03,700 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:33:03,702 - INFO - Published to /temperature: {"timestamp": 1755865983.7012303, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:33:03,704 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:33:08,796 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:33:08,798 - INFO - Published to /temperature: {"timestamp": 1755865988.7974038, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:33:08,799 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:33:13,888 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:33:13,889 - INFO - Published to /temperature: {"timestamp": 1755865993.8889894, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:33:13,889 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:33:18,976 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:33:18,978 - INFO - Published to /temperature: {"timestamp": 1755865998.9770453, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:33:18,979 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:33:24,075 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:33:24,077 - INFO - Published to /temperature: {"timestamp": 1755866004.0767534, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:33:24,078 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:36:36,644 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-22 13:36:36,659 - INFO - SCPI QUERY: '*IDN?'
+2025-08-22 13:36:36,660 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-22 13:36:36,712 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-22 13:36:36,712 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-22 13:36:36,712 - INFO - Resetting instrument...
+2025-08-22 13:36:36,712 - INFO - SCPI: '*RST'
+2025-08-22 13:36:36,713 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-22 13:36:36,713 - INFO - SCPI: '*CLS'
+2025-08-22 13:36:36,713 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-22 13:36:36,714 - INFO - agilent intialized
+2025-08-22 13:36:36,714 - INFO - GPIO Controller multiplexer initialized with pins: [17, 18, 22, 27]
+2025-08-22 13:36:36,714 - INFO - GPIO intialized
+2025-08-22 13:36:36,714 - INFO - [AD5260] Initialized | RAB=20.0kΩ | VDD=5.0V | VSS=0.0V
+2025-08-22 13:36:36,715 - INFO - potentiometer intialized
+2025-08-22 13:36:36,721 - INFO - [MAX31865] Initialized | Wires=3 | Nominal=1000.0Ω | Ref=4300.0Ω
+2025-08-22 13:36:36,721 - INFO - temperature measurer intialized
+2025-08-22 13:36:36,722 - INFO - All hardware initialized successfully
+2025-08-22 13:36:36,722 - INFO - hardware initialization worked in the _init_
+2025-08-22 13:36:36,722 - INFO - on_ui_command is reached
+2025-08-22 13:36:36,723 - INFO - MQTT handlers configured
+2025-08-22 13:36:36,725 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 13:36:36,725 - INFO - Successfully connected to MQTT broker
+2025-08-22 13:36:36,726 - INFO - Temperature loop started in background thread
+2025-08-22 13:36:36,733 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 13:36:36,733 - INFO - Successfully connected to MQTT broker
+2025-08-22 13:36:36,820 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:36:36,822 - INFO - Published to /temperature: {"timestamp": 1755866196.821607, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:36:36,824 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:36:41,922 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:36:41,924 - INFO - Published to /temperature: {"timestamp": 1755866201.9234018, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:36:41,926 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:36:47,015 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:36:47,015 - INFO - Published to /temperature: {"timestamp": 1755866207.0153422, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:36:47,016 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:36:52,098 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:36:52,099 - INFO - Published to /temperature: {"timestamp": 1755866212.098782, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:36:52,101 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:36:57,183 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:36:57,184 - INFO - Published to /temperature: {"timestamp": 1755866217.184025, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:36:57,186 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:37:02,273 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:37:02,275 - INFO - Published to /temperature: {"timestamp": 1755866222.274513, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:37:02,276 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:37:07,366 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:37:07,367 - INFO - Published to /temperature: {"timestamp": 1755866227.3673027, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:37:07,370 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:40:41,530 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-22 13:40:41,545 - INFO - SCPI QUERY: '*IDN?'
+2025-08-22 13:40:41,546 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-22 13:40:41,598 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-22 13:40:41,598 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-22 13:40:41,598 - INFO - Resetting instrument...
+2025-08-22 13:40:41,598 - INFO - SCPI: '*RST'
+2025-08-22 13:40:41,599 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-22 13:40:41,599 - INFO - SCPI: '*CLS'
+2025-08-22 13:40:41,599 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-22 13:40:41,600 - INFO - agilent intialized
+2025-08-22 13:40:41,600 - INFO - GPIO Controller multiplexer initialized with pins: [17, 18, 22, 27]
+2025-08-22 13:40:41,600 - INFO - GPIO intialized
+2025-08-22 13:40:41,601 - INFO - [AD5260] Initialized | RAB=20.0kΩ | VDD=5.0V | VSS=0.0V
+2025-08-22 13:40:41,601 - INFO - potentiometer intialized
+2025-08-22 13:40:41,608 - INFO - [MAX31865] Initialized | Wires=3 | Nominal=1000.0Ω | Ref=4300.0Ω
+2025-08-22 13:40:41,608 - INFO - temperature measurer intialized
+2025-08-22 13:40:41,609 - INFO - All hardware initialized successfully
+2025-08-22 13:40:41,609 - INFO - hardware initialization worked in the _init_
+2025-08-22 13:40:41,610 - INFO - on_ui_command is reached
+2025-08-22 13:40:41,610 - INFO - MQTT handlers configured
+2025-08-22 13:40:41,612 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 13:40:41,612 - INFO - Successfully connected to MQTT broker
+2025-08-22 13:40:41,613 - INFO - Temperature loop started in background thread
+2025-08-22 13:40:41,620 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 13:40:41,620 - INFO - Successfully connected to MQTT broker
+2025-08-22 13:40:41,712 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:40:41,713 - INFO - Published to /temperature: {"timestamp": 1755866441.7134485, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:40:41,715 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:40:46,808 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:40:46,809 - INFO - Published to /temperature: {"timestamp": 1755866446.8092842, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:40:46,811 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:40:51,897 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:40:51,899 - INFO - Published to /temperature: {"timestamp": 1755866451.8987272, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:40:51,900 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:40:56,992 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:40:56,993 - INFO - Published to /temperature: {"timestamp": 1755866456.9932594, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:40:56,993 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:40:58,001 - WARNING - Unexpected disconnection (code: 7)
+2025-08-22 13:40:58,001 - WARNING - Unexpected disconnection (code: 7)
+2025-08-22 13:40:59,006 - INFO - Successfully connected to MQTT broker
+2025-08-22 13:40:59,009 - INFO - Successfully connected to MQTT broker
+2025-08-22 13:41:02,075 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:41:02,076 - INFO - Published to /temperature: {"timestamp": 1755866462.0757735, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:41:02,076 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:41:07,163 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:41:07,165 - INFO - Published to /temperature: {"timestamp": 1755866467.1647651, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:41:07,166 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:41:12,255 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:41:12,255 - INFO - Published to /temperature: {"timestamp": 1755866472.2554348, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:41:12,256 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:45:31,924 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-22 13:45:31,940 - INFO - SCPI QUERY: '*IDN?'
+2025-08-22 13:45:31,940 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-22 13:45:31,992 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-22 13:45:31,992 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-22 13:45:31,992 - INFO - Resetting instrument...
+2025-08-22 13:45:31,993 - INFO - SCPI: '*RST'
+2025-08-22 13:45:31,993 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-22 13:45:31,993 - INFO - SCPI: '*CLS'
+2025-08-22 13:45:31,994 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-22 13:45:31,994 - INFO - agilent intialized
+2025-08-22 13:45:31,994 - INFO - GPIO Controller multiplexer initialized with pins: [17, 18, 22, 27]
+2025-08-22 13:45:31,995 - INFO - GPIO intialized
+2025-08-22 13:45:31,995 - INFO - [AD5260] Initialized | RAB=20.0kΩ | VDD=5.0V | VSS=0.0V
+2025-08-22 13:45:31,995 - INFO - potentiometer intialized
+2025-08-22 13:45:32,002 - INFO - [MAX31865] Initialized | Wires=3 | Nominal=1000.0Ω | Ref=4300.0Ω
+2025-08-22 13:45:32,002 - INFO - temperature measurer intialized
+2025-08-22 13:45:32,003 - INFO - All hardware initialized successfully
+2025-08-22 13:45:32,003 - INFO - hardware initialization worked in the _init_
+2025-08-22 13:45:32,003 - INFO - on_ui_command is reached
+2025-08-22 13:45:32,004 - INFO - MQTT handlers configured
+2025-08-22 13:45:32,005 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 13:45:32,006 - INFO - Successfully connected to MQTT broker
+2025-08-22 13:45:32,007 - INFO - Temperature loop started in background thread
+2025-08-22 13:45:32,013 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 13:45:32,013 - INFO - Successfully connected to MQTT broker
+2025-08-22 13:45:32,102 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:45:32,105 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:45:37,200 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:45:37,201 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:45:42,289 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:45:42,289 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:45:47,371 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:45:47,371 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:45:52,458 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:45:52,459 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:50:44,527 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-22 13:50:44,543 - INFO - SCPI QUERY: '*IDN?'
+2025-08-22 13:50:44,543 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-22 13:50:44,595 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-22 13:50:44,595 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-22 13:50:44,596 - INFO - Resetting instrument...
+2025-08-22 13:50:44,596 - INFO - SCPI: '*RST'
+2025-08-22 13:50:44,596 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-22 13:50:44,597 - INFO - SCPI: '*CLS'
+2025-08-22 13:50:44,597 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-22 13:50:44,597 - INFO - agilent intialized
+2025-08-22 13:50:44,597 - INFO - GPIO Controller multiplexer initialized with pins: [17, 18, 22, 27]
+2025-08-22 13:50:44,598 - INFO - GPIO intialized
+2025-08-22 13:50:44,598 - INFO - [AD5260] Initialized | RAB=20.0kΩ | VDD=5.0V | VSS=0.0V
+2025-08-22 13:50:44,598 - INFO - potentiometer intialized
+2025-08-22 13:50:44,605 - INFO - [MAX31865] Initialized | Wires=3 | Nominal=1000.0Ω | Ref=4300.0Ω
+2025-08-22 13:50:44,606 - INFO - temperature measurer intialized
+2025-08-22 13:50:44,606 - INFO - All hardware initialized successfully
+2025-08-22 13:50:44,606 - INFO - hardware initialization worked in the _init_
+2025-08-22 13:50:44,607 - INFO - on_ui_command is reached
+2025-08-22 13:50:44,607 - INFO - MQTT handlers configured
+2025-08-22 13:50:44,609 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 13:50:44,609 - INFO - Successfully connected to MQTT broker
+2025-08-22 13:50:44,610 - INFO - Temperature loop started in background thread
+2025-08-22 13:50:44,617 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 13:50:44,617 - INFO - Successfully connected to MQTT broker
+2025-08-22 13:50:44,709 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:50:44,710 - INFO - Published to /temperature: {"timestamp": 1755867044.7102218, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:50:44,711 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:50:49,800 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:50:49,801 - INFO - Published to /temperature: {"timestamp": 1755867049.801162, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:50:49,802 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:50:54,885 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:50:54,886 - INFO - Published to /temperature: {"timestamp": 1755867054.885764, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:50:54,886 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:50:59,970 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:50:59,970 - INFO - Published to /temperature: {"timestamp": 1755867059.9706697, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:50:59,971 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:51:05,055 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:51:05,055 - INFO - Published to /temperature: {"timestamp": 1755867065.0554562, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:51:05,056 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:51:10,141 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:51:10,142 - INFO - Published to /temperature: {"timestamp": 1755867070.1415606, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:51:10,142 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 13:59:55,185 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-22 13:59:55,201 - INFO - SCPI QUERY: '*IDN?'
+2025-08-22 13:59:55,201 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-22 13:59:55,253 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-22 13:59:55,253 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-22 13:59:55,254 - INFO - Resetting instrument...
+2025-08-22 13:59:55,254 - INFO - SCPI: '*RST'
+2025-08-22 13:59:55,254 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-22 13:59:55,255 - INFO - SCPI: '*CLS'
+2025-08-22 13:59:55,255 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-22 13:59:55,256 - INFO - agilent intialized
+2025-08-22 13:59:55,256 - INFO - GPIO Controller multiplexer initialized with pins: [17, 18, 22, 27]
+2025-08-22 13:59:55,256 - INFO - GPIO intialized
+2025-08-22 13:59:55,257 - INFO - [AD5260] Initialized | RAB=20.0kΩ | VDD=5.0V | VSS=0.0V
+2025-08-22 13:59:55,257 - INFO - potentiometer intialized
+2025-08-22 13:59:55,267 - INFO - [MAX31865] Initialized | Wires=3 | Nominal=1000.0Ω | Ref=4300.0Ω
+2025-08-22 13:59:55,269 - INFO - temperature measurer intialized
+2025-08-22 13:59:55,269 - INFO - All hardware initialized successfully
+2025-08-22 13:59:55,269 - INFO - hardware initialization worked in the _init_
+2025-08-22 13:59:55,270 - INFO - on_ui_command is reached
+2025-08-22 13:59:55,271 - INFO - MQTT handlers configured
+2025-08-22 13:59:55,274 - INFO - Successfully connected to MQTT broker
+2025-08-22 13:59:55,275 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 13:59:55,277 - INFO - Temperature loop started in background thread
+2025-08-22 13:59:55,287 - INFO - Successfully connected to MQTT broker
+2025-08-22 13:59:55,288 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 13:59:55,388 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 13:59:55,391 - INFO - Published to /temperature: {"timestamp": 1755867595.390204, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 13:59:55,396 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 14:00:00,487 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 14:00:00,488 - INFO - Published to /temperature: {"timestamp": 1755867600.488046, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 14:00:00,490 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 14:00:05,579 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 14:00:05,582 - INFO - Published to /temperature: {"timestamp": 1755867605.5811343, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 14:00:05,585 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 14:00:10,680 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 14:00:10,681 - INFO - Published to /temperature: {"timestamp": 1755867610.6810224, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 14:00:10,682 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 14:00:15,777 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 14:00:15,779 - INFO - Published to /temperature: {"timestamp": 1755867615.7783463, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 14:00:15,780 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 14:00:20,862 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 14:00:20,863 - INFO - Published to /temperature: {"timestamp": 1755867620.8634312, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 14:00:20,864 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 14:00:25,953 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 14:00:25,954 - INFO - Published to /temperature: {"timestamp": 1755867625.953758, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 14:00:25,955 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 14:00:31,052 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 14:00:31,053 - INFO - Published to /temperature: {"timestamp": 1755867631.0528038, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 14:00:31,054 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 14:00:36,146 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 14:00:36,147 - INFO - Published to /temperature: {"timestamp": 1755867636.146571, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 14:00:36,147 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 14:08:15,934 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-22 14:08:15,949 - INFO - SCPI QUERY: '*IDN?'
+2025-08-22 14:08:15,950 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-22 14:08:16,002 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-22 14:08:16,002 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-22 14:08:16,002 - INFO - Resetting instrument...
+2025-08-22 14:08:16,002 - INFO - SCPI: '*RST'
+2025-08-22 14:08:16,003 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-22 14:08:16,003 - INFO - SCPI: '*CLS'
+2025-08-22 14:08:16,004 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-22 14:08:16,004 - INFO - agilent intialized
+2025-08-22 14:08:16,005 - INFO - GPIO Controller multiplexer initialized with pins: [17, 18, 22, 27]
+2025-08-22 14:08:16,005 - INFO - GPIO intialized
+2025-08-22 14:08:16,006 - INFO - [AD5260] Initialized | RAB=20.0kΩ | VDD=5.0V | VSS=0.0V
+2025-08-22 14:08:16,006 - INFO - potentiometer intialized
+2025-08-22 14:08:16,013 - INFO - [MAX31865] Initialized | Wires=3 | Nominal=1000.0Ω | Ref=4300.0Ω
+2025-08-22 14:08:16,014 - INFO - temperature measurer intialized
+2025-08-22 14:08:16,014 - INFO - All hardware initialized successfully
+2025-08-22 14:08:16,014 - INFO - hardware initialization worked in the _init_
+2025-08-22 14:08:16,014 - INFO - on_ui_command is reached
+2025-08-22 14:08:16,015 - INFO - MQTT handlers configured
+2025-08-22 14:08:16,016 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 14:08:16,017 - INFO - Successfully connected to MQTT broker
+2025-08-22 14:08:16,018 - INFO - Temperature loop started in background thread
+2025-08-22 14:08:16,024 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 14:08:16,037 - INFO - Successfully connected to MQTT broker
+2025-08-22 14:08:16,123 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 14:08:16,124 - INFO - Published to /temperature: {"timestamp": 1755868096.1235433, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 14:08:16,124 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 14:08:21,216 - INFO - [MAX31865] Temperature: 988.79 °C
+2025-08-22 14:08:21,217 - INFO - Published to /temperature: {"timestamp": 1755868101.2169816, "temperature_k": 1261.9421105972187} (result: 0)
+2025-08-22 14:08:21,221 - INFO - [MAX31865] Published 1261.94 K to /temperature
+2025-08-22 15:13:34,104 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-22 15:13:34,120 - INFO - SCPI QUERY: '*IDN?'
+2025-08-22 15:13:34,121 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-22 15:13:34,172 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-22 15:13:34,173 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-22 15:13:34,173 - INFO - Resetting instrument...
+2025-08-22 15:13:34,173 - INFO - SCPI: '*RST'
+2025-08-22 15:13:34,174 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-22 15:13:34,174 - INFO - SCPI: '*CLS'
+2025-08-22 15:13:34,175 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-22 15:13:34,175 - INFO - agilent intialized
+2025-08-22 15:13:34,176 - INFO - GPIO Controller multiplexer initialized with pins: [17, 18, 22, 27]
+2025-08-22 15:13:34,176 - INFO - GPIO intialized
+2025-08-22 15:13:34,177 - INFO - [AD5260] Initialized | RAB=20.0kΩ | VDD=5.0V | VSS=0.0V
+2025-08-22 15:13:34,177 - INFO - potentiometer intialized
+2025-08-22 15:13:34,184 - INFO - [MAX31865] Initialized | Wires=3 | Nominal=1000.0Ω | Ref=4300.0Ω
+2025-08-22 15:13:34,185 - INFO - temperature measurer intialized
+2025-08-22 15:13:34,186 - INFO - All hardware initialized successfully
+2025-08-22 15:13:34,186 - INFO - hardware initialization worked in the _init_
+2025-08-22 15:13:34,187 - INFO - on_ui_command is reached
+2025-08-22 15:13:34,187 - INFO - MQTT handlers configured
+2025-08-22 15:13:34,189 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 15:13:34,189 - INFO - Successfully connected to MQTT broker
+2025-08-22 15:13:34,191 - INFO - Temperature loop started in background thread
+2025-08-22 15:13:34,196 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 15:13:34,197 - INFO - Successfully connected to MQTT broker
+2025-08-22 15:13:34,284 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:13:34,286 - INFO - Published to /temperature: {"timestamp": 1755872014.2847774, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:13:34,287 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:13:39,375 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:13:39,376 - INFO - Published to /temperature: {"timestamp": 1755872019.3758724, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:13:39,376 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:13:44,460 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:13:44,460 - INFO - Published to /temperature: {"timestamp": 1755872024.4604616, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:13:44,461 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:13:49,549 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:13:49,551 - INFO - Published to /temperature: {"timestamp": 1755872029.550287, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:13:49,552 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:13:54,650 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:13:54,651 - INFO - Published to /temperature: {"timestamp": 1755872034.6507893, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:13:54,652 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:13:59,748 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:13:59,749 - INFO - Published to /temperature: {"timestamp": 1755872039.7491927, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:13:59,751 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:14:04,838 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:14:04,839 - INFO - Published to /temperature: {"timestamp": 1755872044.8386998, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:14:04,843 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:14:13,086 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-22 15:14:13,104 - INFO - SCPI QUERY: '*IDN?'
+2025-08-22 15:14:13,105 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-22 15:14:13,157 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-22 15:14:13,157 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-22 15:14:13,157 - INFO - Resetting instrument...
+2025-08-22 15:14:13,157 - INFO - SCPI: '*RST'
+2025-08-22 15:14:13,158 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-22 15:14:13,158 - INFO - SCPI: '*CLS'
+2025-08-22 15:14:13,158 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-22 15:14:13,159 - INFO - agilent intialized
+2025-08-22 15:14:13,159 - INFO - GPIO Controller multiplexer initialized with pins: [17, 18, 22, 27]
+2025-08-22 15:14:13,159 - INFO - GPIO intialized
+2025-08-22 15:14:13,160 - INFO - [AD5260] Initialized | RAB=20.0kΩ | VDD=5.0V | VSS=0.0V
+2025-08-22 15:14:13,160 - INFO - potentiometer intialized
+2025-08-22 15:14:13,167 - INFO - [MAX31865] Initialized | Wires=3 | Nominal=1000.0Ω | Ref=4300.0Ω
+2025-08-22 15:14:13,168 - INFO - temperature measurer intialized
+2025-08-22 15:14:13,168 - INFO - All hardware initialized successfully
+2025-08-22 15:14:13,169 - INFO - hardware initialization worked in the _init_
+2025-08-22 15:14:13,169 - INFO - on_ui_command is reached
+2025-08-22 15:14:13,169 - INFO - MQTT handlers configured
+2025-08-22 15:14:13,171 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 15:14:13,172 - INFO - Successfully connected to MQTT broker
+2025-08-22 15:14:13,174 - INFO - Temperature loop started in background thread
+2025-08-22 15:14:13,180 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 15:14:13,180 - INFO - Successfully connected to MQTT broker
+2025-08-22 15:14:13,269 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:14:13,270 - INFO - Published to /temperature: {"timestamp": 1755872053.270072, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:14:13,271 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:14:18,371 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:14:18,375 - INFO - Published to /temperature: {"timestamp": 1755872058.3724382, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:14:18,376 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:14:23,469 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:14:23,470 - INFO - Published to /temperature: {"timestamp": 1755872063.4697814, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:14:23,470 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:14:28,558 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:14:28,559 - INFO - Published to /temperature: {"timestamp": 1755872068.5586658, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:14:28,562 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:14:33,654 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:14:33,655 - INFO - Published to /temperature: {"timestamp": 1755872073.6550138, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:14:33,655 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:14:38,744 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:14:38,746 - INFO - Published to /temperature: {"timestamp": 1755872078.7455797, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:14:38,747 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:14:43,844 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:14:43,845 - INFO - Published to /temperature: {"timestamp": 1755872083.8452935, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:14:43,846 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:14:48,930 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:14:48,931 - INFO - Published to /temperature: {"timestamp": 1755872088.9305909, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:14:48,931 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:14:54,019 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:14:54,021 - INFO - Published to /temperature: {"timestamp": 1755872094.0207636, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:14:54,024 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:14:59,124 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:14:59,125 - INFO - Published to /temperature: {"timestamp": 1755872099.1248736, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:14:59,129 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:15:04,226 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:15:04,227 - INFO - Published to /temperature: {"timestamp": 1755872104.2272189, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:15:04,228 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:15:09,323 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:15:09,324 - INFO - Published to /temperature: {"timestamp": 1755872109.3242698, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:15:09,325 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:15:14,416 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:15:14,417 - INFO - Published to /temperature: {"timestamp": 1755872114.417056, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:15:14,421 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:15:19,513 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:15:19,514 - INFO - Published to /temperature: {"timestamp": 1755872119.5141795, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:15:19,515 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:15:24,604 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:15:24,606 - INFO - Published to /temperature: {"timestamp": 1755872124.6054633, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:15:24,607 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:15:29,705 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:15:29,706 - INFO - Published to /temperature: {"timestamp": 1755872129.7061195, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:15:29,707 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:15:34,795 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:15:34,796 - INFO - Published to /temperature: {"timestamp": 1755872134.7959073, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:15:34,801 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:15:39,895 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:15:39,896 - INFO - Published to /temperature: {"timestamp": 1755872139.895975, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:15:39,898 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:15:44,985 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:15:44,987 - INFO - Published to /temperature: {"timestamp": 1755872144.9864795, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:15:44,988 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:15:50,085 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:15:50,086 - INFO - Published to /temperature: {"timestamp": 1755872150.0860596, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:15:50,086 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:15:55,176 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:15:55,177 - INFO - Published to /temperature: {"timestamp": 1755872155.176765, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:15:55,178 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:16:00,273 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:16:00,274 - INFO - Published to /temperature: {"timestamp": 1755872160.2741148, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:16:00,274 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:16:05,359 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:16:05,360 - INFO - Published to /temperature: {"timestamp": 1755872165.3600922, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:16:05,360 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:16:10,450 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:16:10,451 - INFO - Published to /temperature: {"timestamp": 1755872170.45105, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:16:10,452 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:38:30,754 - INFO - Available resources: ('ASRL/dev/ttyUSB0::INSTR',)
+2025-08-22 15:38:30,768 - INFO - SCPI QUERY: '*IDN?'
+2025-08-22 15:38:30,769 - INFO - RAW BYTES SENT: b'*IDN?\r\n'
+2025-08-22 15:38:30,821 - INFO - RESPONSE: 'Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2'
+2025-08-22 15:38:30,821 - INFO - Connecting to: Agilent Technologies,33250A,0,2.04-1.01-2.00-03-2
+2025-08-22 15:38:30,821 - INFO - Resetting instrument...
+2025-08-22 15:38:30,821 - INFO - SCPI: '*RST'
+2025-08-22 15:38:30,822 - INFO - RAW BYTES SENT: b'*RST\r\n'
+2025-08-22 15:38:30,822 - INFO - SCPI: '*CLS'
+2025-08-22 15:38:30,822 - INFO - RAW BYTES SENT: b'*CLS\r\n'
+2025-08-22 15:38:30,823 - INFO - agilent intialized
+2025-08-22 15:38:30,823 - INFO - GPIO Controller multiplexer initialized with pins: [17, 18, 22, 27]
+2025-08-22 15:38:30,823 - INFO - GPIO intialized
+2025-08-22 15:38:30,824 - INFO - [AD5260] Initialized | RAB=20.0kΩ | VDD=5.0V | VSS=0.0V
+2025-08-22 15:38:30,824 - INFO - potentiometer intialized
+2025-08-22 15:38:30,831 - INFO - [MAX31865] Initialized | Wires=3 | Nominal=1000.0Ω | Ref=4300.0Ω
+2025-08-22 15:38:30,832 - INFO - temperature measurer intialized
+2025-08-22 15:38:30,833 - INFO - All hardware initialized successfully
+2025-08-22 15:38:30,833 - INFO - hardware initialization worked in the _init_
+2025-08-22 15:38:30,833 - INFO - on_ui_command is reached
+2025-08-22 15:38:30,834 - INFO - MQTT handlers configured
+2025-08-22 15:38:30,836 - INFO - Successfully connected to MQTT broker
+2025-08-22 15:38:30,836 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 15:38:30,837 - INFO - Temperature loop started in background thread
+2025-08-22 15:38:30,843 - INFO - Connecting to MQTT broker at 172.17.0.1:1883
+2025-08-22 15:38:30,844 - INFO - Successfully connected to MQTT broker
+2025-08-22 15:38:30,931 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:38:30,933 - INFO - Published to /temperature: {"timestamp": 1755873510.9325438, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:38:30,933 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:38:36,020 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:38:36,022 - INFO - Published to /temperature: {"timestamp": 1755873516.0212212, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:38:36,024 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:38:41,105 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:38:41,106 - INFO - Published to /temperature: {"timestamp": 1755873521.1057968, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:38:41,106 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:38:46,190 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:38:46,192 - INFO - Published to /temperature: {"timestamp": 1755873526.191588, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:38:46,193 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:38:51,275 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:38:51,276 - INFO - Published to /temperature: {"timestamp": 1755873531.2763772, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:38:51,277 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:38:56,360 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:38:56,363 - INFO - Published to /temperature: {"timestamp": 1755873536.3620892, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:38:56,366 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:39:01,446 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:39:01,447 - INFO - Published to /temperature: {"timestamp": 1755873541.4468238, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:39:01,448 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:39:06,532 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:39:06,534 - INFO - Published to /temperature: {"timestamp": 1755873546.5329952, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:39:06,535 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:39:11,618 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:39:11,619 - INFO - Published to /temperature: {"timestamp": 1755873551.6191285, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:39:11,619 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:39:16,699 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:39:16,700 - INFO - Published to /temperature: {"timestamp": 1755873556.7001035, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:39:16,700 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:39:21,785 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:39:21,787 - INFO - Published to /temperature: {"timestamp": 1755873561.7865653, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:39:21,791 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:39:26,872 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:39:26,873 - INFO - Published to /temperature: {"timestamp": 1755873566.873086, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:39:26,873 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:39:31,954 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:39:31,955 - INFO - Published to /temperature: {"timestamp": 1755873571.954742, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:39:31,957 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:39:37,040 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:39:37,041 - INFO - Published to /temperature: {"timestamp": 1755873577.0410216, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:39:37,044 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:39:42,123 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:39:42,124 - INFO - Published to /temperature: {"timestamp": 1755873582.1242433, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:39:42,126 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:39:47,205 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:39:47,205 - INFO - Published to /temperature: {"timestamp": 1755873587.2054071, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:39:47,206 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:39:52,291 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:39:52,292 - INFO - Published to /temperature: {"timestamp": 1755873592.291752, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:39:52,296 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:39:57,378 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:39:57,378 - INFO - Published to /temperature: {"timestamp": 1755873597.3785164, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:39:57,379 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:40:02,459 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:40:02,460 - INFO - Published to /temperature: {"timestamp": 1755873602.4602568, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:40:02,461 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:40:07,545 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:40:07,546 - INFO - Published to /temperature: {"timestamp": 1755873607.5456588, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:40:07,547 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:40:12,631 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:40:12,631 - INFO - Published to /temperature: {"timestamp": 1755873612.6315029, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:40:12,633 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:40:17,717 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:40:17,719 - INFO - Published to /temperature: {"timestamp": 1755873617.718438, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:40:17,721 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:40:22,809 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:40:22,811 - INFO - Published to /temperature: {"timestamp": 1755873622.81021, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:40:22,814 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:40:27,897 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:40:27,898 - INFO - Published to /temperature: {"timestamp": 1755873627.8976004, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:40:27,899 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:40:32,979 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:40:32,980 - INFO - Published to /temperature: {"timestamp": 1755873632.979701, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:40:32,980 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:40:38,065 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:40:38,067 - INFO - Published to /temperature: {"timestamp": 1755873638.0664642, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:40:38,070 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:40:43,155 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:40:43,156 - INFO - Published to /temperature: {"timestamp": 1755873643.1561434, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:40:43,159 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:40:48,241 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:40:48,242 - INFO - Published to /temperature: {"timestamp": 1755873648.2419922, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:40:48,243 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:40:53,326 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:40:53,328 - INFO - Published to /temperature: {"timestamp": 1755873653.3271837, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:40:53,330 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:40:58,412 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:40:58,413 - INFO - Published to /temperature: {"timestamp": 1755873658.4132802, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:40:58,414 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:41:03,494 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:41:03,495 - INFO - Published to /temperature: {"timestamp": 1755873663.4948711, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:41:03,496 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:41:08,580 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:41:08,582 - INFO - Published to /temperature: {"timestamp": 1755873668.5815728, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:41:08,585 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:41:13,668 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:41:13,669 - INFO - Published to /temperature: {"timestamp": 1755873673.6693246, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:41:13,670 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:41:18,755 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:41:18,757 - INFO - Published to /temperature: {"timestamp": 1755873678.756529, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:41:18,758 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:41:23,846 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:41:23,847 - INFO - Published to /temperature: {"timestamp": 1755873683.8468618, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:41:23,852 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:41:28,937 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:41:28,937 - INFO - Published to /temperature: {"timestamp": 1755873688.9374185, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:41:28,939 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:41:34,018 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:41:34,019 - INFO - Published to /temperature: {"timestamp": 1755873694.0192761, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:41:34,020 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:41:39,105 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:41:39,107 - INFO - Published to /temperature: {"timestamp": 1755873699.1063912, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:41:39,112 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:41:44,195 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:41:44,196 - INFO - Published to /temperature: {"timestamp": 1755873704.196422, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:41:44,197 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:41:49,281 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:41:49,283 - INFO - Published to /temperature: {"timestamp": 1755873709.2825477, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:41:49,287 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:41:54,370 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:41:54,371 - INFO - Published to /temperature: {"timestamp": 1755873714.3711967, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:41:54,372 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:41:59,456 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:41:59,458 - INFO - Published to /temperature: {"timestamp": 1755873719.4576657, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:41:59,462 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:42:04,546 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:42:04,547 - INFO - Published to /temperature: {"timestamp": 1755873724.5468924, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:42:04,548 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:42:09,628 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:42:09,629 - INFO - Published to /temperature: {"timestamp": 1755873729.6290247, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:42:09,629 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:42:14,713 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:42:14,715 - INFO - Published to /temperature: {"timestamp": 1755873734.7142835, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:42:14,716 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:42:19,804 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:42:19,805 - INFO - Published to /temperature: {"timestamp": 1755873739.8052132, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:42:19,806 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:42:24,887 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:42:24,888 - INFO - Published to /temperature: {"timestamp": 1755873744.8876402, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:42:24,890 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:42:29,970 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:42:29,971 - INFO - Published to /temperature: {"timestamp": 1755873749.9709592, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:42:29,972 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:42:35,056 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:42:35,057 - INFO - Published to /temperature: {"timestamp": 1755873755.0573883, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:42:35,062 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:42:40,146 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:42:40,147 - INFO - Published to /temperature: {"timestamp": 1755873760.1469753, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:42:40,148 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:42:45,240 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:42:45,241 - INFO - Published to /temperature: {"timestamp": 1755873765.241354, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:42:45,242 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:42:50,323 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:42:50,323 - INFO - Published to /temperature: {"timestamp": 1755873770.3233945, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:42:50,324 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:42:55,405 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:42:55,406 - INFO - Published to /temperature: {"timestamp": 1755873775.4061022, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:42:55,407 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:43:00,488 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:43:00,489 - INFO - Published to /temperature: {"timestamp": 1755873780.488844, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:43:00,489 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:43:05,574 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:43:05,576 - INFO - Published to /temperature: {"timestamp": 1755873785.575356, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:43:05,579 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:43:10,665 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:43:10,666 - INFO - Published to /temperature: {"timestamp": 1755873790.6660547, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:43:10,666 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:43:15,747 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:43:15,748 - INFO - Published to /temperature: {"timestamp": 1755873795.7482374, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:43:15,749 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:43:20,834 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:43:20,836 - INFO - Published to /temperature: {"timestamp": 1755873800.8355367, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:43:20,838 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:43:25,925 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:43:25,926 - INFO - Published to /temperature: {"timestamp": 1755873805.926242, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:43:25,927 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:43:31,014 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:43:31,016 - INFO - Published to /temperature: {"timestamp": 1755873811.0157733, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:43:31,019 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:43:36,109 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:43:36,110 - INFO - Published to /temperature: {"timestamp": 1755873816.1095235, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:43:36,111 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:43:41,191 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:43:41,192 - INFO - Published to /temperature: {"timestamp": 1755873821.1923225, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:43:41,193 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:43:46,274 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:43:46,275 - INFO - Published to /temperature: {"timestamp": 1755873826.274879, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:43:46,276 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:43:51,360 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:43:51,361 - INFO - Published to /temperature: {"timestamp": 1755873831.3612266, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:43:51,362 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:43:56,443 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:43:56,444 - INFO - Published to /temperature: {"timestamp": 1755873836.444339, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:43:56,446 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:44:01,530 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:44:01,532 - INFO - Published to /temperature: {"timestamp": 1755873841.5314572, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:44:01,536 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:44:06,621 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:44:06,622 - INFO - Published to /temperature: {"timestamp": 1755873846.621973, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:44:06,624 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:44:11,705 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:44:11,708 - INFO - Published to /temperature: {"timestamp": 1755873851.7083893, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:44:11,709 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:44:16,791 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:44:16,795 - INFO - Published to /temperature: {"timestamp": 1755873856.794692, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:44:16,796 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:44:21,880 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:44:21,884 - INFO - Published to /temperature: {"timestamp": 1755873861.884119, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:44:21,886 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:44:26,967 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:44:26,969 - INFO - Published to /temperature: {"timestamp": 1755873866.9689944, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:44:26,972 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:44:32,053 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:44:32,054 - INFO - Published to /temperature: {"timestamp": 1755873872.0540085, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:44:32,055 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:44:37,138 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:44:37,139 - INFO - Published to /temperature: {"timestamp": 1755873877.1390283, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:44:37,140 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:44:42,225 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:44:42,226 - INFO - Published to /temperature: {"timestamp": 1755873882.2259605, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:44:42,227 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:44:47,310 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:44:47,311 - INFO - Published to /temperature: {"timestamp": 1755873887.3108883, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:44:47,311 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:44:52,393 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:44:52,394 - INFO - Published to /temperature: {"timestamp": 1755873892.3941836, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:44:52,395 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:44:57,476 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:44:57,477 - INFO - Published to /temperature: {"timestamp": 1755873897.4773424, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:44:57,478 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:45:02,562 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:45:02,563 - INFO - Published to /temperature: {"timestamp": 1755873902.5631738, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:45:02,564 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:45:07,645 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:45:07,646 - INFO - Published to /temperature: {"timestamp": 1755873907.6462102, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:45:07,647 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:45:12,727 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:45:12,728 - INFO - Published to /temperature: {"timestamp": 1755873912.728169, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:45:12,729 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:45:17,815 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:45:17,816 - INFO - Published to /temperature: {"timestamp": 1755873917.816027, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:45:17,821 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:45:22,908 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:45:22,909 - INFO - Published to /temperature: {"timestamp": 1755873922.9092066, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:45:22,912 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:45:27,999 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:45:28,001 - INFO - Published to /temperature: {"timestamp": 1755873928.0002708, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:45:28,005 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:45:33,091 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:45:33,092 - INFO - Published to /temperature: {"timestamp": 1755873933.0917199, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:45:33,092 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:45:38,177 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:45:38,179 - INFO - Published to /temperature: {"timestamp": 1755873938.1787944, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:45:38,182 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:45:43,269 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:45:43,272 - INFO - Published to /temperature: {"timestamp": 1755873943.2723696, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:45:43,274 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:45:48,355 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:45:48,356 - INFO - Published to /temperature: {"timestamp": 1755873948.3560395, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:45:48,358 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:45:53,444 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:45:53,446 - INFO - Published to /temperature: {"timestamp": 1755873953.4457636, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:45:53,449 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:45:58,541 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:45:58,543 - INFO - Published to /temperature: {"timestamp": 1755873958.5424201, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:45:58,544 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:46:03,632 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:46:03,633 - INFO - Published to /temperature: {"timestamp": 1755873963.6328003, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:46:03,634 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:46:08,720 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:46:08,721 - INFO - Published to /temperature: {"timestamp": 1755873968.7208652, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:46:08,725 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:46:13,813 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:46:13,814 - INFO - Published to /temperature: {"timestamp": 1755873973.8136117, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:46:13,815 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:46:18,897 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:46:18,898 - INFO - Published to /temperature: {"timestamp": 1755873978.8978045, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:46:18,898 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:46:23,985 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:46:23,986 - INFO - Published to /temperature: {"timestamp": 1755873983.9861233, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:46:23,990 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:46:29,002 - WARNING - Unexpected disconnection (code: 7)
+2025-08-22 15:46:29,006 - WARNING - Unexpected disconnection (code: 7)
+2025-08-22 15:46:29,086 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:46:29,088 - INFO - Published to /temperature: {"timestamp": 1755873989.0880592, "temperature_k": 31.129999999999967} (result: 4)
+2025-08-22 15:46:29,089 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:46:30,008 - INFO - Successfully connected to MQTT broker
+2025-08-22 15:46:30,012 - INFO - Successfully connected to MQTT broker
+2025-08-22 15:46:34,175 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:46:34,176 - INFO - Published to /temperature: {"timestamp": 1755873994.176232, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:46:34,177 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:46:39,258 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:46:39,259 - INFO - Published to /temperature: {"timestamp": 1755873999.2587683, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:46:39,260 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:46:44,348 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:46:44,350 - INFO - Published to /temperature: {"timestamp": 1755874004.3494637, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:46:44,352 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:46:49,439 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:46:49,441 - INFO - Published to /temperature: {"timestamp": 1755874009.4406326, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:46:49,444 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:46:54,536 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:46:54,537 - INFO - Published to /temperature: {"timestamp": 1755874014.5370233, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:46:54,538 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:46:59,620 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:46:59,621 - INFO - Published to /temperature: {"timestamp": 1755874019.621114, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:46:59,621 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:47:04,707 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:47:04,709 - INFO - Published to /temperature: {"timestamp": 1755874024.7081754, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:47:04,709 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:47:09,803 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:47:09,805 - INFO - Published to /temperature: {"timestamp": 1755874029.8043737, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:47:09,806 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:47:14,895 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:47:14,895 - INFO - Published to /temperature: {"timestamp": 1755874034.8953588, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:47:14,896 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:47:19,980 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:47:19,981 - INFO - Published to /temperature: {"timestamp": 1755874039.9806328, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:47:19,983 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:47:25,069 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:47:25,071 - INFO - Published to /temperature: {"timestamp": 1755874045.0706682, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:47:25,074 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:47:30,162 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:47:30,163 - INFO - Published to /temperature: {"timestamp": 1755874050.1630785, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:47:30,164 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:47:35,246 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:47:35,246 - INFO - Published to /temperature: {"timestamp": 1755874055.2463877, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:47:35,247 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:47:40,329 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:47:40,329 - INFO - Published to /temperature: {"timestamp": 1755874060.3294127, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:47:40,330 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:47:45,417 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:47:45,419 - INFO - Published to /temperature: {"timestamp": 1755874065.4184, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:47:45,422 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:47:50,511 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:47:50,512 - INFO - Published to /temperature: {"timestamp": 1755874070.5124657, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:47:50,514 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:47:55,595 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:47:55,596 - INFO - Published to /temperature: {"timestamp": 1755874075.5962486, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:47:55,597 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:48:00,679 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:48:00,680 - INFO - Published to /temperature: {"timestamp": 1755874080.6797142, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:48:00,680 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:48:05,775 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:48:05,775 - INFO - Published to /temperature: {"timestamp": 1755874085.7755058, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:48:05,778 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:48:10,860 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:48:10,861 - INFO - Published to /temperature: {"timestamp": 1755874090.8611364, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:48:10,862 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:48:15,943 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:48:15,944 - INFO - Published to /temperature: {"timestamp": 1755874095.94435, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:48:15,945 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:48:21,033 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:48:21,034 - INFO - Published to /temperature: {"timestamp": 1755874101.0337129, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:48:21,034 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:48:26,126 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:48:26,126 - INFO - Published to /temperature: {"timestamp": 1755874106.126464, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:48:26,127 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:48:31,214 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:48:31,216 - INFO - Published to /temperature: {"timestamp": 1755874111.215494, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:48:31,217 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:48:36,316 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:48:36,317 - INFO - Published to /temperature: {"timestamp": 1755874116.31693, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:48:36,318 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:48:41,406 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:48:41,407 - INFO - Published to /temperature: {"timestamp": 1755874121.4070964, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:48:41,408 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:48:46,497 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:48:46,498 - INFO - Published to /temperature: {"timestamp": 1755874126.4982638, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:48:46,499 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:48:51,581 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:48:51,582 - INFO - Published to /temperature: {"timestamp": 1755874131.581966, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:48:51,582 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:48:56,669 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:48:56,674 - INFO - Published to /temperature: {"timestamp": 1755874136.6733878, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:48:56,675 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:49:01,766 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:49:01,767 - INFO - Published to /temperature: {"timestamp": 1755874141.7672927, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:49:01,768 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:49:06,854 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:49:06,857 - INFO - Published to /temperature: {"timestamp": 1755874146.8564408, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:49:06,858 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:49:11,951 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:49:11,956 - INFO - Published to /temperature: {"timestamp": 1755874151.9552975, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:49:11,958 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:49:17,043 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:49:17,044 - INFO - Published to /temperature: {"timestamp": 1755874157.04435, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:49:17,045 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:49:22,127 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:49:22,128 - INFO - Published to /temperature: {"timestamp": 1755874162.1275394, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:49:22,129 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:49:27,211 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:49:27,212 - INFO - Published to /temperature: {"timestamp": 1755874167.2120554, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:49:27,215 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:49:32,299 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:49:32,300 - INFO - Published to /temperature: {"timestamp": 1755874172.2998586, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:49:32,300 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:49:37,387 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:49:37,388 - INFO - Published to /temperature: {"timestamp": 1755874177.388042, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:49:37,391 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:49:42,479 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:49:42,480 - INFO - Published to /temperature: {"timestamp": 1755874182.480322, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:49:42,481 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:49:47,564 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:49:47,565 - INFO - Published to /temperature: {"timestamp": 1755874187.564708, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:49:47,565 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:49:52,648 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:49:52,649 - INFO - Published to /temperature: {"timestamp": 1755874192.6493907, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:49:52,650 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:49:57,733 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:49:57,734 - INFO - Published to /temperature: {"timestamp": 1755874197.7340221, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:49:57,734 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:50:02,817 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:50:02,818 - INFO - Published to /temperature: {"timestamp": 1755874202.817771, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:50:02,818 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:50:07,901 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:50:07,902 - INFO - Published to /temperature: {"timestamp": 1755874207.902137, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:50:07,903 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:50:12,985 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:50:12,986 - INFO - Published to /temperature: {"timestamp": 1755874212.9860811, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:50:12,987 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:50:18,070 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:50:18,071 - INFO - Published to /temperature: {"timestamp": 1755874218.0715115, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:50:18,073 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:50:23,160 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:50:23,161 - INFO - Published to /temperature: {"timestamp": 1755874223.1610296, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:50:23,164 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:50:28,250 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:50:28,251 - INFO - Published to /temperature: {"timestamp": 1755874228.2509549, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:50:28,251 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:50:33,339 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:50:33,344 - INFO - Published to /temperature: {"timestamp": 1755874233.3431065, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:50:33,346 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:50:38,437 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:50:38,438 - INFO - Published to /temperature: {"timestamp": 1755874238.4378138, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:50:38,438 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:50:43,521 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:50:43,522 - INFO - Published to /temperature: {"timestamp": 1755874243.5220327, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:50:43,523 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:50:48,611 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:50:48,613 - INFO - Published to /temperature: {"timestamp": 1755874248.6123447, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:50:48,615 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:50:53,710 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:50:53,712 - INFO - Published to /temperature: {"timestamp": 1755874253.7115185, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:50:53,713 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:50:58,810 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:50:58,812 - INFO - Published to /temperature: {"timestamp": 1755874258.811449, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:50:58,813 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:51:03,904 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:51:03,905 - INFO - Published to /temperature: {"timestamp": 1755874263.9052095, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:51:03,906 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:51:08,992 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:51:08,995 - INFO - Published to /temperature: {"timestamp": 1755874268.9944868, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:51:09,003 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:51:14,094 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:51:14,097 - INFO - Published to /temperature: {"timestamp": 1755874274.0973866, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:51:14,098 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:51:19,187 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:51:19,191 - INFO - Published to /temperature: {"timestamp": 1755874279.1908884, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:51:19,193 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:51:24,287 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:51:24,291 - INFO - Published to /temperature: {"timestamp": 1755874284.2906547, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:51:24,293 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:51:29,386 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:51:29,390 - INFO - Published to /temperature: {"timestamp": 1755874289.3897653, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:51:29,391 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:51:34,478 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:51:34,480 - INFO - Published to /temperature: {"timestamp": 1755874294.4798222, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:51:34,482 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:51:39,576 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:51:39,578 - INFO - Published to /temperature: {"timestamp": 1755874299.577305, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:51:39,579 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:51:44,677 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:51:44,679 - INFO - Published to /temperature: {"timestamp": 1755874304.678414, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:51:44,681 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:51:49,773 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:51:49,774 - INFO - Published to /temperature: {"timestamp": 1755874309.774171, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:51:49,774 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:51:54,864 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:51:54,866 - INFO - Published to /temperature: {"timestamp": 1755874314.865314, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:51:54,868 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:51:59,970 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:51:59,970 - INFO - Published to /temperature: {"timestamp": 1755874319.970338, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:51:59,971 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:52:05,054 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:52:05,054 - INFO - Published to /temperature: {"timestamp": 1755874325.0544243, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:52:05,055 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:52:10,138 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:52:10,139 - INFO - Published to /temperature: {"timestamp": 1755874330.1389847, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:52:10,139 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:52:15,222 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:52:15,223 - INFO - Published to /temperature: {"timestamp": 1755874335.2231398, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:52:15,223 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:52:20,312 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:52:20,314 - INFO - Published to /temperature: {"timestamp": 1755874340.3136625, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:52:20,315 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:52:25,408 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:52:25,409 - INFO - Published to /temperature: {"timestamp": 1755874345.4090533, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:52:25,409 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:52:30,497 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:52:30,499 - INFO - Published to /temperature: {"timestamp": 1755874350.498305, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:52:30,500 - INFO - [MAX31865] Published 31.13 K to /temperature
+2025-08-22 15:52:35,599 - INFO - [MAX31865] Temperature: -242.02 °C
+2025-08-22 15:52:35,601 - INFO - Published to /temperature: {"timestamp": 1755874355.6003864, "temperature_k": 31.129999999999967} (result: 0)
+2025-08-22 15:52:35,602 - INFO - [MAX31865] Published 31.13 K to /temperature
