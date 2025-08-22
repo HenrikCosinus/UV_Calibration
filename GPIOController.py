@@ -17,13 +17,13 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler("GPIO logging"),
+        logging.FileHandler("GPIOlogging.log"),
         logging.StreamHandler(sys.stdout)
     ]
 )
 logger = logging.getLogger(__name__)
 
-class GPIOController:    
+class Multiplexer:    
     def __init__(self, pins=[24, 23, 22, 27]):
         'Pin 24: On/Off, Pins 23, 22, 27 are A2, A1 and A0 respectively. Aka 18 = 0/1, 22 = 2/0, 27 = 4/0 from binary numbering. Also all Pin references are BCM'
         self.pins = pins
@@ -164,7 +164,7 @@ class AD5260Controller:
         """
         return (code / 256) * (self.vdd - self.vss) + self.vss
 
-    def voltage_sweep(self, start_v, end_v, steps, duration=0.1):
+    def voltage_sweep(self, start_v, end_v, steps, duration=2):
         if not (self.vss <= start_v <= self.vdd) or not (self.vss <= end_v <= self.vdd):
             raise ValueError(f"Voltages must be between {self.vss}V and {self.vdd}V")
         results = []
@@ -213,12 +213,8 @@ class AD5260Controller:
         GPIO.cleanup()
         logging.info("[AD5260] Cleaned up SPI and GPIO")
 
-class MAX31865Controller:
+"""class MAX31865Controller:
     def __init__(self, cs_pin, wires, rtd_nominal, ref_resistor):
-        """
-        cs_pin: BCM pin for chip select
-        wires: 2, 3, or 4 (default: 4 for PT100)
-        """
         self.spi = board.SPI()
         self.cs = digitalio.DigitalInOut(getattr(board, f"D{cs_pin}"))
         self.sensor = adafruit_max31865.MAX31865(
@@ -227,6 +223,7 @@ class MAX31865Controller:
             ref_resistor=ref_resistor,
             wires=wires
         )
+        self.sensor.begin()
         logging.info(f"[MAX31865] Initialized | Wires={wires} | Nominal={rtd_nominal}Ω | Ref={ref_resistor}Ω")
 
     def read_temperature(self):
@@ -238,4 +235,56 @@ class MAX31865Controller:
     def read_resistance(self):
         resistance = self.sensor.resistance
         logging.info(f"[MAX31865] Resistance: {resistance:.2f} Ω")
+        return resistance"""
+
+
+class MAX31865Controller:
+    def __init__(self, cs_pin=5, wires=3, rtd_nominal=1000.0, ref_resistor=4300.0):
+        """
+        cs_pin: BCM pin for chip select (default D5)
+        wires: 2, 3, or 4 (default: 4 for PT100)
+        """
+        spi = board.SPI()
+        cs = digitalio.DigitalInOut(getattr(board, f"D{cs_pin}"))
+
+        self.sensor = adafruit_max31865.MAX31865(
+            spi, cs,
+            rtd_nominal=int(rtd_nominal),
+            ref_resistor=ref_resistor,
+            wires=wires
+        )
+
+        logging.info(
+            f"[MAX31865] Initialized | "
+            f"Wires={wires} | Nominal={rtd_nominal}Ω | Ref={ref_resistor}Ω"
+        )
+
+        faults = self.sensor.fault
+        fault_names = [
+            "High threshold exceeded",
+            "Low threshold exceeded",
+            "Reference low",
+            "Reference high",
+            "RTD input low (short to GND)",
+            "Over/under voltage"
+        ]
+        for name, active in zip(fault_names, faults):
+            if active:
+                print(f"Fault detected: {name}")
+        if not any(faults):
+            print("No fault detected")
+
+    def read_temperature_c(self):
+        temp_c = self.sensor.temperature
+        logging.info(f"[MAX31865] Temperature: {temp_c:.2f} °C")
+        return temp_c
+
+    def read_temperature_k(self):
+        return self.read_temperature_c() + 273.15
+
+    def read_resistance(self):
+        resistance = self.sensor.resistance
+        logging.info(f"[MAX31865] Resistance: {resistance:.2f} Ω")
         return resistance
+    
+

@@ -1,5 +1,5 @@
 from Agilent_Controller_RS232 import Agilent33250A
-from GPIOController import GPIOController, AD5260Controller, MAX31865Controller
+from GPIOController import Multiplexer, AD5260Controller, MAX31865Controller
 import logging
 import sys
 import os
@@ -16,7 +16,7 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler("HighLevelControlLog"),
+        logging.FileHandler("HighLevelControl.log"),
         logging.StreamHandler(sys.stdout)
     ]
 )
@@ -28,11 +28,17 @@ class HighLevelControl():
         logger.info("hardware initialization worked in the _init_")
         self.system_status = "idle"
         topics = {
+            'temperature': f"/temperature",
             'operation_status': f"/status",
             'UI_command': f"/ui_command",
             'control_response': f"/control_response",
         }
-        self.mqtt = MQTTHandler(client_id="backend_controller", broker="172.17.0.1", port=1883, topics=topics)
+        self.mqtt = MQTTHandler(
+            client_id="backend_controller", 
+            broker="172.17.0.1", 
+            port=1883, 
+            topics=topics
+            )
         self.setup_mqtt_handlers()
         self.mqtt.connect()
         self.start_temp_loop(interval = 5)
@@ -41,10 +47,10 @@ class HighLevelControl():
         try:
             self.agilent = Agilent33250A(port="/dev/ttyUSB0", baud_rate=57600, timeout=5000)
             logger.info("agilent intialized")
-            self.GPIOController = GPIOController(pins=[17, 18, 22, 27])
+            self.GPIOController = Multiplexer(pins=[17, 18, 22, 27])
             logger.info("GPIO intialized")
-            #self.AD5260Controller = AD5260Controller(pins=[14, 9, 10, 25, 8], rab=20000, vdd=5.0, vss=0.0)
-            #logger.info("potentiometer intialized")
+            self.AD5260Controller = AD5260Controller(pins=[14, 9, 10, 25, 8], rab=20000, vdd=5.0, vss=0.0)
+            logger.info("potentiometer intialized")
             self.MAX31865Controller = MAX31865Controller(cs_pin=11, wires=3, rtd_nominal=1000.0, ref_resistor=4300.0)
             logger.info("temperature measurer intialized")
             logger.info("All hardware initialized successfully")
@@ -68,7 +74,7 @@ class HighLevelControl():
                 json.dump([], f)
         while True:
             try:
-                temp_k = float(self.MAX31865Controller.read_temperature())
+                temp_k = float(self.MAX31865Controller.read_temperature_k())
                 timestamp = time.time()
                 measurement = {
                     "timestamp": timestamp,
