@@ -3,6 +3,7 @@ import numpy as np
 import sys
 import json
 import logging
+import uuid
 from typing import Callable, Dict, Optional
 import paho.mqtt.client as mqtt
 
@@ -23,9 +24,13 @@ class MQTTHandler:
     def __init__(self, client_id: str, broker: str = "localhost", port: int = 1883, topics: Optional[Dict[str, str]] = None):
         self.broker = broker
         self.port = port
-        self.client_id = client_id
+        # Append a short unique suffix so multiple processes or restarts never share
+        # the same client_id. If two clients with the same id connect, the broker kicks
+        # the older one, which triggers its reconnect, which kicks the new one — infinite loop.
+        self.client_id = f"{client_id}_{uuid.uuid4().hex[:6]}"
         self.topics = topics or {}
         self.logger = logging.getLogger(f"{__name__}.{client_id}")
+        self.logger.info(f"[MQTTHandler] client_id assigned: {self.client_id}")
         self._setup_client()
 
     def _setup_client(self):
