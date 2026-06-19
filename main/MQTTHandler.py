@@ -6,15 +6,16 @@ import logging
 from typing import Callable, Dict, Optional
 import paho.mqtt.client as mqtt
 
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler("agilent_33250a.log"),
-        logging.StreamHandler(sys.stdout)
-    ]
-)
+# Logging is configured centrally in main.py. basicConfig here is commented out so
+# it does not override the root logger that main.py sets up before importing this module.
+# logging.basicConfig(
+#     level=logging.INFO,
+#     format='%(asctime)s - %(levelname)s - %(message)s',
+#     handlers=[
+#         logging.FileHandler("agilent_33250a.log"),
+#         logging.StreamHandler(sys.stdout)
+#     ]
+# )
 logger = logging.getLogger(__name__)
 
 #I dont want a localhost, however at run time this should be replaced with the correct IP from the call coming from the HighlevelControll intialization
@@ -63,7 +64,11 @@ class MQTTHandler:
 
     def connect(self):
         try:
-            self.client.connect(self.broker, self.port, keepalive=True)
+            # BUG FIX (Bug 4): keepalive=True evaluates to int 1 in Python, so the
+            # broker disconnects the client after ~1 second of inactivity. Should be
+            # an integer in seconds; 60 is the standard default.
+            # self.client.connect(self.broker, self.port, keepalive=True)
+            self.client.connect(self.broker, self.port, keepalive=60)
             self.client.loop_start()
             self.logger.info(f"Connecting to MQTT broker at {self.broker}:{self.port}")
             return True
@@ -86,6 +91,7 @@ class MQTTHandler:
             self.logger.info("Successfully connected to MQTT broker")
             for topic in self._message_handlers:
                 client.subscribe(topic)
+                self.logger.info(f"[MQTT] Subscribed to topic: {topic}")
 
             client.publish(self.topics.get('status', 'status'),
                          json.dumps({"status": "online"}),
@@ -102,18 +108,19 @@ class MQTTHandler:
     def _on_message(self, client, userdata, msg):
         try:
             payload = msg.payload.decode("utf-8")
-            self.logger.debug(f"Received message on {msg.topic}: {payload}")
-#
+            self.logger.debug(f"[MQTT] Raw message on {msg.topic}: {payload}")
             try:
                 payload = json.loads(payload)
             except json.JSONDecodeError:
                 pass  # Keep as raw string if not JSON
-                
+
             handler = self._message_handlers.get(msg.topic)
             if handler:
+                self.logger.debug(f"[MQTT] Dispatching {msg.topic} → {handler.__name__}")
                 handler(payload)
+                self.logger.debug(f"[MQTT] Handler {handler.__name__} completed for {msg.topic}")
             else:
-                self.logger.warning(f"No handler registered for topic {msg.topic}")
+                self.logger.warning(f"[MQTT] No handler registered for topic {msg.topic}")
                 
         except Exception as e:
             self.logger.error(f"Error processing message: {str(e)}")

@@ -1,26 +1,48 @@
+import sys
+import logging
+
+# Centralized logging — configured here at module level, BEFORE local imports,
+# so this basicConfig call wins. Python only applies the first basicConfig call
+# that finds the root logger with no handlers; all subsequent calls (in Backend.py,
+# GPIOController.py, etc.) are silently ignored. This means all modules log to
+# one unified file and stdout with a consistent format.
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler("uv_calibration.log"),
+        logging.StreamHandler(sys.stdout)
+    ]
+)
+logger = logging.getLogger(__name__)
+
 import pyvisa
 import time
 import numpy as np
 import argparse
-import sys
-import logging
+import asyncio
+from nicegui import ui
 from MQTTHandler import MQTTHandler
 from backend.Backend import HighLevelControl
 from frontend.Frontend import Frontend
-import asyncio
-from nicegui import ui
 
 
 def main():
+    logger.info("=== UV Calibration System starting ===")
+    logger.info("Initializing backend (hardware + MQTT)...")
     backend = HighLevelControl()
+    logger.info("Backend initialized successfully.")
+    logger.info("Initializing frontend (UI + MQTT)...")
     frontend = Frontend()
+    logger.info("Frontend initialized. Building UI...")
     frontend.create_ui()
+    logger.info("UI built. Starting NiceGUI web server on 0.0.0.0:8080")
 
     ui.run(
         title="UV_LED Control Interface",
         port=8080,
-        host="0.0.0.0",     
-        reload=False     
+        host="0.0.0.0",
+        reload=False
     )
 
 if __name__ == "__main__":
