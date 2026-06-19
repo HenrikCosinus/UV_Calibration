@@ -51,19 +51,42 @@ class HighLevelControl():
         self.start_temp_loop(interval = 5)
 
     def initialize_hardware(self):
+        self.agilent = None
+        self.GPIOController = None
+        self.AD5260Controller = None
+        self.MAX31865Controller = None
+
         try:
             self.agilent = Agilent33250A(port="/dev/ttyUSB0", baud_rate=57600, timeout=5000)
-            logger.info("agilent intialized")
-            self.GPIOController = Multiplexer(pins=[17, 18, 22, 27])
-            logger.info("GPIO intialized")
-            self.AD5260Controller = AD5260Controller(pins=[14, 9, 10, 25, 8], rab=20000, vdd=5.0, vss=0.0)
-            logger.info("potentiometer intialized")
-            self.MAX31865Controller = MAX31865Controller(cs_pin=11, wires=3, rtd_nominal=1000.0, ref_resistor=4300.0)
-            logger.info("temperature measurer intialized")
-            logger.info("All hardware initialized successfully")
+            logger.info("[Hardware] Agilent initialized.")
         except Exception as e:
-            logger.error(f"Hardware initialization failed: {str(e)}")
-            raise
+            logger.warning(f"[Hardware] Agilent init failed — continuing without it: {e}")
+
+        try:
+            self.GPIOController = Multiplexer(pins=[17, 18, 22, 27])
+            logger.info("[Hardware] GPIO multiplexer initialized.")
+        except Exception as e:
+            logger.warning(f"[Hardware] GPIO multiplexer init failed — continuing without it: {e}")
+
+        try:
+            self.AD5260Controller = AD5260Controller(pins=[14, 9, 10, 25, 8], rab=20000, vdd=5.0, vss=0.0)
+            logger.info("[Hardware] AD5260 potentiometer initialized.")
+        except Exception as e:
+            logger.warning(f"[Hardware] AD5260 init failed — continuing without it: {e}")
+
+        try:
+            self.MAX31865Controller = MAX31865Controller(cs_pin=11, wires=3, rtd_nominal=1000.0, ref_resistor=4300.0)
+            logger.info("[Hardware] MAX31865 temperature sensor initialized.")
+        except Exception as e:
+            logger.warning(f"[Hardware] MAX31865 init failed — continuing without it: {e}")
+
+        available = [name for name, obj in [
+            ("Agilent", self.agilent),
+            ("GPIO", self.GPIOController),
+            ("AD5260", self.AD5260Controller),
+            ("MAX31865", self.MAX31865Controller)
+        ] if obj is not None]
+        logger.info(f"[Hardware] Initialization complete. Available: {available}")
 
     def setup_mqtt_handlers(self):
         self.mqtt.on_ui_command(self.handle_ui_command)
@@ -81,6 +104,10 @@ class HighLevelControl():
                 json.dump([], f)
         while True:
             try:
+                if self.MAX31865Controller is None:
+                    logger.warning("[update_temp_loop] MAX31865 not available, skipping read.")
+                    time.sleep(interval)
+                    continue
                 temp_k = float(self.MAX31865Controller.read_temperature_k())
                 timestamp = time.time()
                 measurement = {
@@ -182,6 +209,10 @@ class HighLevelControl():
 
 
     def handle_signal_config(self, command):
+        if self.agilent is None:
+            logger.error("[handle_signal_config] Agilent not available.")
+            self.mqtt.send_response({"error": "Agilent not connected."})
+            return
         try:
             frequency = float(command.get("frequency", 1000))                   # Default 1 kHz
             burst_count = int(command.get("bursts", 10))                        # Default 10 bursts
@@ -228,6 +259,10 @@ class HighLevelControl():
             raise
     
     def voltage_sweep(self, command):
+        if self.AD5260Controller is None:
+            logger.error("[voltage_sweep] AD5260 not available.")
+            self.mqtt.send_response({"error": "Potentiometer not connected."})
+            return
         # BUG FIX (Bug 2): Key names mismatched with what the Frontend sends.
         # Frontend publishes: "voltage_start_v", "voltage_end_v", "voltage_sweep_steps", "voltage_sweep_duration"
         # Backend was reading: "start_v", "end_v", "sweep_steps", "sweep_duration"
@@ -244,6 +279,10 @@ class HighLevelControl():
         self.AD5260Controller.voltage_sweep(start_v=voltage_start_v, end_v=voltage_end_v, steps=voltage_sweep_steps, duration=voltage_sweep_duration)
 
     def handle_channel_selection(self, command):
+        if self.GPIOController is None or self.AD5260Controller is None:
+            logger.error("[handle_channel_selection] GPIO or AD5260 not available.")
+            self.mqtt.send_response({"error": "GPIO or potentiometer not connected."})
+            return
         try:
             channel = command.get("channel", self.current_channel)  # Default to current if not given
             logger.info(f"[handle_channel_selection] requested channel={channel}, current_channel={self.current_channel}")
@@ -281,6 +320,9 @@ class HighLevelControl():
         logger.info(f"Activated UV channel {channel}")
 
     def all_off(self):
+        if self.GPIOController is None:
+            logger.warning("[all_off] GPIO not available, skipping.")
+            return
         self.GPIOController.set_all_pins(False)
 
     def cleanup(self):
@@ -291,6 +333,10 @@ class HighLevelControl():
         logger.info("Cleanup completed")
     
     def handle_burst_command(self, command):
+        if self.agilent is None:
+            logger.error("[handle_burst_command] Agilent not available.")
+            self.mqtt.send_response({"error": "Agilent not connected."})
+            return
         try:
             cycles = command.get("cycles")
             self.n_burst_series(cycles)
@@ -321,6 +367,10 @@ class HighLevelControl():
             raise
     
     def sweeping_pulse_train(self, max_pulses=20, min_pulses=1, inter_train_wait=0.1):
+        if self.agilent is None:
+            logger.error("[sweeping_pulse_train] Agilent not available.")
+            self.mqtt.send_response({"error": "Agilent not connected."})
+            return
         try:
             self.agilent.send("*RST")
             self.agilent.send("*CLS")
