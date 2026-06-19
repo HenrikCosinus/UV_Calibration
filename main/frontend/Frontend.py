@@ -96,10 +96,10 @@ class Frontend():
             with ui.card().classes("w-1/3"):
                 ui.label('Signal Configuration').classes('text-h6')
 
-                frequency_input = ui.input(label='Frequency (Hz)', value='1000').props('type=number step=1')
-                burst_count_input = ui.input(label='Bursts per block', value='5').props('type=number step=1')
-                duty_cycle_input = ui.input(label='Duty Cycle (%)', value='50').props('type=number step=1')
-                inter_block_delay_input = ui.input(label='Delay between burst blocks (s)', value='2.0').props('type=number step=0.1')
+                frequency_input = ui.input(label='Frequency (Hz)', value='1000').props('type=number step=1 suffix=Hz')
+                burst_count_input = ui.input(label='Bursts per block', value='5').props('type=number step=1 suffix=bursts')
+                duty_cycle_input = ui.input(label='Duty Cycle (%)', value='50').props('type=number step=1 suffix=%')
+                inter_block_delay_input = ui.input(label='Delay between burst blocks (s)', value='2.0').props('type=number step=0.1 suffix=s')
 
                 def send_signal_settings():
                     try:
@@ -216,10 +216,11 @@ class Frontend():
             ui.label('Potentiometer control').classes('text-h6')
             with ui.card().classes("w-1/3"):
                 ui.label('Sweep Configuration').classes('text-h6')
-                start_v = ui.input(label='start_v', value='0').props('type=number step=1')
-                end_v = ui.input(label='end_v', value='10').props('type=number step=1')
-                steps = ui.input(label='steps (max 255)', value='255').props('type=number step=1')
-                sweep_duration = ui.input(label='Sweep duration', value='1').props('type=number step=0.1')
+                start_v = ui.input(label='Start voltage (V)', value='0').props('type=number step=0.1 suffix=V')
+                end_v = ui.input(label='End voltage (V)', value='10').props('type=number step=0.1 suffix=V')
+                steps = ui.input(label='Steps (max 255)', value='255').props('type=number step=1 suffix=steps')
+                sweep_duration = ui.input(label='Duration per step (s)', value='1').props('type=number step=0.1 suffix=s')
+                ui.label('Duration is the wait time between each individual step, not the total sweep time.').classes('text-caption text-grey-6 text-xs')
 
                 def voltage_sweep():
                     try:
