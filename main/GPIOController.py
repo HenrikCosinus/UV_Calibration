@@ -99,13 +99,13 @@ class CalibrationPoint:
     notes: str = ""
 
 class AD5260Controller:
-    def __init__(self, pins=[14, 9, 10, 25, 8], rab=20000, vdd=5.0, vss=0.0):
+    def __init__(self, pins=[14, 9, 10, 25, 8], rab=20000, vdd=10.0, vss=0.0):
         """
         Initialize SPI interface for AD5260 control.
         Parameters:
         - pins: [CLK, SDO, SDI, PR*, CS*] (BCM numbering)
         - rab: Nominal resistance (20kΩ, 50kΩ, or 200kΩ)
-        - vdd: Positive supply voltage (default 5.0V)
+        - vdd: Positive supply voltage (default 10.0V)
         - vss: Negative supply voltage (default 0.0V)
         """
         print(f"Initializing AD5260 with pins: {pins}, RAB: {rab}Ω, VDD: {vdd}V, VSS: {vss}V")

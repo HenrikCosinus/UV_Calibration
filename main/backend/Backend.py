@@ -71,7 +71,7 @@ class HighLevelControl():
             logger.warning(f"[Hardware] GPIO multiplexer init failed — continuing without it: {e}")
 
         try:
-            self.AD5260Controller = AD5260Controller(pins=[14, 9, 10, 25, 8], rab=20000, vdd=5.0, vss=0.0)
+            self.AD5260Controller = AD5260Controller(pins=[14, 9, 10, 25, 8], rab=20000, vdd=10.0, vss=0.0)
             logger.info("[Hardware] AD5260 potentiometer initialized.")
         except Exception as e:
             logger.warning(f"[Hardware] AD5260 init failed — continuing without it: {e}")
