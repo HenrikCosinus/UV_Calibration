@@ -12,14 +12,16 @@ import paho.mqtt.client as mqtt
 from MQTTHandler import MQTTHandler
 import threading
 
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler("HighLevelControl.log"),
-        logging.StreamHandler(sys.stdout)
-    ]
-)
+# Logging is configured centrally in main.py. basicConfig here is commented out so
+# it does not override the root logger that main.py sets up before importing this module.
+# logging.basicConfig(
+#     level=logging.INFO,
+#     format='%(asctime)s - %(levelname)s - %(message)s',
+#     handlers=[
+#         logging.FileHandler("HighLevelControl.log"),
+#         logging.StreamHandler(sys.stdout)
+#     ]
+# )
 logger = logging.getLogger(__name__)
 
 class HighLevelControl():
@@ -27,6 +29,11 @@ class HighLevelControl():
         self.initialize_hardware()
         logger.info("hardware initialization worked in the _init_")
         self.system_status = "idle"
+        # BUG FIX (Bug 1): current_channel was never initialized. handle_channel_selection()
+        # uses it as a fallback default when no "channel" key is in the command, causing
+        # AttributeError on the very first call.
+        self.current_channel = None
+        logger.info("[Backend] system_status=idle, current_channel=None")
         topics = {
             'temperature': f"/temperature",
             'operation_status': f"/status",
@@ -60,7 +67,7 @@ class HighLevelControl():
 
     def setup_mqtt_handlers(self):
         self.mqtt.on_ui_command(self.handle_ui_command)
-        logger.info("MQTT handlers configured")
+        logger.info("[Backend] MQTT handler registered: /ui_command → handle_ui_command")
 
     def start_temp_loop(self, interval):
         temp_thread = threading.Thread(target=self.update_temp_loop, args=(interval,), daemon=True)
@@ -94,11 +101,24 @@ class HighLevelControl():
             time.sleep(interval)
 
     def connect_to_generator(self):
+        # BUG FIX (Bug 7): opening a new Agilent33250A without closing the existing one
+        # leaked the old pyvisa resource handle. Now explicitly close before reconnecting.
+        if self.agilent is not None:
+            try:
+                logger.info("[connect_to_generator] Closing existing Agilent connection before reconnect.")
+                self.agilent.close()
+            except Exception as e:
+                logger.warning(f"[connect_to_generator] Error closing existing connection: {e}")
+            self.agilent = None
+
         for port in Agilent33250A.find_usb_serial_ports():
             try:
+                logger.info(f"[connect_to_generator] Trying port {port}...")
                 self.agilent = Agilent33250A(port=port)
+                logger.info(f"[connect_to_generator] Connected on {port}")
                 return
             except Exception as e:
+                logger.warning(f"[connect_to_generator] Failed on {port}: {e}")
                 continue
         raise RuntimeError("No Agilent 33250A device found on available ports")
 
@@ -106,7 +126,7 @@ class HighLevelControl():
     def handle_ui_command(self, command):
         try:
             command = json.loads(command) if isinstance(command, str) else command
-            logger.info(f"Received command: {command}")
+            logger.info(f"[handle_ui_command] ← received: {command}")
 
             command_type = command.get("type")
 
@@ -129,7 +149,13 @@ class HighLevelControl():
                 self.all_off()
             
             elif command_type == "trigger_burst":
-                self.agilent.send_trigger(command)
+                # BUG FIX (Bug 5): was passing the entire command dict as `n` to send_trigger().
+                # send_trigger(n) uses n only for the log file entry; *TRG still fires either way,
+                # but the log file would contain a JSON object string instead of a cycle count.
+                # self.agilent.send_trigger(command)
+                burst_n = command.get("cycles", 1)
+                logger.info(f"[trigger_burst] Triggering burst, cycles={burst_n}")
+                self.agilent.send_trigger(burst_n)
 
             elif command_type == "pulse_train_sweep":
                 self.sweeping_pulse_train()
@@ -160,12 +186,15 @@ class HighLevelControl():
             frequency = float(command.get("frequency", 1000))                   # Default 1 kHz
             burst_count = int(command.get("bursts", 10))                        # Default 10 bursts
             duty_cycle = float(command.get("duty_cycle", 50.0))                 # Default 50%
-            amplitude = float(command.get("amplitude", 3.0))                    # Default 3 V
-            inter_block_delay = float(command.get("inter_burst_wait", 0.5))     # Default 0.5s wait between blocks
+            amplitude = float(command.get("amplitude", 3.0))                    # Default 3 V (no UI control yet)
+            inter_block_delay = float(command.get("inter_block_delay", 0.5))    # Default 0.5s wait between blocks
 
-            logger.info(f"handle_signal_config reaches at least up to the config transmittance to the agilent {self.configure_signal}")
+            # BUG FIX (Bug 8): was logging `{self.configure_signal}` which prints the function
+            # object reference, not useful data. Replaced with actual parameter values.
+            # logger.info(f"handle_signal_config reaches at least up to the config transmittance to the agilent {self.configure_signal}")
+            logger.info(f"[handle_signal_config] freq={frequency}Hz bursts={burst_count} duty={duty_cycle}% amp={amplitude}V delay={inter_block_delay}s")
             self.configure_signal(frequency=frequency, burst_count=burst_count, duty_cycle=duty_cycle, amplitude=amplitude, inter_block_delay=inter_block_delay)
-            logger.info("Signal configuration handled successfully.")
+            logger.info("[handle_signal_config] Signal configuration applied successfully.")
             self.mqtt.send_response({"status": "Signal configuration applied."})
 
         except Exception as e:
@@ -199,26 +228,38 @@ class HighLevelControl():
             raise
     
     def voltage_sweep(self, command):
-        #very similarly to the "handle config" function, getting the info from the command JSON sent through and then just passing it on to the backend
-        voltage_start_v = float(command.get("start_v", 0))
-        voltage_end_v = float(command.get("end_v", 10))
-        voltage_sweep_steps = float(command.get("sweep_steps", 256))
-        voltage_sweep_duration = float(command.get("sweep_duration", 5))
-        self.AD5260Controller.voltage_sweep(start_v= voltage_start_v, end_v= voltage_end_v, steps = voltage_sweep_steps, duration= voltage_sweep_duration)
+        # BUG FIX (Bug 2): Key names mismatched with what the Frontend sends.
+        # Frontend publishes: "voltage_start_v", "voltage_end_v", "voltage_sweep_steps", "voltage_sweep_duration"
+        # Backend was reading: "start_v", "end_v", "sweep_steps", "sweep_duration"
+        # Result: sweep always ran with default values, completely ignoring UI input.
+        # voltage_start_v = float(command.get("start_v", 0))
+        # voltage_end_v = float(command.get("end_v", 10))
+        # voltage_sweep_steps = float(command.get("sweep_steps", 256))
+        # voltage_sweep_duration = float(command.get("sweep_duration", 5))
+        voltage_start_v = float(command.get("voltage_start_v", 0))
+        voltage_end_v = float(command.get("voltage_end_v", 10))
+        voltage_sweep_steps = float(command.get("voltage_sweep_steps", 256))
+        voltage_sweep_duration = float(command.get("voltage_sweep_duration", 5))
+        logger.info(f"[voltage_sweep] start={voltage_start_v}V end={voltage_end_v}V steps={voltage_sweep_steps} duration={voltage_sweep_duration}s")
+        self.AD5260Controller.voltage_sweep(start_v=voltage_start_v, end_v=voltage_end_v, steps=voltage_sweep_steps, duration=voltage_sweep_duration)
 
     def handle_channel_selection(self, command):
         try:
             channel = command.get("channel", self.current_channel)  # Default to current if not given
+            logger.info(f"[handle_channel_selection] requested channel={channel}, current_channel={self.current_channel}")
             if channel is not None and (1 <= channel <= 8) and channel != self.current_channel:
                 self.activate_channel(channel)
                 self.current_channel = channel
+                logger.info(f"[handle_channel_selection] switched to channel {channel}")
+            elif channel is None:
+                logger.warning("[handle_channel_selection] No channel in command and current_channel is None — skipping activate.")
 
             percent = command.get("percent", 50)
             if not (0 <= percent <= 100):
                 raise ValueError("Percent must be between 0 and 100")
             code = int((percent / 100) * 255)
             self.AD5260Controller.set_resistance(code)
-            logger.info(f"[Backend] Potentiometer for channel {channel} set to {percent:.1f}% (code {code})")
+            logger.info(f"[handle_channel_selection] Potentiometer for channel {channel} set to {percent:.1f}% (code {code})")
 
         except Exception as e:
             logger.error(f"Channel selection error: {str(e)}")

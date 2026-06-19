@@ -13,14 +13,16 @@ import board
 import digitalio
 import adafruit_max31865
 
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler("GPIOlogging.log"),
-        logging.StreamHandler(sys.stdout)
-    ]
-)
+# Logging is configured centrally in main.py. basicConfig here is commented out so
+# it does not override the root logger that main.py sets up before importing this module.
+# logging.basicConfig(
+#     level=logging.INFO,
+#     format='%(asctime)s - %(levelname)s - %(message)s',
+#     handlers=[
+#         logging.FileHandler("GPIOlogging.log"),
+#         logging.StreamHandler(sys.stdout)
+#     ]
+# )
 logger = logging.getLogger(__name__)
 
 class Multiplexer:    
