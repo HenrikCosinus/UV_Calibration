@@ -41,9 +41,9 @@ class HighLevelControl():
             'control_response': f"/control_response",
         }
         self.mqtt = MQTTHandler(
-            client_id="backend_controller", 
-            broker="172.17.0.1", 
-            port=1883, 
+            client_id="backend_controller",
+            broker="localhost",
+            port=1883,
             topics=topics
             )
         self.setup_mqtt_handlers()

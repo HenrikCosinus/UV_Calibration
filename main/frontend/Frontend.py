@@ -28,7 +28,7 @@ class Frontend():
         }
         self.mqtt = MQTTHandler(
             client_id="web_ui",
-            broker="172.17.0.1",
+            broker="localhost",
             port=1883,
             topics=topics
         )
