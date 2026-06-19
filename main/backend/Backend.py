@@ -163,7 +163,8 @@ class HighLevelControl():
                 self.handle_channel_selection(command)
 
             elif command_type == "burst":
-                self.handle_burst_command(command)
+                threading.Thread(target=self.handle_burst_command, args=(command,), daemon=True).start()
+                logger.info("[handle_ui_command] burst started in background thread")
 
             elif command_type == "signal_config":
                 self.handle_signal_config(command)
@@ -187,10 +188,15 @@ class HighLevelControl():
                 self.agilent.send_trigger(burst_n)
 
             elif command_type == "pulse_train_sweep":
-                self.sweeping_pulse_train()
+                # Run in a background thread so the paho network loop stays free to
+                # send keepalive PINGREQs. Blocking here caused broker disconnect after 60s.
+                threading.Thread(target=self.sweeping_pulse_train, daemon=True).start()
+                logger.info("[handle_ui_command] pulse_train_sweep started in background thread")
 
             elif command_type == "potentiometer_voltage_sweep":
-                self.voltage_sweep(command)
+                # Same reason — sweep can take minutes (255 steps × duration), must not block paho.
+                threading.Thread(target=self.voltage_sweep, args=(command,), daemon=True).start()
+                logger.info("[handle_ui_command] voltage_sweep started in background thread")
 
             elif command_type == "potentiometer_set_percent":
                 self.handle_channel_selection(command)
