@@ -275,7 +275,7 @@ class HighLevelControl():
         # voltage_sweep_duration = float(command.get("sweep_duration", 5))
         voltage_start_v = float(command.get("voltage_start_v", 0))
         voltage_end_v = float(command.get("voltage_end_v", 10))
-        voltage_sweep_steps = float(command.get("voltage_sweep_steps", 256))
+        voltage_sweep_steps = int(command.get("voltage_sweep_steps", 256))
         voltage_sweep_duration = float(command.get("voltage_sweep_duration", 5))
         logger.info(f"[voltage_sweep] start={voltage_start_v}V end={voltage_end_v}V steps={voltage_sweep_steps} duration={voltage_sweep_duration}s")
         self.AD5260Controller.voltage_sweep(start_v=voltage_start_v, end_v=voltage_end_v, steps=voltage_sweep_steps, duration=voltage_sweep_duration)
