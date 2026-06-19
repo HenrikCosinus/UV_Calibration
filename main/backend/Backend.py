@@ -1,5 +1,6 @@
 from Agilent_Controller_RS232 import Agilent33250A
-from GPIOController import Multiplexer, AD5260Controller, MAX31865Controller
+from GPIOController import Multiplexer, AD5260Controller  # MAX31865Controller commented out with temp logic
+# from GPIOController import MAX31865Controller
 import logging
 import sys
 import os
@@ -48,13 +49,14 @@ class HighLevelControl():
             )
         self.setup_mqtt_handlers()
         self.mqtt.connect()
-        self.start_temp_loop(interval = 5)
+        # Temperature loop commented out — re-enable once core functionality is verified.
+        # self.start_temp_loop(interval=5)
 
     def initialize_hardware(self):
         self.agilent = None
         self.GPIOController = None
         self.AD5260Controller = None
-        self.MAX31865Controller = None
+        self.MAX31865Controller = None  # commented out with temp logic
 
         try:
             self.agilent = Agilent33250A(port="/dev/ttyUSB0", baud_rate=57600, timeout=5000)
@@ -74,17 +76,17 @@ class HighLevelControl():
         except Exception as e:
             logger.warning(f"[Hardware] AD5260 init failed — continuing without it: {e}")
 
-        try:
-            self.MAX31865Controller = MAX31865Controller(cs_pin=11, wires=3, rtd_nominal=1000.0, ref_resistor=4300.0)
-            logger.info("[Hardware] MAX31865 temperature sensor initialized.")
-        except Exception as e:
-            logger.warning(f"[Hardware] MAX31865 init failed — continuing without it: {e}")
+        # Temperature sensor commented out — re-enable once core functionality is verified.
+        # try:
+        #     self.MAX31865Controller = MAX31865Controller(cs_pin=11, wires=3, rtd_nominal=1000.0, ref_resistor=4300.0)
+        #     logger.info("[Hardware] MAX31865 temperature sensor initialized.")
+        # except Exception as e:
+        #     logger.warning(f"[Hardware] MAX31865 init failed — continuing without it: {e}")
 
         available = [name for name, obj in [
             ("Agilent", self.agilent),
             ("GPIO", self.GPIOController),
             ("AD5260", self.AD5260Controller),
-            ("MAX31865", self.MAX31865Controller)
         ] if obj is not None]
         logger.info(f"[Hardware] Initialization complete. Available: {available}")
 
