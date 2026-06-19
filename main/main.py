@@ -15,6 +15,11 @@ logging.basicConfig(
     ]
 )
 logging.getLogger('pyvisa').setLevel(logging.WARNING)
+# Prevent uvicorn from adding its own handlers to the root logger,
+# which caused every log record to appear 3 times.
+logging.getLogger('uvicorn').propagate = False
+logging.getLogger('uvicorn.access').propagate = False
+logging.getLogger('uvicorn.error').propagate = False
 logger = logging.getLogger(__name__)
 
 import pyvisa
