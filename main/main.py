@@ -7,13 +7,14 @@ import logging
 # GPIOController.py, etc.) are silently ignored. This means all modules log to
 # one unified file and stdout with a consistent format.
 logging.basicConfig(
-    level=logging.DEBUG,
+    level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
         logging.FileHandler("uv_calibration.log"),
         logging.StreamHandler(sys.stdout)
     ]
 )
+logging.getLogger('pyvisa').setLevel(logging.WARNING)
 logger = logging.getLogger(__name__)
 
 import pyvisa
