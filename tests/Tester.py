@@ -222,7 +222,7 @@ def parse_args():
         help="Test case to run.",
     )
     parser.add_argument("--mux-pins", type=int, nargs=4, default=[17, 18, 22, 27], help="Multiplexer BCM pins.")
-    parser.add_argument("--spi-pins", type=int, nargs="+", default=[10, 9, 11, 12, 13], help="SPI BCM pins to test as plain GPIO outputs.")
+    parser.add_argument("--spi-pins", type=int, nargs="+", default=[10, 9, 11, 8, 7], help="SPI BCM pins to test as plain GPIO outputs.")
 
     parser.add_argument("--ad-pins", type=int, nargs=5, default=[14, 9, 10, 25, 8], help="AD5260 pins: CLK SDO SDI PR CS.")
     parser.add_argument("--codes", type=int, nargs="+", default=[0, 64, 128, 192, 255], help="AD5260 codes to send.")
