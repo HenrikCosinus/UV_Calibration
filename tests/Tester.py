@@ -127,7 +127,7 @@ def test_ad5260_reset(pins, hold_time, no_prompt):
         pot.cleanup()
 
 
-def test_ad5260_spi_codes(pins, codes, hold_time, no_prompt):
+def test_ad5260_spi_codes(pins, codes):
     _, AD5260Controller, _ = import_gpio_controller()
     pot = AD5260Controller(pins=pins)
 
@@ -135,13 +135,14 @@ def test_ad5260_spi_codes(pins, codes, hold_time, no_prompt):
     print(f"Pins [CLK, SDO, SDI, PR*, CS*]: {pins}")
     print("Recommended oscilloscope probes: SCLK, MOSI/SDI, CS*, and optionally wiper voltage.")
     print("Expected SPI sequence: CS* LOW, 8 clock pulses/data bits, CS* HIGH.")
+    print("Press Enter to send each code.\n")
 
     try:
         for code in codes:
             expected_voltage = pot.calculate_voltage(code)
-            print(f"\nSending code {code}. Expected ideal wiper voltage: {expected_voltage:.3f} V")
+            print(f"Sending code {code}. Expected ideal wiper voltage: {expected_voltage:.3f} V")
             pot.set_resistance(code)
-            wait_for_scope("Check SPI frame and wiper voltage.", hold_time, no_prompt)
+            input("Check SPI frame and wiper voltage. Press Enter for next code...")
     finally:
         pot.cleanup()
 
@@ -236,7 +237,7 @@ def main():
         test_ad5260_reset(args.ad_pins, args.hold_time, args.no_prompt)
 
     if args.test in ("ad5260", "ad5260-spi", "all"):
-        test_ad5260_spi_codes(args.ad_pins, args.codes, args.hold_time, args.no_prompt)
+        test_ad5260_spi_codes(args.ad_pins, args.codes)
 
     if args.test in ("ad5260", "ad5260-sweep", "all"):
         test_ad5260_voltage_sweep(args.ad_pins, args.start_v, args.end_v, args.steps, args.duration)
