@@ -14,7 +14,7 @@ Examples:
 
 import argparse
 import sys
-import time
+import time  # used by ad5260_voltage_sweep and max31865
 from pathlib import Path
 
 
@@ -22,15 +22,6 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 MAIN_DIR = PROJECT_ROOT / "main"
 if str(MAIN_DIR) not in sys.path:
     sys.path.insert(0, str(MAIN_DIR))
-
-
-def wait_for_scope(message, seconds, no_prompt):
-    print()
-    print(message)
-    if no_prompt:
-        time.sleep(seconds)
-        return
-    input("Press Enter to continue...")
 
 
 def import_gpio_controller():
@@ -43,49 +34,31 @@ def import_gpio_controller():
     return Multiplexer, AD5260Controller, MAX31865Controller
 
 
-def test_multiplexer_pins(pins, hold_time, no_prompt):
-    Multiplexer, _, _ = import_gpio_controller()
-    mux = Multiplexer(pins=pins)
-
-    print("\n=== Multiplexer single-pin test ===")
-    print(f"BCM pins under test: {pins}")
-    print("Expected oscilloscope level: LOW approx. 0 V, HIGH approx. 3.3 V.")
-
-    try:
-        mux.set_all_pins(False)
-        wait_for_scope("All multiplexer pins are LOW. Check baseline on the oscilloscope.", hold_time, no_prompt)
-
-        for index, pin in enumerate(pins):
-            print(f"\nTesting BCM GPIO{pin} at pin_index={index}")
-            mux.set_all_pins(False)
-            mux.set_pin(index, True)
-            wait_for_scope(f"GPIO{pin} should now be HIGH, all other multiplexer pins LOW.", hold_time, no_prompt)
-
-        mux.set_all_pins(False)
-        print("\nMultiplexer single-pin test complete. All pins set LOW.")
-    finally:
-        mux.cleanup()
+PIN_LABELS = {
+    7:  "SPI0 CE1  (physical pin 26)",
+    8:  "SPI0 CE0  (physical pin 24)",
+    9:  "SPI0 MISO (physical pin 21)",
+    10: "SPI0 MOSI (physical pin 19)",
+    11: "SPI0 SCLK (physical pin 23)",
+    12: "GPIO12    (physical pin 32)",
+    13: "GPIO13    (physical pin 33)",
+    17: "GPIO17    (physical pin 11)",
+    18: "GPIO18    (physical pin 12)",
+    22: "GPIO22    (physical pin 15)",
+    27: "GPIO27    (physical pin 13)",
+}
 
 
-def test_spi_pins(pins):
+def test_pins(pins, label):
     try:
         import RPi.GPIO as GPIO
     except ImportError:
         print("RPi.GPIO not available. Run this on the Raspberry Pi.")
         return
 
-    # Known SPI0 function labels for documentation in the output
-    spi_labels = {
-        9:  "MISO  (physical pin 21)",
-        10: "MOSI  (physical pin 19)",
-        11: "SCLK  (physical pin 23)",
-        12: "GPIO12 (physical pin 32)",
-        13: "GPIO13 (physical pin 33)",
-    }
-
-    print("\n=== SPI pin GPIO-level test ===")
+    print(f"\n=== {label} pin GPIO-level test ===")
     print(f"BCM pins under test: {pins}")
-    print("NOTE: spidev must NOT be open during this test — these pins are temporarily used as plain GPIO outputs.")
+    print("NOTE: if SPI pins are included, spidev must NOT be open during this test.")
     print("Expected oscilloscope level: LOW ≈ 0 V, HIGH ≈ 3.3 V.")
     print("Press Enter to advance to the next pin.\n")
 
@@ -96,20 +69,20 @@ def test_spi_pins(pins):
         GPIO.output(pin, GPIO.LOW)
 
     try:
-        print("All SPI pins set LOW. Check baseline.")
+        print("All pins set LOW. Check baseline.")
         input("Press Enter to start stepping through pins...")
 
         for pin in pins:
             for p in pins:
                 GPIO.output(p, GPIO.LOW)
             GPIO.output(pin, GPIO.HIGH)
-            label = spi_labels.get(pin, f"GPIO{pin}")
-            print(f"\nBCM {pin} ({label}) → HIGH. All others LOW.")
+            description = PIN_LABELS.get(pin, f"GPIO{pin}")
+            print(f"\nBCM {pin} ({description}) → HIGH. All others LOW.")
             input("Press Enter for next pin...")
 
         for pin in pins:
             GPIO.output(pin, GPIO.LOW)
-        print("\nAll SPI pins set LOW. Test complete.")
+        print(f"\nAll pins set LOW. {label} pin test complete.")
     finally:
         GPIO.cleanup()
 
@@ -248,11 +221,7 @@ def parse_args():
         choices=["mux", "mux-pins", "mux-switches", "spi-pins", "ad5260", "ad5260-reset", "ad5260-spi", "ad5260-sweep", "max31865", "all"],
         help="Test case to run.",
     )
-    parser.add_argument("--no-prompt", action="store_true", help="Do not wait for Enter between oscilloscope checks.")
-    parser.add_argument("--hold-time", type=float, default=1.0, help="Seconds to hold each GPIO/SPI state.")
-    parser.add_argument("--cycles", type=int, default=2, help="Number of multiplexer switch cycles.")
-
-    parser.add_argument("--mux-pins", type=int, nargs=4, default=[24, 23, 22, 27], help="Multiplexer BCM pins.")
+    parser.add_argument("--mux-pins", type=int, nargs=4, default=[17, 18, 22, 27], help="Multiplexer BCM pins.")
     parser.add_argument("--spi-pins", type=int, nargs="+", default=[10, 9, 11, 12, 13], help="SPI BCM pins to test as plain GPIO outputs.")
 
     parser.add_argument("--ad-pins", type=int, nargs=5, default=[14, 9, 10, 25, 8], help="AD5260 pins: CLK SDO SDI PR CS.")
@@ -276,13 +245,13 @@ def main():
     args = parse_args()
 
     if args.test in ("mux", "mux-pins", "all"):
-        test_multiplexer_pins(args.mux_pins, args.hold_time, args.no_prompt)
+        test_pins(args.mux_pins, label="Multiplexer")
 
     if args.test in ("mux", "mux-switches", "all"):
         test_multiplexer_switches(args.mux_pins)
 
     if args.test in ("spi-pins",):
-        test_spi_pins(args.spi_pins)
+        test_pins(args.spi_pins, label="SPI")
 
     if args.test in ("ad5260", "ad5260-reset", "all"):
         test_ad5260_reset(args.ad_pins, args.hold_time, args.no_prompt)
