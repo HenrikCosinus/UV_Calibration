@@ -3,3 +3,4 @@ led_env/
 agilent_33250a.log/
 **/venv/
 **/__pycache__/
+logs/

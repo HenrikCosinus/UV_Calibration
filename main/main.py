@@ -1,5 +1,9 @@
 import sys
 import logging
+from pathlib import Path
+
+LOG_DIR = Path(__file__).parent.parent / "logs"
+LOG_DIR.mkdir(exist_ok=True)
 
 # Centralized logging — configured here at module level, BEFORE local imports,
 # so this basicConfig call wins. Python only applies the first basicConfig call
@@ -10,7 +14,7 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler("uv_calibration.log"),
+        logging.FileHandler(LOG_DIR / "uv_calibration.log"),
         logging.StreamHandler(sys.stdout)
     ]
 )
