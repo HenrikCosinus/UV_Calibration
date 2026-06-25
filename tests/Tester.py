@@ -67,7 +67,7 @@ def test_multiplexer_pins(pins, hold_time, no_prompt):
         mux.cleanup()
 
 
-def test_multiplexer_switches(pins, hold_time, no_prompt, cycles):
+def test_multiplexer_switches(pins):
     Multiplexer, _, _ = import_gpio_controller()
     mux = Multiplexer(pins=pins)
 
@@ -95,19 +95,18 @@ def test_multiplexer_switches(pins, hold_time, no_prompt, cycles):
 
     print("\n=== Multiplexer channel-switch test ===")
     print(f"BCM pins under test: {pins}")
-    print("Expected states are listed in pin order.")
+    print("Expected states are listed in pin order [pin0, pin1, pin2, pin3].")
+    print("Press Enter to advance to the next channel.\n")
 
     try:
-        for cycle in range(1, cycles + 1):
-            print(f"\nSwitch cycle {cycle}/{cycles}")
-            for channel, method in enumerate(switch_methods, start=1):
-                method()
-                states = expected_states[channel - 1]
-                print(f"Switch_{channel}: expected {states} on pins {pins}")
-                time.sleep(hold_time)
+        for channel, method in enumerate(switch_methods, start=1):
+            method()
+            states = expected_states[channel - 1]
+            print(f"Switch_{channel}: pins {pins} → expected {states}")
+            input("Press Enter for next channel...")
 
         mux.set_all_pins(False)
-        print("\nMultiplexer switch test complete. All pins set LOW.")
+        print("\nAll pins set LOW. Multiplexer switch test complete.")
     finally:
         mux.cleanup()
 
@@ -231,7 +230,7 @@ def main():
         test_multiplexer_pins(args.mux_pins, args.hold_time, args.no_prompt)
 
     if args.test in ("mux", "mux-switches", "all"):
-        test_multiplexer_switches(args.mux_pins, args.hold_time, args.no_prompt, args.cycles)
+        test_multiplexer_switches(args.mux_pins)
 
     if args.test in ("ad5260", "ad5260-reset", "all"):
         test_ad5260_reset(args.ad_pins, args.hold_time, args.no_prompt)
