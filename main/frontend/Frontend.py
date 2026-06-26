@@ -246,7 +246,7 @@ class Frontend():
                 ui.button("Do voltage sweep", on_click=voltage_sweep).classes('mt-2 w-full bg-purple-600')
 
 
-            Temperature readout card commented out — re-enable once core functionality is verified.
+            # Temperature readout card commented out — re-enable once core functionality is verified.
             ui.separator()
             with ui.card().classes("w-1/3"):
                 ui.label('Live Temperature Readout').classes('text-h6')
