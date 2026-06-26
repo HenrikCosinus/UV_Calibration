@@ -1,6 +1,5 @@
 from Agilent_Controller_RS232 import Agilent33250A
-from GPIOController import Multiplexer, AD5260Controller  # MAX31865Controller commented out with temp logic
-# from GPIOController import MAX31865Controller
+from GPIOController import Multiplexer, AD5260Controller, MAX31865Controller
 import logging
 import sys
 import os
@@ -56,7 +55,7 @@ class HighLevelControl():
         self.agilent = None
         self.GPIOController = None
         self.AD5260Controller = None
-        self.MAX31865Controller = None  # commented out with temp logic
+        self.MAX31865Controller = None
 
         try:
             self.agilent = Agilent33250A(port="/dev/ttyUSB0", baud_rate=57600, timeout=5000)

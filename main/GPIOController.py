@@ -215,7 +215,7 @@ class MAX31865Controller:
         wires: 2, 3, or 4 (default: 4 for PT100)
         """
         spi = board.SPI()
-        cs = digitalio.DigitalInOut(getattr(board, f"D{cs_pin}"))
+        cs = digitalio.DigitalInOut(getattr(board, f"D{cs_pin}")) #BCM17?
 
         self.sensor = adafruit_max31865.MAX31865(
             spi, cs,
