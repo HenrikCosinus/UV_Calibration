@@ -224,6 +224,16 @@ class MAX31865Controller:
             wires=wires
         )
 
+        # Read config register (0x00) — should return 0xC1 for 3-wire or 0x81 for 2/4-wire if chip is alive
+        cs.switch_to_output(value=True)
+        cs.value = False
+        spi.try_lock()
+        buf = bytearray(2)
+        spi.write_readinto(bytes([0x00, 0x00]), buf)
+        spi.unlock()
+        cs.value = True
+        logger_temp.info(f"[MAX31865] Config register raw response: 0x{buf[1]:02X} (0x00=no response, 0xC1=3-wire OK, 0x81=2/4-wire OK)")
+
         logger_temp.info(
             f"[MAX31865] Initialized | "
             f"Wires={wires} | Nominal={rtd_nominal}Ω | Ref={ref_resistor}Ω"
