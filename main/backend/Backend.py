@@ -75,7 +75,9 @@ class HighLevelControl():
         except Exception as e:
             logger.warning(f"[Hardware] AD5260 init failed — continuing without it: {e}")
 
-        # Temperature sensor commented out — re-enable once core functionality is verified.
+        # TODO: CS pin conflict — AD5260 is initialized with CS=BCM8 (physical pin 24, CE0) via GPIO bit-bang,
+        # and MAX31865 is also assigned CS=BCM8 via board.D8. When both are connected, move AD5260 CS to
+        # BCM7 (physical pin 26, CE1) and update spidev.open(0,1) to match, or move MAX31865 to a free GPIO.
         try:
             self.MAX31865Controller = MAX31865Controller(cs_pin=8, wires=3, rtd_nominal=100.0, ref_resistor=430.0)
             logger.info("[Hardware] MAX31865 temperature sensor initialized.")

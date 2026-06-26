@@ -247,9 +247,27 @@ class MAX31865Controller:
         resistance = self.sensor.resistance
         logger_temp.info(f"[MAX31865] Sanity check resistance: {resistance:.2f} Ω")
 
+    def _log_faults(self):
+        fault_names = [
+            "High threshold exceeded",
+            "Low threshold exceeded",
+            "Reference low",
+            "Reference high",
+            "RTD input low (short to GND)",
+            "Over/under voltage"
+        ]
+        faults = self.sensor.fault
+        for name, active in zip(fault_names, faults):
+            if active:
+                logger_temp.warning(f"[MAX31865] Fault: {name}")
+        if not any(faults):
+            logger_temp.info("[MAX31865] No faults")
+
     def read_temperature_c(self):
+        self._log_faults()
+        resistance = self.sensor.resistance
         temp_c = self.sensor.temperature
-        logger_temp.info(f"[MAX31865] Temperature: {temp_c:.2f} °C")
+        logger_temp.info(f"[MAX31865] Resistance: {resistance:.2f} Ω | Temperature: {temp_c:.2f} °C")
         return temp_c
 
     def read_temperature_k(self):
