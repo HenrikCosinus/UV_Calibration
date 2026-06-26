@@ -77,7 +77,7 @@ class HighLevelControl():
 
         # Temperature sensor commented out — re-enable once core functionality is verified.
         try:
-            self.MAX31865Controller = MAX31865Controller(cs_pin=11, wires=3, rtd_nominal=1000.0, ref_resistor=4300.0)
+            self.MAX31865Controller = MAX31865Controller(cs_pin=11, wires=3, rtd_nominal=100.0, ref_resistor=430.0)
             logger.info("[Hardware] MAX31865 temperature sensor initialized.")
         except Exception as e:
             logger.warning(f"[Hardware] MAX31865 init failed — continuing without it: {e}")
