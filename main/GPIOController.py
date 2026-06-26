@@ -209,13 +209,13 @@ class AD5260Controller:
 logger_temp = logging.getLogger(f"{__name__}.temperature")
 
 class MAX31865Controller:
-    def __init__(self, cs_pin=5, wires=3, rtd_nominal=1000.0, ref_resistor=4300.0):
+    def __init__(self, cs_pin=17, wires=3, rtd_nominal=100.0, ref_resistor=430.0):
         """
-        cs_pin: BCM pin for chip select (default D5)
-        wires: 2, 3, or 4 (default: 4 for PT100)
+        cs_pin: BCM pin for chip select (BCM numbering, default BCM17 = physical pin 11)
+        wires: 2, 3, or 4
         """
         spi = board.SPI()
-        cs = digitalio.DigitalInOut(getattr(board, f"D{cs_pin}")) #BCM17?
+        cs = digitalio.DigitalInOut(getattr(board, f"D{cs_pin}"))
 
         self.sensor = adafruit_max31865.MAX31865(
             spi, cs,
@@ -240,9 +240,12 @@ class MAX31865Controller:
         ]
         for name, active in zip(fault_names, faults):
             if active:
-                print(f"Fault detected: {name}")
+                logger_temp.warning(f"[MAX31865] Fault: {name}")
         if not any(faults):
-            print("No fault detected")
+            logger_temp.info("[MAX31865] No faults detected")
+
+        resistance = self.sensor.resistance
+        logger_temp.info(f"[MAX31865] Sanity check resistance: {resistance:.2f} Ω")
 
     def read_temperature_c(self):
         temp_c = self.sensor.temperature
