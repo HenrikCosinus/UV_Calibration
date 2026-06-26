@@ -13,16 +13,6 @@ import board
 import digitalio
 import adafruit_max31865
 
-# Logging is configured centrally in main.py. basicConfig here is commented out so
-# it does not override the root logger that main.py sets up before importing this module.
-# logging.basicConfig(
-#     level=logging.INFO,
-#     format='%(asctime)s - %(levelname)s - %(message)s',
-#     handlers=[
-#         logging.FileHandler("GPIOlogging.log"),
-#         logging.StreamHandler(sys.stdout)
-#     ]
-# )
 logger = logging.getLogger(__name__)
 
 class Multiplexer:    
@@ -215,6 +205,9 @@ class AD5260Controller:
         GPIO.cleanup()
         logging.info("[AD5260] Cleaned up SPI and GPIO")
 
+
+logger_temp = logging.getLogger(f"{__name__}.temperature")
+
 class MAX31865Controller:
     def __init__(self, cs_pin=5, wires=3, rtd_nominal=1000.0, ref_resistor=4300.0):
         """
@@ -231,7 +224,7 @@ class MAX31865Controller:
             wires=wires
         )
 
-        logging.info(
+        logger_temp.info(
             f"[MAX31865] Initialized | "
             f"Wires={wires} | Nominal={rtd_nominal}Ω | Ref={ref_resistor}Ω"
         )
@@ -253,7 +246,7 @@ class MAX31865Controller:
 
     def read_temperature_c(self):
         temp_c = self.sensor.temperature
-        logging.info(f"[MAX31865] Temperature: {temp_c:.2f} °C")
+        logger_temp.info(f"[MAX31865] Temperature: {temp_c:.2f} °C")
         return temp_c
 
     def read_temperature_k(self):
@@ -261,7 +254,7 @@ class MAX31865Controller:
 
     def read_resistance(self):
         resistance = self.sensor.resistance
-        logging.info(f"[MAX31865] Resistance: {resistance:.2f} Ω")
+        logger_temp.info(f"[MAX31865] Resistance: {resistance:.2f} Ω")
         return resistance
     
 
