@@ -246,55 +246,55 @@ class Frontend():
                 ui.button("Do voltage sweep", on_click=voltage_sweep).classes('mt-2 w-full bg-purple-600')
 
 
-            # Temperature readout card commented out — re-enable once core functionality is verified.
-            # ui.separator()
-            # with ui.card().classes("w-1/3"):
-            #     ui.label('Live Temperature Readout').classes('text-h6')
-            #     temp_display = ui.column().classes("gap-1")
-            #     self.temp_readings = []
-            #
-            #     def add_temperature_reading(temp_value):
-            #         # Keep only the last 20 readings
-            #         self.temp_readings.append(temp_value)
-            #         if len(self.temp_readings) > 20:
-            #             self.temp_readings.pop(0)
-            #
-            #     def on_temp_message(client, userdata, message):
-            #         # BUG FIX (Bug 6): This callback runs in the paho MQTT background thread.
-            #         # Calling ui.notify() from a background thread is not thread-safe in NiceGUI
-            #         # and causes intermittent crashes/silent failures. Removed ui.notify() here;
-            #         # the timer-driven refresh_ui() picks up new readings on its next tick.
-            #         # List.append() is safe in CPython (GIL protects single operations).
-            #         try:
-            #             payload = json.loads(message.payload.decode())
-            #             logger.debug(f"[Frontend] /temperature raw: {payload}")
-            #             if "temperature_k" in payload:
-            #                 add_temperature_reading(payload["temperature_k"])
-            #                 logger.info(f"[Frontend] Temperature queued: {payload['temperature_k']:.2f} K")
-            #             else:
-            #                 logger.warning(f"[Frontend] /temperature payload missing 'temperature_k': {payload}")
-            #         except Exception as e:
-            #             # ui.notify(f"Temperature parse error: {e}", color="negative")  # NOT thread-safe
-            #             logger.error(f"[Frontend] Temperature parse error in MQTT callback: {e}")
-            #
-            #     # Subscribe to /temperature directly on the paho client.
-            #     # message_callback_add registers a per-topic callback that takes priority over
-            #     # MQTTHandler._on_message for this topic, so there is no double-dispatch.
-            #     logger.info("[Frontend] Subscribing to /temperature for live readout")
-            #     self.mqtt.client.subscribe("/temperature", qos=1)
-            #     self.mqtt.client.message_callback_add("/temperature", on_temp_message)
-            #
-            #     def refresh_ui():
-            #         # BUG FIX (Bug 3): ui.label() calls must be inside a `with temp_display:`
-            #         # context to attach as children of temp_display. Without it, labels were
-            #         # created at the page root and never appeared inside the temperature card.
-            #         temp_display.clear()
-            #         with temp_display:
-            #             for temp in self.temp_readings:
-            #                 ui.label(f"{temp:.2f} K")
-            #         logger.debug(f"[Frontend] refresh_ui: {len(self.temp_readings)} readings displayed")
-            #
-            #     ui.timer(interval=5.0, callback=refresh_ui)
+            Temperature readout card commented out — re-enable once core functionality is verified.
+            ui.separator()
+            with ui.card().classes("w-1/3"):
+                ui.label('Live Temperature Readout').classes('text-h6')
+                temp_display = ui.column().classes("gap-1")
+                self.temp_readings = []
+            
+                def add_temperature_reading(temp_value):
+                    # Keep only the last 20 readings
+                    self.temp_readings.append(temp_value)
+                    if len(self.temp_readings) > 20:
+                        self.temp_readings.pop(0)
+            
+                def on_temp_message(client, userdata, message):
+                    # BUG FIX (Bug 6): This callback runs in the paho MQTT background thread.
+                    # Calling ui.notify() from a background thread is not thread-safe in NiceGUI
+                    # and causes intermittent crashes/silent failures. Removed ui.notify() here;
+                    # the timer-driven refresh_ui() picks up new readings on its next tick.
+                    # List.append() is safe in CPython (GIL protects single operations).
+                    try:
+                        payload = json.loads(message.payload.decode())
+                        logger.debug(f"[Frontend] /temperature raw: {payload}")
+                        if "temperature_k" in payload:
+                            add_temperature_reading(payload["temperature_k"])
+                            logger.info(f"[Frontend] Temperature queued: {payload['temperature_k']:.2f} K")
+                        else:
+                            logger.warning(f"[Frontend] /temperature payload missing 'temperature_k': {payload}")
+                    except Exception as e:
+                        # ui.notify(f"Temperature parse error: {e}", color="negative")  # NOT thread-safe
+                        logger.error(f"[Frontend] Temperature parse error in MQTT callback: {e}")
+            
+                # Subscribe to /temperature directly on the paho client.
+                # message_callback_add registers a per-topic callback that takes priority over
+                # MQTTHandler._on_message for this topic, so there is no double-dispatch.
+                logger.info("[Frontend] Subscribing to /temperature for live readout")
+                self.mqtt.client.subscribe("/temperature", qos=1)
+                self.mqtt.client.message_callback_add("/temperature", on_temp_message)
+            
+                def refresh_ui():
+                    # BUG FIX (Bug 3): ui.label() calls must be inside a `with temp_display:`
+                    # context to attach as children of temp_display. Without it, labels were
+                    # created at the page root and never appeared inside the temperature card.
+                    temp_display.clear()
+                    with temp_display:
+                        for temp in self.temp_readings:
+                            ui.label(f"{temp:.2f} K")
+                    logger.debug(f"[Frontend] refresh_ui: {len(self.temp_readings)} readings displayed")
+            
+                ui.timer(interval=5.0, callback=refresh_ui)
 
         
     def execute_switch(self):

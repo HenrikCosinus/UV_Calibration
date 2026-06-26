@@ -215,31 +215,6 @@ class AD5260Controller:
         GPIO.cleanup()
         logging.info("[AD5260] Cleaned up SPI and GPIO")
 
-"""class MAX31865Controller:
-    def __init__(self, cs_pin, wires, rtd_nominal, ref_resistor):
-        self.spi = board.SPI()
-        self.cs = digitalio.DigitalInOut(getattr(board, f"D{cs_pin}"))
-        self.sensor = adafruit_max31865.MAX31865(
-            self.spi, self.cs,
-            rtd_nominal=int(rtd_nominal), #super confused why this needs type-casting but ref_resistor doesn't
-            ref_resistor=ref_resistor,
-            wires=wires
-        )
-        self.sensor.begin()
-        logging.info(f"[MAX31865] Initialized | Wires={wires} | Nominal={rtd_nominal}Ω | Ref={ref_resistor}Ω")
-
-    def read_temperature(self):
-        temp_c = self.sensor.temperature
-        temp_k = (temp_c + 273.15)
-        logging.info(f"[MAX31865] Temperature: {temp_k:.2f} K")
-        return temp_k
-
-    def read_resistance(self):
-        resistance = self.sensor.resistance
-        logging.info(f"[MAX31865] Resistance: {resistance:.2f} Ω")
-        return resistance"""
-
-
 class MAX31865Controller:
     def __init__(self, cs_pin=5, wires=3, rtd_nominal=1000.0, ref_resistor=4300.0):
         """
