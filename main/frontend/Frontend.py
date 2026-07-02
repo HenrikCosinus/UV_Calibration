@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 class Frontend():
     def __init__(self):
         self.notes_file = Path('channel_notes.json')
-        self.channel_notes_store = {} 
+        self.channel_notes_store = {}
         self.load_notes()
         self.pot_settings_file = Path('potentiometer_settings.json')
         self.channel_pot_settings = {}
@@ -46,41 +46,39 @@ class Frontend():
         logger.info("Subscribed to /temperature and /hardware_status")
 
     def create_ui(self):
-        with ui.row().classes("w-full justify-start"):
-            with ui.card().classes("w-1/2"):
-                ui.label('Select UV_LED:').classes('mt-4')
+        # ── Row 1: three equal columns ────────────────────────────────────────
+        with ui.row().classes("w-full gap-4 items-start"):
 
-                with ui.row().classes('items-start gap-4'):
-                    self.switch_dropdown = ui.select(
-                        label='Available UV-LEDs',
-                        options=[
-                            'Switch 1', 'Switch 2', 'Switch 3', 'Switch 4',
-                            'Switch 5', 'Switch 6', 'Switch 7', 'Switch 8',
-                            'All Off'
-                        ],
-                        value='Switch 1'
-                    ).classes('w-full')
+            # Column 1 — UV LED Channel
+            with ui.card().classes("flex-1"):
+                ui.label('UV LED Channel').classes('text-h6')
+                self.switch_dropdown = ui.select(
+                    label='Select Channel',
+                    options=[
+                        'Switch 1', 'Switch 2', 'Switch 3', 'Switch 4',
+                        'Switch 5', 'Switch 6', 'Switch 7', 'Switch 8',
+                        'All Off'
+                    ],
+                    value='Switch 1'
+                ).classes('w-full')
 
-                    initial_note = self.channel_notes_store.get('Switch 1', '')
-                    self.channel_notes = ui.textarea(
-                        label='Channel Notes',
-                        placeholder='Add notes for the channels...',
-                        value=initial_note  # <<< load on startup
-                    ).classes('w-full')
+                initial_note = self.channel_notes_store.get('Switch 1', '')
+                self.channel_notes = ui.textarea(
+                    label='Channel Notes',
+                    placeholder='Add notes for this channel...',
+                    value=initial_note
+                ).classes('w-full')
 
                 ui.separator()
-                ui.label('Set Potentiometer Level').classes('text-h6')
+                ui.label('Potentiometer Level').classes('text-subtitle1 mt-2')
                 current_channel = self.switch_dropdown.value
                 initial_percent = self.channel_pot_settings.get(current_channel, 50)
-
                 self.pot_percent_input = ui.number(
-                    label='Potentiometer level (%)',
+                    label='Level (%)',
                     value=initial_percent,
-                    min=0,
-                    max=100,
-                    step=1
+                    min=0, max=100, step=1
                 ).classes('w-full')
-                
+
                 def save_notes_for_channel():
                     channel = self.switch_dropdown.value
                     self.channel_notes_store[channel] = self.channel_notes.value
@@ -89,147 +87,127 @@ class Frontend():
 
                 def update_notes_field():
                     channel = self.switch_dropdown.value
-                    note = self.channel_notes_store.get(channel, '')
-                    self.channel_notes.value = note
+                    self.channel_notes.value = self.channel_notes_store.get(channel, '')
 
                 def update_pot_input():
                     channel = self.switch_dropdown.value
                     self.pot_percent_input.value = self.channel_pot_settings.get(channel, 50)
 
-
                 self.switch_dropdown.on('update:model-value', update_pot_input)
                 self.switch_dropdown.on('update:model-value', update_notes_field)
-                ui.button('Save Notes', on_click=save_notes_for_channel).classes('mt-2 bg-green-600')
-                ui.button('Activate Channel', on_click=self.execute_switch).classes('mt-2 w-full bg-blue-700')
+                with ui.row().classes('gap-2 mt-2'):
+                    ui.button('Save Notes', on_click=save_notes_for_channel).classes('bg-green-600')
+                    ui.button('Activate Channel', on_click=self.execute_switch).classes('bg-blue-700')
 
-            with ui.card().classes("w-1/3"):
-                ui.label('Signal Configuration').classes('text-h6')
+            # Column 2 — Signal Configuration + Signal Generator stacked
+            with ui.column().classes("flex-1 gap-4"):
+                with ui.card().classes("w-full"):
+                    ui.label('Signal Configuration').classes('text-h6')
+                    frequency_input = ui.input(label='Frequency (Hz)', value='1000').props('type=number step=1 suffix=Hz').classes('w-full')
+                    burst_count_input = ui.input(label='Bursts per block', value='5').props('type=number step=1 suffix=bursts').classes('w-full')
+                    duty_cycle_input = ui.input(label='Duty Cycle (%)', value='50').props('type=number step=1 suffix=%').classes('w-full')
+                    inter_block_delay_input = ui.input(label='Delay between burst blocks (s)', value='2.0').props('type=number step=0.1 suffix=s').classes('w-full')
 
-                frequency_input = ui.input(label='Frequency (Hz)', value='1000').props('type=number step=1 suffix=Hz')
-                burst_count_input = ui.input(label='Bursts per block', value='5').props('type=number step=1 suffix=bursts')
-                duty_cycle_input = ui.input(label='Duty Cycle (%)', value='50').props('type=number step=1 suffix=%')
-                inter_block_delay_input = ui.input(label='Delay between burst blocks (s)', value='2.0').props('type=number step=0.1 suffix=s')
+                    def send_signal_settings():
+                        try:
+                            settings = {
+                                "type": "signal_config",
+                                "frequency": float(frequency_input.value),
+                                "bursts": int(burst_count_input.value),
+                                "duty_cycle": float(duty_cycle_input.value),
+                                "inter_block_delay": float(inter_block_delay_input.value),
+                            }
+                            logger.info(f"→ /ui_command: {settings}")
+                            self.mqtt.publish(topic="/ui_command", payload=json.dumps(settings), qos=1)
+                            ui.notify("Signal configuration sent!", color='positive')
+                        except Exception as e:
+                            logger.error(f"send_signal_settings error: {e}")
+                            ui.notify(f"Error: {str(e)}", color='negative')
 
-                def send_signal_settings():
-                    try:
-                        settings = {
-                            "type": "signal_config",
-                            "frequency": float(frequency_input.value),
-                            "bursts": int(burst_count_input.value),
-                            "duty_cycle": float(duty_cycle_input.value),
-                            "inter_block_delay": float(inter_block_delay_input.value),
-                        }
-                        logger.info(f"→ /ui_command: {settings}")
-                        self.mqtt.publish(
-                            topic="/ui_command",
-                            payload=json.dumps(settings),
-                            qos=1
-                        )
-                        ui.notify("Signal configuration sent!", color='positive')
-                    except Exception as e:
-                        logger.error(f"send_signal_settings error: {e}")
-                        ui.notify(f"Error: {str(e)}", color='negative')
+                    def send_burst_trigger():
+                        try:
+                            payload = {"type": "trigger_burst"}
+                            logger.info(f"→ /ui_command: {payload}")
+                            self.mqtt.publish(topic="/ui_command", payload=json.dumps(payload), qos=1)
+                            ui.notify("Triggered burst series", color='positive')
+                        except Exception as e:
+                            logger.error(f"send_burst_trigger error: {e}")
+                            ui.notify(f"Burst trigger failed: {str(e)}", color='negative')
 
-                ui.button("Send Signal Settings", on_click=send_signal_settings).classes('mt-2 w-full bg-purple-600')
-
-                def send_burst_trigger():
-                    try:
-                        payload = {"type": "trigger_burst"}
-                        logger.info(f"→ /ui_command: {payload}")
-                        self.mqtt.publish(
-                            topic="/ui_command",
-                            payload=json.dumps(payload),
-                            qos=1
-                        )
-                        ui.notify(f"Triggered burst series", color='positive')
-                    except Exception as e:
-                        logger.error(f"send_burst_trigger error: {e}")
-                        ui.notify(f"Burst trigger failed: {str(e)}", color='negative')
-
-                ui.button(
-                    "Trigger Burst Series",
-                    on_click=send_burst_trigger
-                ).classes('mt-2 w-full bg-orange-600')
-
-                ui.separator()
-                with ui.card().classes("w-1/3"):
-                    ui.label(
-                    '⚙️Pulse Train Sweep:\n\n'
-                    'This will run a preset sweep: \n'
-                    '- Square wave, 5 MHz\n'
-                    '- 50% duty cycle, 100 ns single pulse\n'
-                    '- Train max length 4 µs\n'
-                    '- Number of pulses: 1 → 20\n'
-                    '- 100 ms wait between trains\n'
-                    '- Runs automatically on backend'
-                    ).classes('text-sm')
-                    
                     def send_pulse_train_sweep():
                         try:
                             payload = {"type": "pulse_train_sweep"}
                             logger.info(f"→ /ui_command: {payload}")
-                            self.mqtt.publish(
-                                topic="/ui_command",
-                                payload=json.dumps(payload),
-                                qos=1
-                            )
-                            ui.notify(f"Sweeping pulse train started", color='positive')
+                            self.mqtt.publish(topic="/ui_command", payload=json.dumps(payload), qos=1)
+                            ui.notify("Sweeping pulse train started", color='positive')
                         except Exception as e:
                             logger.error(f"send_pulse_train_sweep error: {e}")
                             ui.notify(f"Pulse train sweep failed: {str(e)}", color='negative')
 
-                    ui.button(
-                        "Start Pulse Train Sweep",
-                        on_click=send_pulse_train_sweep
-                    ).classes('mt-2 w-full bg-orange-600')
+                    ui.button("Send Signal Settings", on_click=send_signal_settings).classes('mt-2 w-full bg-purple-600')
+                    ui.button("Trigger Burst Series", on_click=send_burst_trigger).classes('mt-2 w-full bg-orange-600')
+                    ui.separator()
+                    ui.label('Pulse Train Sweep').classes('text-subtitle1')
+                    ui.label(
+                        'Square wave 5 MHz, 50% duty cycle, 100 ns single pulse, '
+                        'train max 4 µs, pulses 1→20, 100 ms between trains.'
+                    ).classes('text-caption text-grey-6')
+                    ui.button("Start Pulse Train Sweep", on_click=send_pulse_train_sweep).classes('mt-2 w-full bg-orange-600')
 
-                ui.separator()
-                ui.label('Signal Generator').classes('text-h6')
-                #status_label = ui.label('Status: Disconnected').classes('mt-2')
-                def connect_generator():
-                    try:
-                        payload = {"type": "connect_generator"}
-                        logger.info(f"→ /ui_command: {payload}")
-                        self.mqtt.publish(
-                            topic="/ui_command",
-                            payload=json.dumps(payload),
-                            qos=1
-                        )
-                        #status_label.text = 'Status: Connecting...'
-                        ui.notify('Connect command sent via MQTT', color='info')
-                    except Exception as e:
-                        #status_label.text = f'Connection command error: {str(e)}'
-                        logger.error(f"connect_generator error: {e}")
-                        ui.notify(f'Error sending connect command: {str(e)}', color='negative')
+                with ui.card().classes("w-full"):
+                    ui.label('Signal Generator').classes('text-h6')
 
-                def disconnect_generator():
-                    try:
-                        payload = {"type": "disconnect_generator"}
-                        logger.info(f"→ /ui_command: {payload}")
-                        self.mqtt.publish(
-                            topic="/ui_command",
-                            payload=json.dumps(payload),
-                            qos=1
-                        )
-                        #status_label.text = 'Status: Disconnecting...'
-                        ui.notify('Disconnect command sent via MQTT', color='info')
-                    except Exception as e:
-                        logger.error(f"disconnect_generator error: {e}")
-                        ui.notify(f'Error sending disconnect command: {str(e)}', color='negative')
-                        
-                with ui.row():
-                    connect_btn = ui.button('Reset and Reconnect', on_click=connect_generator).classes('mt-2 bg-green-700')
-                    disconnect_btn = ui.button('Disconnect', on_click=disconnect_generator).classes('mt-2 bg-red-700')
-                
-            ui.separator()
-            ui.label('Potentiometer control').classes('text-h6')
-            with ui.card().classes("w-1/3"):
-                ui.label('Sweep Configuration').classes('text-h6')
+                    def connect_generator():
+                        try:
+                            payload = {"type": "connect_generator"}
+                            logger.info(f"→ /ui_command: {payload}")
+                            self.mqtt.publish(topic="/ui_command", payload=json.dumps(payload), qos=1)
+                            ui.notify('Connect command sent', color='info')
+                        except Exception as e:
+                            logger.error(f"connect_generator error: {e}")
+                            ui.notify(f'Error sending connect command: {str(e)}', color='negative')
+
+                    def disconnect_generator():
+                        try:
+                            payload = {"type": "disconnect_generator"}
+                            logger.info(f"→ /ui_command: {payload}")
+                            self.mqtt.publish(topic="/ui_command", payload=json.dumps(payload), qos=1)
+                            ui.notify('Disconnect command sent', color='info')
+                        except Exception as e:
+                            logger.error(f"disconnect_generator error: {e}")
+                            ui.notify(f'Error sending disconnect command: {str(e)}', color='negative')
+
+                    with ui.row().classes('gap-2 mt-2'):
+                        ui.button('Reset and Reconnect', on_click=connect_generator).classes('bg-green-700')
+                        ui.button('Disconnect', on_click=disconnect_generator).classes('bg-red-700')
+
+            # Column 3 — Temperature
+            with ui.card().classes("flex-1"):
+                ui.label('Live Temperature').classes('text-h6')
+                temp_display = ui.column().classes("gap-1")
+
+                def refresh_ui():
+                    temp_display.clear()
+                    with temp_display:
+                        if self.temp_readings:
+                            temp, ts = self.temp_readings[-1]
+                            ui.label(f"{temp:.2f} K").classes('text-h5')
+                            if ts is not None:
+                                ui.label(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(ts))).classes("text-caption text-grey")
+                        else:
+                            ui.label("No reading yet").classes("text-grey")
+                    logger.debug(f"refresh_ui: {len(self.temp_readings)} readings displayed")
+
+                ui.timer(interval=5.0, callback=refresh_ui)
+
+        # ── Row 2: Potentiometer Sweep full width ─────────────────────────────
+        with ui.card().classes("w-full mt-4"):
+            ui.label('Potentiometer Sweep').classes('text-h6')
+            with ui.row().classes('gap-4 items-end'):
                 start_v = ui.input(label='Start voltage (V)', value='0').props('type=number step=0.1 suffix=V')
                 end_v = ui.input(label='End voltage (V)', value='10').props('type=number step=0.1 suffix=V')
                 steps = ui.input(label='Steps (max 255)', value='255').props('type=number step=1 suffix=steps')
                 sweep_duration = ui.input(label='Duration per step (s)', value='1').props('type=number step=0.1 suffix=s')
-                ui.label('Duration is the wait time between each individual step, not the total sweep time.').classes('text-caption text-grey-6 text-xs')
 
                 def voltage_sweep():
                     try:
@@ -241,41 +219,15 @@ class Frontend():
                             "voltage_sweep_duration": float(sweep_duration.value)
                         }
                         logger.info(f"→ /ui_command: {settings}")
-                        self.mqtt.publish(
-                            topic="/ui_command",
-                            payload=json.dumps(settings),
-                            qos=1
-                        )
+                        self.mqtt.publish(topic="/ui_command", payload=json.dumps(settings), qos=1)
                         ui.notify('Voltage sweep command sent', color='positive')
                     except Exception as e:
-                        #status_label.text = f'Connection command error: {str(e)}'
                         logger.error(f"voltage_sweep error: {e}")
-                        ui.notify(f'Error sending connect command: {str(e)}', color='negative')
+                        ui.notify(f'Error: {str(e)}', color='negative')
 
-                ui.button("Do voltage sweep", on_click=voltage_sweep).classes('mt-2 w-full bg-purple-600')
+                ui.button("Start Sweep", on_click=voltage_sweep).classes('bg-purple-600')
+            ui.label('Duration is the wait time per step, not total sweep time.').classes('text-caption text-grey-6 mt-1')
 
-
-            # Temperature readout card commented out — re-enable once core functionality is verified.
-            ui.separator()
-            with ui.card().classes("w-1/3"):
-                ui.label('Live Temperature Readout').classes('text-h6')
-                temp_display = ui.column().classes("gap-1")
-                def refresh_ui():
-                    # BUG FIX (Bug 3): ui.label() calls must be inside a `with temp_display:`
-                    # context to attach as children of temp_display. Without it, labels were
-                    # created at the page root and never appeared inside the temperature card.
-                    temp_display.clear()
-                    with temp_display:
-                        if self.temp_readings:
-                            temp, ts = self.temp_readings[-1]
-                            ui.label(f"{temp:.2f} K")
-                            if ts is not None:
-                                ui.label(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(ts))).classes("text-caption text-grey")
-                    logger.debug(f"refresh_ui: {len(self.temp_readings)} readings displayed")
-            
-                ui.timer(interval=5.0, callback=refresh_ui)
-
-        
     def execute_switch(self):
         selected_channel = self.switch_dropdown.value
         if selected_channel is None:
@@ -286,38 +238,37 @@ class Frontend():
                 channel_number = int(selected_channel.split()[1])
                 command_type = "channel_select"
                 percent = float(self.pot_percent_input.value)
+                payload = {
+                    "type": command_type,
+                    "channel": channel_number,
+                    "pot_percent": percent
+                }
+                self.channel_pot_settings[selected_channel] = percent
+                self.save_pot_settings()
+            elif selected_channel == "All Off":
+                payload = {"type": "all_off"}
             else:
-                channel_number = 0
-                command_type = "all_off"
-                percent = None
+                ui.notify("Unknown channel selected.", color='warning')
+                return
 
-            payload = {
-                "type": command_type,
-                "channel": channel_number,
-                "percent": percent
-            }
             logger.info(f"→ /ui_command: {payload}")
             self.mqtt.publish(
                 topic="/ui_command",
                 payload=json.dumps(payload),
                 qos=1
             )
-            ui.notify(f'Channel {selected_channel} selected with voltage percentage: {percent}', color='positive')
-
+            ui.notify(f'{selected_channel} activated', color='positive')
         except Exception as e:
-            error_msg = f"MQTT error: {str(e)}"
             logger.error(f"execute_switch error: {e}")
-            ui.notify(error_msg, color='negative')
+            ui.notify(f'Error: {str(e)}', color='negative')
 
     def load_notes(self):
-        if self.notes_file.exists():
-            try:
-                with open(self.notes_file, 'r') as f:
+        try:
+            if self.notes_file.exists():
+                with open(self.notes_file) as f:
                     self.channel_notes_store = json.load(f)
-            except Exception as e:
-                print(f"Failed to load notes: {e}")
-        else:
-            self.channel_notes_store = {}
+        except Exception as e:
+            print(f"Failed to load notes: {e}")
 
     def save_notes(self):
         try:
@@ -327,14 +278,12 @@ class Frontend():
             print(f"Failed to save notes: {e}")
 
     def load_pot_settings(self):
-        if self.pot_settings_file.exists():
-            try:
-                with open(self.pot_settings_file, 'r') as f:
+        try:
+            if self.pot_settings_file.exists():
+                with open(self.pot_settings_file) as f:
                     self.channel_pot_settings = json.load(f)
-            except Exception as e:
-                print(f"Failed to load potentiometer settings: {e}")
-        else:
-            self.channel_pot_settings = {}
+        except Exception as e:
+            print(f"Failed to load potentiometer settings: {e}")
 
     def save_pot_settings(self):
         try:
