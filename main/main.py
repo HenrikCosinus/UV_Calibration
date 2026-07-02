@@ -59,6 +59,7 @@ def main():
         port=8080,
         host="0.0.0.0",
         reload=False,
+        show=False,
     )
 
 if __name__ == "__main__":
