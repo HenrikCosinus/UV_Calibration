@@ -187,18 +187,21 @@ class Frontend():
                 temp_display = ui.column().classes("gap-1")
 
                 def refresh_ui():
-                    temp_display.clear()
-                    with temp_display:
-                        if self.temp_readings:
-                            temp, ts = self.temp_readings[-1]
-                            ui.label(f"{temp:.2f} K").classes('text-h5')
-                            if ts is not None:
-                                ui.label(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(ts))).classes("text-caption text-grey")
-                        else:
-                            ui.label("No reading yet").classes("text-grey")
-                    logger.debug(f"refresh_ui: {len(self.temp_readings)} readings displayed")
+                    try:
+                        temp_display.clear()
+                        with temp_display:
+                            if self.temp_readings:
+                                temp, ts = self.temp_readings[-1]
+                                ui.label(f"{temp:.2f} K").classes('text-h5')
+                                if ts is not None:
+                                    ui.label(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(ts))).classes("text-caption text-grey")
+                            else:
+                                ui.label("No reading yet").classes("text-grey")
+                        logger.debug(f"refresh_ui: {len(self.temp_readings)} readings displayed")
+                    except Exception:
+                        timer.cancel()
 
-                ui.timer(interval=5.0, callback=refresh_ui)
+                timer = ui.timer(interval=5.0, callback=refresh_ui)
 
         # ── Row 2: Potentiometer Sweep full width ─────────────────────────────
         with ui.card().classes("w-full mt-4"):
