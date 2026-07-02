@@ -40,12 +40,16 @@ class Frontend():
         logger.info("MQTT connect() called.")
 
         self.temp_readings = []
+        self.hardware_failures = []
 
         self.mqtt.register_handler("/temperature", self._on_temp_message)
         self.mqtt.register_handler("/hardware_status", self._on_hardware_status)
         logger.info("Subscribed to /temperature and /hardware_status")
 
     def create_ui(self):
+        for name in self.hardware_failures:
+            ui.notify(f"{name} failed to initialize", type="negative", close_button=True, timeout=0)
+
         with ui.row().classes("w-full gap-4 items-start"):
             build_uv_led_card(self)
             build_signal_card(self)
@@ -105,8 +109,10 @@ class Frontend():
                 "ad5260":   "AD5260 potentiometer",
                 "max31865": "MAX31865 temperature sensor",
             }
-            for key, name in labels.items():
-                if not payload.get(key, True):
-                    ui.notify(f"{name} failed to initialize", type="negative", close_button=True, timeout=0)
+            self.hardware_failures = [
+                name for key, name in labels.items()
+                if not payload.get(key, True)
+            ]
+            logger.info(f"Hardware status received. Failures: {self.hardware_failures}")
         except Exception as e:
             logger.error(f"hardware_status parse error: {e}")
