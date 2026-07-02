@@ -23,7 +23,7 @@ class UILogHandler(logging.Handler):
 
     def emit(self, record: logging.LogRecord):
         self.records.append({
-            "time":    self.formatTime(record, "%H:%M:%S"),
+            "time":    logging.Formatter().formatTime(record, "%H:%M:%S"),
             "name":    record.name,
             "level":   record.levelname,
             "message": record.getMessage(),
