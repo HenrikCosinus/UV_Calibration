@@ -16,7 +16,7 @@ def build_temperature_card(frontend):
                 with temp_display:
                     if frontend.temp_readings:
                         temp, ts = frontend.temp_readings[-1]
-                        ui.label(f"{temp:.2f} K").classes('text-h5')
+                        ui.label(f"{temp:.2f} C").classes('text-h5')
                         if ts is not None:
                             ui.label(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(ts))).classes("text-caption text-grey")
                     else:

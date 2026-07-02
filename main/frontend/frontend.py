@@ -91,13 +91,13 @@ class Frontend():
     def _on_temp_message(self, payload):
         try:
             logger.debug(f"/temperature raw: {payload}")
-            if "temperature_k" in payload:
-                self.temp_readings.append((payload["temperature_k"], payload.get("timestamp")))
+            if "temperature_c" in payload:
+                self.temp_readings.append((payload["temperature_c"], payload.get("timestamp")))
                 if len(self.temp_readings) > 20:
                     self.temp_readings.pop(0)
-                logger.info(f"Temperature queued: {payload['temperature_k']:.2f} K")
+                logger.info(f"Temperature queued: {payload['temperature_c']:.2f} K")
             else:
-                logger.warning(f"/temperature payload missing 'temperature_k': {payload}")
+                logger.warning(f"/temperature payload missing 'temperature_c': {payload}")
         except Exception as e:
             logger.error(f"Temperature parse error in MQTT callback: {e}")
 

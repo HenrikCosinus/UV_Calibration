@@ -120,11 +120,12 @@ class HighLevelControl():
                     logger.warning("[update_temp_loop] MAX31865 not available, skipping read.")
                     time.sleep(interval)
                     continue
-                temp_k = float(self.MAX31865Controller.read_temperature_k())
+                # temp_k = float(self.MAX31865Controller.read_temperature_k())
+                temp_c = float(self.MAX31865Controller.read_temperature_c())
                 timestamp = time.time()
                 measurement = {
                     "timestamp": timestamp,
-                    "temperature_k": temp_k
+                    "temperature_c": temp_c
                 }
                 payload = json.dumps(measurement)
                 self.mqtt.publish("/temperature", payload, qos=1)
