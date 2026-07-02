@@ -39,6 +39,7 @@ class HighLevelControl():
             'operation_status': f"/status",
             'UI_command': f"/ui_command",
             'control_response': f"/control_response",
+            'hardware_status': f"/hardware_status",
         }
         self.mqtt = MQTTHandler(
             client_id="backend_controller",
@@ -90,6 +91,15 @@ class HighLevelControl():
             ("AD5260", self.AD5260Controller),
         ] if obj is not None]
         logger.info(f"[Hardware] Initialization complete. Available: {available}")
+
+        # Publish hardware init status so the frontend can show persistent error banners.
+        # Each key is False if that device failed to initialize.
+        self.mqtt.publish("/hardware_status", json.dumps({
+            "agilent":  self.agilent is not None,
+            "gpio":     self.GPIOController is not None,
+            "ad5260":   self.AD5260Controller is not None,
+            "max31865": self.MAX31865Controller is not None,
+        }), qos=1)
 
     def setup_mqtt_handlers(self):
         self.mqtt.on_ui_command(self.handle_ui_command)

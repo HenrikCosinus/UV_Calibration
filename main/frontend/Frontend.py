@@ -25,6 +25,7 @@ class Frontend():
             'operation_status': f"/status",
             'UI_command': f"/ui_command",
             'control_response': f"/control_response",
+            'hardware_status': f"/hardware_status",
         }
         self.mqtt = MQTTHandler(
             client_id="web_ui",
@@ -252,10 +253,9 @@ class Frontend():
                 ui.label('Live Temperature Readout').classes('text-h6')
                 temp_display = ui.column().classes("gap-1")
                 self.temp_readings = []
-            
-                def add_temperature_reading(temp_value):
-                    # Keep only the last 20 readings
-                    self.temp_readings.append(temp_value)
+
+                def add_temperature_reading(temp_value, timestamp=None):
+                    self.temp_readings.append((temp_value, timestamp))
                     if len(self.temp_readings) > 20:
                         self.temp_readings.pop(0)
             
@@ -269,7 +269,7 @@ class Frontend():
                         payload = json.loads(message.payload.decode())
                         logger.debug(f"[Frontend] /temperature raw: {payload}")
                         if "temperature_k" in payload:
-                            add_temperature_reading(payload["temperature_k"])
+                            add_temperature_reading(payload["temperature_k"], payload.get("timestamp"))
                             logger.info(f"[Frontend] Temperature queued: {payload['temperature_k']:.2f} K")
                         else:
                             logger.warning(f"[Frontend] /temperature payload missing 'temperature_k': {payload}")
@@ -283,6 +283,27 @@ class Frontend():
                 logger.info("[Frontend] Subscribing to /temperature for live readout")
                 self.mqtt.client.subscribe("/temperature", qos=1)
                 self.mqtt.client.message_callback_add("/temperature", on_temp_message)
+
+                # Subscribe to /hardware_status to show persistent banners for failed devices.
+                # The callback runs in the paho background thread, so ui.notify() is called
+                # via app.native.main_window (thread-safe NiceGUI pattern).
+                def on_hardware_status(client, userdata, message):
+                    try:
+                        status = json.loads(message.payload.decode())
+                        labels = {
+                            "agilent":  "Agilent signal generator",
+                            "gpio":     "GPIO multiplexer",
+                            "ad5260":   "AD5260 potentiometer",
+                            "max31865": "MAX31865 temperature sensor",
+                        }
+                        for key, name in labels.items():
+                            if not status.get(key, True):
+                                ui.notify(f"{name} failed to initialize", type="negative", close_button=True, timeout=0)
+                    except Exception as e:
+                        logger.error(f"[Frontend] hardware_status parse error: {e}")
+
+                self.mqtt.client.subscribe("/hardware_status", qos=1)
+                self.mqtt.client.message_callback_add("/hardware_status", on_hardware_status)
             
                 def refresh_ui():
                     # BUG FIX (Bug 3): ui.label() calls must be inside a `with temp_display:`
@@ -290,8 +311,11 @@ class Frontend():
                     # created at the page root and never appeared inside the temperature card.
                     temp_display.clear()
                     with temp_display:
-                        for temp in self.temp_readings:
+                        if self.temp_readings:
+                            temp, ts = self.temp_readings[-1]
                             ui.label(f"{temp:.2f} K")
+                            if ts is not None:
+                                ui.label(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(ts))).classes("text-caption text-grey")
                     logger.debug(f"[Frontend] refresh_ui: {len(self.temp_readings)} readings displayed")
             
                 ui.timer(interval=5.0, callback=refresh_ui)
