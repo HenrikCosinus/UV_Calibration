@@ -10,13 +10,16 @@ LOG_DIR.mkdir(exist_ok=True)
 # that finds the root logger with no handlers; all subsequent calls (in Backend.py,
 # GPIOController.py, etc.) are silently ignored. This means all modules log to
 # one unified file and stdout with a consistent format.
+file_handler = logging.FileHandler(LOG_DIR / "uv_calibration.log")
+file_handler.setLevel(logging.INFO)
+
+console_handler = logging.StreamHandler(sys.stdout)
+console_handler.setLevel(logging.WARNING)
+
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler(LOG_DIR / "uv_calibration.log"),
-        logging.StreamHandler(sys.stdout)
-    ]
+    handlers=[file_handler, console_handler]
 )
 logging.getLogger('pyvisa').setLevel(logging.WARNING)
 # Prevent uvicorn from adding its own handlers to the root logger,
