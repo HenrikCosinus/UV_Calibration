@@ -33,46 +33,17 @@ class Frontend():
             port=1883,
             topics=topics
         )
-        logger.info("[Frontend] Connecting MQTT client (web_ui) to broker 172.17.0.1:1883")
+        logger.info("Connecting MQTT client (web_ui) to broker 172.17.0.1:1883")
         self.mqtt.connect()
-        logger.info("[Frontend] MQTT connect() called.")
+        logger.info("MQTT connect() called.")
 
         self.temp_readings = []
 
-        def on_temp_message(client, userdata, message):
-            try:
-                payload = json.loads(message.payload.decode())
-                logger.debug(f"[Frontend] /temperature raw: {payload}")
-                if "temperature_k" in payload:
-                    self.temp_readings.append((payload["temperature_k"], payload.get("timestamp")))
-                    if len(self.temp_readings) > 20:
-                        self.temp_readings.pop(0)
-                    logger.info(f"[Frontend] Temperature queued: {payload['temperature_k']:.2f} K")
-                else:
-                    logger.warning(f"[Frontend] /temperature payload missing 'temperature_k': {payload}")
-            except Exception as e:
-                logger.error(f"[Frontend] Temperature parse error in MQTT callback: {e}")
-
-        def on_hardware_status(client, userdata, message):
-            try:
-                status = json.loads(message.payload.decode())
-                labels = {
-                    "agilent":  "Agilent signal generator",
-                    "gpio":     "GPIO multiplexer",
-                    "ad5260":   "AD5260 potentiometer",
-                    "max31865": "MAX31865 temperature sensor",
-                }
-                for key, name in labels.items():
-                    if not status.get(key, True):
-                        ui.notify(f"{name} failed to initialize", type="negative", close_button=True, timeout=0)
-            except Exception as e:
-                logger.error(f"[Frontend] hardware_status parse error: {e}")
-
         self.mqtt.client.subscribe("/temperature", qos=1)
-        self.mqtt.client.message_callback_add("/temperature", on_temp_message)
+        self.mqtt.client.message_callback_add("/temperature", self._on_temp_message)
         self.mqtt.client.subscribe("/hardware_status", qos=1)
-        self.mqtt.client.message_callback_add("/hardware_status", on_hardware_status)
-        logger.info("[Frontend] Subscribed to /temperature and /hardware_status")
+        self.mqtt.client.message_callback_add("/hardware_status", self._on_hardware_status)
+        logger.info("Subscribed to /temperature and /hardware_status")
 
     def create_ui(self):
         with ui.row().classes("w-full justify-start"):
@@ -148,7 +119,7 @@ class Frontend():
                             "duty_cycle": float(duty_cycle_input.value),
                             "inter_block_delay": float(inter_block_delay_input.value),
                         }
-                        logger.info(f"[Frontend] → /ui_command: {settings}")
+                        logger.info(f"→ /ui_command: {settings}")
                         self.mqtt.publish(
                             topic="/ui_command",
                             payload=json.dumps(settings),
@@ -156,7 +127,7 @@ class Frontend():
                         )
                         ui.notify("Signal configuration sent!", color='positive')
                     except Exception as e:
-                        logger.error(f"[Frontend] send_signal_settings error: {e}")
+                        logger.error(f"send_signal_settings error: {e}")
                         ui.notify(f"Error: {str(e)}", color='negative')
 
                 ui.button("Send Signal Settings", on_click=send_signal_settings).classes('mt-2 w-full bg-purple-600')
@@ -164,7 +135,7 @@ class Frontend():
                 def send_burst_trigger():
                     try:
                         payload = {"type": "trigger_burst"}
-                        logger.info(f"[Frontend] → /ui_command: {payload}")
+                        logger.info(f"→ /ui_command: {payload}")
                         self.mqtt.publish(
                             topic="/ui_command",
                             payload=json.dumps(payload),
@@ -172,7 +143,7 @@ class Frontend():
                         )
                         ui.notify(f"Triggered burst series", color='positive')
                     except Exception as e:
-                        logger.error(f"[Frontend] send_burst_trigger error: {e}")
+                        logger.error(f"send_burst_trigger error: {e}")
                         ui.notify(f"Burst trigger failed: {str(e)}", color='negative')
 
                 ui.button(
@@ -196,7 +167,7 @@ class Frontend():
                     def send_pulse_train_sweep():
                         try:
                             payload = {"type": "pulse_train_sweep"}
-                            logger.info(f"[Frontend] → /ui_command: {payload}")
+                            logger.info(f"→ /ui_command: {payload}")
                             self.mqtt.publish(
                                 topic="/ui_command",
                                 payload=json.dumps(payload),
@@ -204,7 +175,7 @@ class Frontend():
                             )
                             ui.notify(f"Sweeping pulse train started", color='positive')
                         except Exception as e:
-                            logger.error(f"[Frontend] send_pulse_train_sweep error: {e}")
+                            logger.error(f"send_pulse_train_sweep error: {e}")
                             ui.notify(f"Pulse train sweep failed: {str(e)}", color='negative')
 
                     ui.button(
@@ -218,7 +189,7 @@ class Frontend():
                 def connect_generator():
                     try:
                         payload = {"type": "connect_generator"}
-                        logger.info(f"[Frontend] → /ui_command: {payload}")
+                        logger.info(f"→ /ui_command: {payload}")
                         self.mqtt.publish(
                             topic="/ui_command",
                             payload=json.dumps(payload),
@@ -228,13 +199,13 @@ class Frontend():
                         ui.notify('Connect command sent via MQTT', color='info')
                     except Exception as e:
                         #status_label.text = f'Connection command error: {str(e)}'
-                        logger.error(f"[Frontend] connect_generator error: {e}")
+                        logger.error(f"connect_generator error: {e}")
                         ui.notify(f'Error sending connect command: {str(e)}', color='negative')
 
                 def disconnect_generator():
                     try:
                         payload = {"type": "disconnect_generator"}
-                        logger.info(f"[Frontend] → /ui_command: {payload}")
+                        logger.info(f"→ /ui_command: {payload}")
                         self.mqtt.publish(
                             topic="/ui_command",
                             payload=json.dumps(payload),
@@ -243,7 +214,7 @@ class Frontend():
                         #status_label.text = 'Status: Disconnecting...'
                         ui.notify('Disconnect command sent via MQTT', color='info')
                     except Exception as e:
-                        logger.error(f"[Frontend] disconnect_generator error: {e}")
+                        logger.error(f"disconnect_generator error: {e}")
                         ui.notify(f'Error sending disconnect command: {str(e)}', color='negative')
                         
                 with ui.row():
@@ -269,7 +240,7 @@ class Frontend():
                             "voltage_sweep_steps": float(steps.value),
                             "voltage_sweep_duration": float(sweep_duration.value)
                         }
-                        logger.info(f"[Frontend] → /ui_command: {settings}")
+                        logger.info(f"→ /ui_command: {settings}")
                         self.mqtt.publish(
                             topic="/ui_command",
                             payload=json.dumps(settings),
@@ -278,7 +249,7 @@ class Frontend():
                         ui.notify('Voltage sweep command sent', color='positive')
                     except Exception as e:
                         #status_label.text = f'Connection command error: {str(e)}'
-                        logger.error(f"[Frontend] voltage_sweep error: {e}")
+                        logger.error(f"voltage_sweep error: {e}")
                         ui.notify(f'Error sending connect command: {str(e)}', color='negative')
 
                 ui.button("Do voltage sweep", on_click=voltage_sweep).classes('mt-2 w-full bg-purple-600')
@@ -300,7 +271,7 @@ class Frontend():
                             ui.label(f"{temp:.2f} K")
                             if ts is not None:
                                 ui.label(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(ts))).classes("text-caption text-grey")
-                    logger.debug(f"[Frontend] refresh_ui: {len(self.temp_readings)} readings displayed")
+                    logger.debug(f"refresh_ui: {len(self.temp_readings)} readings displayed")
             
                 ui.timer(interval=5.0, callback=refresh_ui)
 
@@ -325,7 +296,7 @@ class Frontend():
                 "channel": channel_number,
                 "percent": percent
             }
-            logger.info(f"[Frontend] → /ui_command: {payload}")
+            logger.info(f"→ /ui_command: {payload}")
             self.mqtt.publish(
                 topic="/ui_command",
                 payload=json.dumps(payload),
@@ -335,7 +306,7 @@ class Frontend():
 
         except Exception as e:
             error_msg = f"MQTT error: {str(e)}"
-            logger.error(f"[Frontend] execute_switch error: {e}")
+            logger.error(f"execute_switch error: {e}")
             ui.notify(error_msg, color='negative')
 
     def load_notes(self):
@@ -371,3 +342,32 @@ class Frontend():
                 json.dump(self.channel_pot_settings, f, indent=2)
         except Exception as e:
             print(f"Failed to save potentiometer settings: {e}")
+
+    def _on_temp_message(self, client, userdata, message):
+        try:
+            payload = json.loads(message.payload.decode())
+            logger.debug(f"/temperature raw: {payload}")
+            if "temperature_k" in payload:
+                self.temp_readings.append((payload["temperature_k"], payload.get("timestamp")))
+                if len(self.temp_readings) > 20:
+                    self.temp_readings.pop(0)
+                logger.info(f"Temperature queued: {payload['temperature_k']:.2f} K")
+            else:
+                logger.warning(f"/temperature payload missing 'temperature_k': {payload}")
+        except Exception as e:
+            logger.error(f"Temperature parse error in MQTT callback: {e}")
+
+    def _on_hardware_status(self, client, userdata, message):
+        try:
+            status = json.loads(message.payload.decode())
+            labels = {
+                "agilent":  "Agilent signal generator",
+                "gpio":     "GPIO multiplexer",
+                "ad5260":   "AD5260 potentiometer",
+                "max31865": "MAX31865 temperature sensor",
+            }
+            for key, name in labels.items():
+                if not status.get(key, True):
+                    ui.notify(f"{name} failed to initialize", type="negative", close_button=True, timeout=0)
+        except Exception as e:
+            logger.error(f"hardware_status parse error: {e}")
