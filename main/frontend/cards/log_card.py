@@ -65,7 +65,7 @@ def build_log_card():
 
                 log_display.clear()
                 with log_display:
-                    for r in filtered[-100:]:
+                    for r in reversed(filtered[-100:]):
                         color = LEVEL_COLORS.get(r["level"], "text-grey")
                         ui.label(
                             f"[{r['time']}] {r['level']:<8} {r['name']} — {r['message']}"
