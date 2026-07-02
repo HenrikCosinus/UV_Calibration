@@ -98,7 +98,7 @@ class HighLevelControl():
             "gpio":     self.GPIOController is not None,
             "ad5260":   self.AD5260Controller is not None,
             "max31865": self.MAX31865Controller is not None,
-        }), qos=1)
+        }), qos=1, retain=True)
 
     def setup_mqtt_handlers(self):
         self.mqtt.on_ui_command(self.handle_ui_command)
