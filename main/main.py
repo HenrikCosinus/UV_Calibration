@@ -59,7 +59,6 @@ def main():
         port=8080,
         host="0.0.0.0",
         reload=False,
-        websocket_max_size=16 * 1024 * 1024,  # 16 MB
     )
 
 if __name__ == "__main__":
