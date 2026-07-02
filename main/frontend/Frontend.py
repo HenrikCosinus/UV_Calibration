@@ -37,6 +37,43 @@ class Frontend():
         self.mqtt.connect()
         logger.info("[Frontend] MQTT connect() called.")
 
+        self.temp_readings = []
+
+        def on_temp_message(client, userdata, message):
+            try:
+                payload = json.loads(message.payload.decode())
+                logger.debug(f"[Frontend] /temperature raw: {payload}")
+                if "temperature_k" in payload:
+                    self.temp_readings.append((payload["temperature_k"], payload.get("timestamp")))
+                    if len(self.temp_readings) > 20:
+                        self.temp_readings.pop(0)
+                    logger.info(f"[Frontend] Temperature queued: {payload['temperature_k']:.2f} K")
+                else:
+                    logger.warning(f"[Frontend] /temperature payload missing 'temperature_k': {payload}")
+            except Exception as e:
+                logger.error(f"[Frontend] Temperature parse error in MQTT callback: {e}")
+
+        def on_hardware_status(client, userdata, message):
+            try:
+                status = json.loads(message.payload.decode())
+                labels = {
+                    "agilent":  "Agilent signal generator",
+                    "gpio":     "GPIO multiplexer",
+                    "ad5260":   "AD5260 potentiometer",
+                    "max31865": "MAX31865 temperature sensor",
+                }
+                for key, name in labels.items():
+                    if not status.get(key, True):
+                        ui.notify(f"{name} failed to initialize", type="negative", close_button=True, timeout=0)
+            except Exception as e:
+                logger.error(f"[Frontend] hardware_status parse error: {e}")
+
+        self.mqtt.client.subscribe("/temperature", qos=1)
+        self.mqtt.client.message_callback_add("/temperature", on_temp_message)
+        self.mqtt.client.subscribe("/hardware_status", qos=1)
+        self.mqtt.client.message_callback_add("/hardware_status", on_hardware_status)
+        logger.info("[Frontend] Subscribed to /temperature and /hardware_status")
+
     def create_ui(self):
         with ui.row().classes("w-full justify-start"):
             with ui.card().classes("w-1/2"):
@@ -252,59 +289,6 @@ class Frontend():
             with ui.card().classes("w-1/3"):
                 ui.label('Live Temperature Readout').classes('text-h6')
                 temp_display = ui.column().classes("gap-1")
-                self.temp_readings = []
-
-                def add_temperature_reading(temp_value, timestamp=None):
-                    self.temp_readings.append((temp_value, timestamp))
-                    if len(self.temp_readings) > 20:
-                        self.temp_readings.pop(0)
-            
-                def on_temp_message(client, userdata, message):
-                    # BUG FIX (Bug 6): This callback runs in the paho MQTT background thread.
-                    # Calling ui.notify() from a background thread is not thread-safe in NiceGUI
-                    # and causes intermittent crashes/silent failures. Removed ui.notify() here;
-                    # the timer-driven refresh_ui() picks up new readings on its next tick.
-                    # List.append() is safe in CPython (GIL protects single operations).
-                    try:
-                        payload = json.loads(message.payload.decode())
-                        logger.debug(f"[Frontend] /temperature raw: {payload}")
-                        if "temperature_k" in payload:
-                            add_temperature_reading(payload["temperature_k"], payload.get("timestamp"))
-                            logger.info(f"[Frontend] Temperature queued: {payload['temperature_k']:.2f} K")
-                        else:
-                            logger.warning(f"[Frontend] /temperature payload missing 'temperature_k': {payload}")
-                    except Exception as e:
-                        # ui.notify(f"Temperature parse error: {e}", color="negative")  # NOT thread-safe
-                        logger.error(f"[Frontend] Temperature parse error in MQTT callback: {e}")
-            
-                # Subscribe to /temperature directly on the paho client.
-                # message_callback_add registers a per-topic callback that takes priority over
-                # MQTTHandler._on_message for this topic, so there is no double-dispatch.
-                logger.info("[Frontend] Subscribing to /temperature for live readout")
-                self.mqtt.client.subscribe("/temperature", qos=1)
-                self.mqtt.client.message_callback_add("/temperature", on_temp_message)
-
-                # Subscribe to /hardware_status to show persistent banners for failed devices.
-                # The callback runs in the paho background thread, so ui.notify() is called
-                # via app.native.main_window (thread-safe NiceGUI pattern).
-                def on_hardware_status(client, userdata, message):
-                    try:
-                        status = json.loads(message.payload.decode())
-                        labels = {
-                            "agilent":  "Agilent signal generator",
-                            "gpio":     "GPIO multiplexer",
-                            "ad5260":   "AD5260 potentiometer",
-                            "max31865": "MAX31865 temperature sensor",
-                        }
-                        for key, name in labels.items():
-                            if not status.get(key, True):
-                                ui.notify(f"{name} failed to initialize", type="negative", close_button=True, timeout=0)
-                    except Exception as e:
-                        logger.error(f"[Frontend] hardware_status parse error: {e}")
-
-                self.mqtt.client.subscribe("/hardware_status", qos=1)
-                self.mqtt.client.message_callback_add("/hardware_status", on_hardware_status)
-            
                 def refresh_ui():
                     # BUG FIX (Bug 3): ui.label() calls must be inside a `with temp_display:`
                     # context to attach as children of temp_display. Without it, labels were
