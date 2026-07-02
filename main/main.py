@@ -44,10 +44,13 @@ def main():
     logger.info("Backend initialized successfully.")
     logger.info("Initializing frontend (UI + MQTT)...")
     frontend = Frontend()
-    logger.info("Frontend initialized. Building UI...")
-    frontend.create_ui()
-    logger.info("UI built. Starting NiceGUI web server on 0.0.0.0:8080")
+    logger.info("Frontend initialized.")
 
+    @ui.page('/')
+    def index():
+        frontend.create_ui()
+
+    logger.info("Starting NiceGUI web server on 0.0.0.0:8080")
     ui.run(
         title="UV_LED Control Interface",
         port=8080,
