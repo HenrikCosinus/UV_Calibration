@@ -6,3 +6,4 @@ agilent_33250a.log/
 **/*.pyc
 logs/
 Temperature_measurements.json
+*.json
