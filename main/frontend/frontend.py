@@ -10,6 +10,7 @@ from frontend.cards.uv_led_card import build_uv_led_card
 from frontend.cards.signal_card import build_signal_card
 from frontend.cards.temperature_card import build_temperature_card
 from frontend.cards.potentiometer_card import build_potentiometer_card
+from frontend.cards.log_card import build_log_card
 
 logger = logging.getLogger(__name__)
 
@@ -48,7 +49,9 @@ class Frontend():
         with ui.row().classes("w-full gap-4 items-start"):
             build_uv_led_card(self)
             build_signal_card(self)
-            build_temperature_card(self)
+            with ui.column().classes("flex-1 gap-4"):
+                build_temperature_card(self)
+                build_log_card()
         build_potentiometer_card(self)
 
     def _load_notes(self):
