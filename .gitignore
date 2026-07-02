@@ -3,4 +3,6 @@ led_env/
 agilent_33250a.log/
 **/venv/
 **/__pycache__/
+**/*.pyc
 logs/
+Temperature_measurements.json
