@@ -131,7 +131,10 @@ class HighLevelControl():
                 with open(file_path, "r+") as f:
                     data = json.load(f)
                     data.append(measurement)
+                    if len(data) > 1000:
+                        data = data[-1000:]
                     f.seek(0)
+                    f.truncate()
                     json.dump(data, f, indent=2)
 
             except Exception as e:
