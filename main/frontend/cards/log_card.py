@@ -7,7 +7,7 @@ MAX_LOG_ENTRIES = 200
 
 LEVEL_COLORS = {
     "DEBUG":    "text-grey",
-    "INFO":     "text-blue",
+    "INFO":     "text-blue-800",
     "WARNING":  "text-orange",
     "ERROR":    "text-red",
     "CRITICAL": "text-red-900",
@@ -49,6 +49,22 @@ def build_log_card():
                 options=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
                 value="INFO"
             ).classes("w-32")
+
+            def export_logs():
+                min_level = logging.getLevelName(level_filter.value)
+                name_substr = name_filter.value.strip().lower()
+                filtered = [
+                    r for r in _ui_log_handler.records
+                    if logging.getLevelName(r["level"]) >= min_level
+                    and (not name_substr or name_substr in r["name"].lower())
+                ]
+                lines = [
+                    f"[{r['time']}] {r['level']:<8} {r['name']} — {r['message']}"
+                    for r in filtered
+                ]
+                ui.download(content="\n".join(lines).encode(), filename="system.log", media_type="text/plain")
+
+            ui.button("Export .log", icon="download", on_click=export_logs).classes("ml-auto")
 
         log_display = ui.column().classes("gap-0 w-full font-mono text-xs overflow-auto").style("max-height: 300px")
 
