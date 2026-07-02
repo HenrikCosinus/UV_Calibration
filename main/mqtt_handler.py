@@ -94,7 +94,7 @@ class MQTTHandler:
         if rc == 0:
             self.connected = True
             self.logger.info("Successfully connected to MQTT broker")
-            for topic in self._message_handlers:
+            for topic in list(self._message_handlers):
                 client.subscribe(topic)
                 self.logger.info(f"[MQTT] Subscribed to topic: {topic}")
 
