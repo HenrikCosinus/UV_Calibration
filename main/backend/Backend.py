@@ -26,7 +26,6 @@ logger = logging.getLogger(__name__)
 
 class HighLevelControl():
     def __init__(self):
-        self.initialize_hardware()
         logger.info("hardware initialization worked in the _init_")
         self.system_status = "idle"
         # BUG FIX (Bug 1): current_channel was never initialized. handle_channel_selection()
@@ -49,7 +48,7 @@ class HighLevelControl():
             )
         self.setup_mqtt_handlers()
         self.mqtt.connect()
-        # Temperature loop commented out — re-enable once core functionality is verified.
+        self.initialize_hardware()
         self.start_temp_loop(interval=5)
 
     def initialize_hardware(self):
