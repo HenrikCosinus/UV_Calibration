@@ -1,5 +1,6 @@
 import logging
-from nicegui import ui
+from nicegui import ui, app
+from fastapi.responses import Response
 
 logger = logging.getLogger(__name__)
 
@@ -38,6 +39,19 @@ _ui_log_handler.setLevel(logging.DEBUG)
 logging.getLogger().addHandler(_ui_log_handler)
 
 
+@app.get("/export_logs")
+def _serve_log():
+    lines = [
+        f"[{r['time']}] {r['level']:<8} {r['name']} — {r['message']}"
+        for r in _ui_log_handler.records
+    ]
+    return Response(
+        content="\n".join(lines),
+        media_type="text/plain",
+        headers={"Content-Disposition": "attachment; filename=system.log"},
+    )
+
+
 def build_log_card():
     with ui.card().classes("flex-1"):
         ui.label("System Log").classes("text-h6")
@@ -50,21 +64,8 @@ def build_log_card():
                 value="INFO"
             ).classes("w-32")
 
-            def export_logs():
-                min_level = logging.getLevelName(level_filter.value)
-                name_substr = name_filter.value.strip().lower()
-                filtered = [
-                    r for r in _ui_log_handler.records
-                    if logging.getLevelName(r["level"]) >= min_level
-                    and (not name_substr or name_substr in r["name"].lower())
-                ]
-                lines = [
-                    f"[{r['time']}] {r['level']:<8} {r['name']} — {r['message']}"
-                    for r in filtered
-                ]
-                ui.download(content="\n".join(lines).encode(), filename="system.log", media_type="text/plain")
-
-            ui.button("Export .log", icon="download", on_click=export_logs).classes("ml-auto")
+            ui.button("Export .log", icon="download",
+                      on_click=lambda: ui.navigate.to("/export_logs", new_tab=True)).classes("ml-auto")
 
         log_display = ui.column().classes("gap-0 w-full font-mono text-xs overflow-auto").style("max-height: 300px")
 
