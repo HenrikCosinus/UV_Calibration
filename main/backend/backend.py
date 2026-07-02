@@ -79,7 +79,7 @@ class HighLevelControl():
         # and MAX31865 is also assigned CS=BCM8 via board.D8. When both are connected, move AD5260 CS to
         # BCM7 (physical pin 26, CE1) and update spidev.open(0,1) to match, or move MAX31865 to a free GPIO.
         try:
-            self.MAX31865Controller = MAX31865Controller(cs_pin=8, wires=3, rtd_nominal=100.0, ref_resistor=430.0)
+            self.MAX31865Controller = MAX31865Controller(cs_pin=5, wires=3, rtd_nominal=100.0, ref_resistor=430.0)
             logger.info("[Hardware] MAX31865 temperature sensor initialized.")
         except Exception as e:
             logger.warning(f"[Hardware] MAX31865 init failed — continuing without it: {e}")

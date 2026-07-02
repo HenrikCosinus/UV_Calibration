@@ -209,9 +209,10 @@ class AD5260Controller:
 logger_temp = logging.getLogger(f"{__name__}.temperature")
 
 class MAX31865Controller:
-    def __init__(self, cs_pin=8, wires=3, rtd_nominal=100.0, ref_resistor=430.0):
+    def __init__(self, cs_pin=5, wires=3, rtd_nominal=100.0, ref_resistor=430.0):
         """
-        cs_pin: BCM pin for chip select (BCM numbering, default BCM8 = CE0 = physical pin 24)
+        cs_pin: BCM pin for chip select (BCM numbering). BCM8/CE0 (physical pin 24) conflicts
+                with the Adafruit library on Pi Zero 2W — use a free GPIO instead (e.g. BCM5, physical pin 29).
         wires: 2, 3, or 4
         """
         spi = board.SPI()
