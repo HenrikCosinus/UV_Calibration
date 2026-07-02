@@ -128,7 +128,6 @@ class HighLevelControl():
                 }
                 payload = json.dumps(measurement)
                 self.mqtt.publish("/temperature", payload, qos=1)
-                logging.info(f"[MAX31865] Published {temp_k:.2f} K to /temperature")
                 with open(file_path, "r+") as f:
                     data = json.load(f)
                     data.append(measurement)
