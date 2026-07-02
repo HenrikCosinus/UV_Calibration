@@ -4,7 +4,7 @@ from nicegui import ui
 import paho.mqtt.client as mqtt
 import json
 from pathlib import Path
-from MQTTHandler import MQTTHandler
+from mqtt_handler import MQTTHandler
 import threading
 from frontend.cards.uv_led_card import build_uv_led_card
 from frontend.cards.signal_card import build_signal_card

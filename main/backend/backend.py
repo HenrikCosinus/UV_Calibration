@@ -1,5 +1,5 @@
-from Agilent_Controller_RS232 import Agilent33250A
-from GPIOController import Multiplexer, AD5260Controller, MAX31865Controller
+from agilent_controller_rs232 import Agilent33250A
+from gpio_controller import Multiplexer, AD5260Controller, MAX31865Controller
 import logging
 import sys
 import os
@@ -9,7 +9,7 @@ import time
 import numpy as np
 import json
 import paho.mqtt.client as mqtt
-from MQTTHandler import MQTTHandler
+from mqtt_handler import MQTTHandler
 import threading
 
 # Logging is configured centrally in main.py. basicConfig here is commented out so

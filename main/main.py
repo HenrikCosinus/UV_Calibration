@@ -32,9 +32,9 @@ import numpy as np
 import argparse
 import asyncio
 from nicegui import ui
-from MQTTHandler import MQTTHandler
-from backend.Backend import HighLevelControl
-from frontend.Frontend import Frontend
+from mqtt_handler import MQTTHandler
+from backend.backend import HighLevelControl
+from frontend.frontend import Frontend
 
 
 def main():
